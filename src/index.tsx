@@ -13,7 +13,7 @@ root.render(
   <BrowserRouter>
     <React.StrictMode>
       <Routes>
-        <Route path="/upload" element={<PostUpload />}></Route>
+        <Route path="/" element={<PostUpload />}></Route>
       </Routes>
     </React.StrictMode>
   </BrowserRouter>

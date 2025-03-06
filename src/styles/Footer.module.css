@@ -1,0 +1,22 @@
+.Footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.FooterIconContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.FooterIconContainer > img {
+  height: 22px;
+}
+
+.FooterIconContainer > p {
+  font-size: 14px;
+  color: #b5b5b5;
+}
