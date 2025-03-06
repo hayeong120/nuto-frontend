@@ -4,12 +4,15 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
+  background-color: #f1efe9;
+  padding: 17px;
 }
 
 .FooterIconContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  row-gap: 4.84px;
 }
 
 .FooterIconContainer > img {
@@ -19,4 +22,5 @@
 .FooterIconContainer > p {
   font-size: 14px;
   color: #b5b5b5;
+  margin: 0;
 }
