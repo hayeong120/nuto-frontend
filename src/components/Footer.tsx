@@ -26,6 +26,7 @@ function Footer({}) {
       {footerButtons.map((footerButton, idx) => {
         return (
           <div
+            key={idx}
             className={style.FooterIconContainer}
             onClick={() => clickFooter(idx)}
           >

@@ -17,9 +17,9 @@ function Header({}) {
     <div className={style.Header}>
       {headerImages.map((headerImage, idx) => {
         return (
-          <div onClick={idx === 0 ? returnBack : moveNext}>
+          <div key={idx} onClick={idx === 0 ? returnBack : moveNext}>
             <img
-              className={style.HeaderImg}
+              className={idx === 0 ? style.HeaderBackImg : style.HeaderNextImg}
               src={`${headerImage}.png`}
               alt={`${idx}번째 요소`}
             />
