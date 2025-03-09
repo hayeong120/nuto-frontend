@@ -6,14 +6,18 @@ import Footer from "../components/Footer";
 import style from "../styles/EditPost.module.css";
 import * as fabric from "fabric";
 
-fabric.Object.prototype.transparentCorners = false;
-fabric.Object.prototype.cornerColor = "blue";
-fabric.Object.prototype.cornerStyle = "circle";
-
 function EditPost() {
   const { image } = useImage();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [fabricCanvas, setFabricCanvas] = useState<fabric.Canvas | null>(null);
+  const deleteIcon = "/images/Delete.png";
+
+  var deleteImg = document.createElement("img");
+  deleteImg.src = deleteIcon;
+
+  fabric.Object.prototype.transparentCorners = false;
+  fabric.Object.prototype.cornerColor = "blue";
+  fabric.Object.prototype.cornerStyle = "circle";
 
   const stickers = [
     "/images/물주전자.png",
@@ -25,16 +29,6 @@ function EditPost() {
     "/images/나무.png",
     "/images/아이디어.png",
   ];
-
-  const deleteIcon = "/images/Delete.png";
-  const deleteImg = document.createElement("img");
-  deleteImg.src = deleteIcon;
-  const sizeIcon = "/images/Size.png";
-  const sizeImg = document.createElement("img");
-  sizeImg.src = sizeIcon;
-  const translateIcon = "/images/Translate.png";
-  var translateImg = document.createElement("img");
-  translateImg.src = translateIcon;
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -115,6 +109,15 @@ function EditPost() {
           scaleY: scaleY,
           width: stickerImg.width,
           height: stickerImg.height,
+        });
+
+        imgObj.controls.deleteControl = new fabric.Control({
+          x: 0.5,
+          y: -0.7,
+          offsetY: 16,
+          cursorStyle: "pointer",
+          mouseUpHandler: deleteObject,
+          render: renderIcon,
         });
 
         fabricCanvas.add(imgObj);
