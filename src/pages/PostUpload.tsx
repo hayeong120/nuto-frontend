@@ -3,10 +3,14 @@ import Footer from "../components/Footer";
 import def from "../styles/Default.module.css";
 import style from "../styles/PostUpload.module.css";
 import { useRef, useState } from "react";
+import { useImage } from "../context/ImageContext";
+import { useNavigate } from "react-router-dom";
 
 function PostUpload() {
   const imgRef = useRef<HTMLInputElement | null>(null);
   const [previewImage, setPreviewImage] = useState<string>("");
+  const { image, setImage } = useImage();
+  const navigate = useNavigate();
 
   const uploadImage = () => {
     if (imgRef.current) {
@@ -22,6 +26,7 @@ function PostUpload() {
       reader.onload = () => {
         if (reader.result) {
           setPreviewImage(reader.result as string);
+          setImage(reader.result as string);
         }
       };
     }
@@ -29,7 +34,7 @@ function PostUpload() {
 
   return (
     <div className={def.Body}>
-      <Header />
+      <Header prevSrc="-1" nextSrc="/edit" />
       <div className={style.BoothContainer}>
         <p>선택한 부스</p>
       </div>
