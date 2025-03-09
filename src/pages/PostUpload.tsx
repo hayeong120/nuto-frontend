@@ -1,11 +1,63 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import def from "../styles/Default.module.css";
+import style from "../styles/PostUpload.module.css";
+import { useRef, useState } from "react";
 
-function PostUpload({}) {
+function PostUpload() {
+  const imgRef = useRef<HTMLInputElement | null>(null);
+  const [previewImage, setPreviewImage] = useState<string>("");
+
+  const uploadImage = () => {
+    if (imgRef.current) {
+      imgRef.current.click();
+    }
+  };
+
+  const showPreview = () => {
+    if (imgRef.current && imgRef.current.files) {
+      const file = imgRef.current.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        if (reader.result) {
+          setPreviewImage(reader.result as string);
+        }
+      };
+    }
+  };
+
   return (
     <div className={def.Body}>
       <Header />
+      <div className={style.BoothContainer}>
+        <p>선택한 부스</p>
+      </div>
+      <div className={style.NameContainer}>
+        <p>당신의 이름은 무엇인가요?</p>
+        <input />
+      </div>
+      <div className={style.ImageContainer}>
+        <p>폴라로이드에 첨부할 사진을 선택해주세요.</p>
+
+        <div className={style.InputImage}>
+          <button onClick={uploadImage}>+</button>
+
+          <input
+            type="file"
+            ref={imgRef}
+            onChange={showPreview}
+            accept=".png, .jpg, .jpeg"
+            style={{ display: "none" }}
+          />
+
+          <img
+            className={style.InputedImage}
+            src={previewImage}
+            alt={previewImage}
+          />
+        </div>
+      </div>
       <Footer />
     </div>
   );

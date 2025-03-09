@@ -1,3 +1,8 @@
+* {
+  font-family: "나눔고딕";
+  box-sizing: border-box;
+}
+
 .Body {
-  padding: 32px 0;
+  padding: 32px 16px;
 }
