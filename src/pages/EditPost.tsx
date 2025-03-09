@@ -10,13 +10,14 @@ function EditPost() {
   const { image } = useImage();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [fabricCanvas, setFabricCanvas] = useState<fabric.Canvas | null>(null);
-  const deleteIcon = "/images/Delete.png";
+  const [framedPhoto, setFramedPhoto] = useState<string | null>(null);
 
+  const deleteIcon = "/images/Delete.png";
   var deleteImg = document.createElement("img");
   deleteImg.src = deleteIcon;
 
   fabric.Object.prototype.transparentCorners = false;
-  fabric.Object.prototype.cornerColor = "blue";
+  fabric.Object.prototype.cornerColor = "black";
   fabric.Object.prototype.cornerStyle = "circle";
 
   const stickers = [
@@ -122,6 +123,9 @@ function EditPost() {
 
         fabricCanvas.add(imgObj);
         fabricCanvas.renderAll();
+        setFramedPhoto(
+          fabricCanvas.toDataURL({ format: "png", multiplier: 10 })
+        );
       }
     };
   };
@@ -147,6 +151,16 @@ function EditPost() {
     ctx.restore();
   }
 
+  const downloadFile = () => {
+    if (!framedPhoto) return;
+    const a = document.createElement("a");
+    a.href = framedPhoto;
+    a.download = "framed_photo.png";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
   return (
     <div className={def.Body}>
       <Header prevSrc="-1" nextSrc="/nuto" />
@@ -162,6 +176,7 @@ function EditPost() {
             );
           })}
         </div>
+        <button onClick={downloadFile}>다운로드</button>
       </div>
       <Footer />
     </div>
