@@ -36,7 +36,7 @@ function EditPost() {
 
     const newCanvas = new fabric.Canvas(canvasRef.current, {
       width: 358,
-      height: 450,
+      height: 420,
     });
 
     const rect = new fabric.Rect({
@@ -44,7 +44,7 @@ function EditPost() {
       top: 0,
       fill: "white",
       width: 358,
-      height: 450,
+      height: 420,
       selectable: false,
     });
 
@@ -176,8 +176,11 @@ function EditPost() {
             );
           })}
         </div>
-        <button onClick={downloadFile}>다운로드</button>
+
+        {/* <button onClick={downloadFile}>다운로드</button> */}
       </div>
+      <div className={style.background}></div>
+
       <Footer />
     </div>
   );

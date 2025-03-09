@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PostUpload from "./pages/PostUpload";
 import EditPost from "./pages/EditPost";
+import EditNuto from "./pages/EditNuto";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,6 +18,7 @@ root.render(
         <Routes>
           <Route path="/" element={<PostUpload />}></Route>
           <Route path="/edit" element={<EditPost />}></Route>
+          <Route path="/nuto" element={<EditNuto />}></Route>
         </Routes>
       </React.StrictMode>
     </BrowserRouter>

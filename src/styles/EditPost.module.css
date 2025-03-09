@@ -1,8 +1,10 @@
 .EditPostContainer {
-  margin-top: 17px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
-  row-gap: 24px;
+  row-gap: 35px;
+  z-index: 10;
+  position: relative;
 }
 
 .EditPostContainer > p {
@@ -10,19 +12,15 @@
   margin: 0;
 }
 
-.canvasContainer {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
+.EditPostContainer {
   z-index: 2;
 }
 
 .background {
   position: fixed;
-  top: 105px;
+  top: 110px;
   left: 0;
-  z-index: -1;
+  z-index: 1;
   background-color: #f1efe9;
   height: 450px;
   width: 100%;
@@ -30,9 +28,9 @@
 
 .stickerContainer {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-wrap: wrap;
-  padding: 15px;
+  padding: 0 10px;
 }
 
 .stickerContainer > button {
@@ -43,8 +41,4 @@
 .stickerContainer img {
   width: 70px;
   height: 70px;
-}
-
-button {
-  margin-bottom: 100px;
 }

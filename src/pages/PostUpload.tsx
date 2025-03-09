@@ -63,6 +63,7 @@ function PostUpload() {
           />
         </div>
       </div>
+
       <Footer />
     </div>
   );

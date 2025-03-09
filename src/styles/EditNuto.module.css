@@ -1,0 +1,23 @@
+.NutoContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  margin-top: 20px;
+}
+
+.ChooseTomatoContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ChooseTomatoContainer > div {
+  display: flex;
+  flex-direction: column;
+  row-gap: 14px;
+}
+
+.ChooseTomatoContainer p {
+  font-family: "Ownglyph PDH";
+  text-align: center;
+  color: #656565;
+}
