@@ -4,13 +4,11 @@ import def from "../styles/Default.module.css";
 import style from "../styles/PostUpload.module.css";
 import { useRef, useState } from "react";
 import { useImage } from "../context/ImageContext";
-import { useNavigate } from "react-router-dom";
 
 function PostUpload() {
   const imgRef = useRef<HTMLInputElement | null>(null);
   const [previewImage, setPreviewImage] = useState<string>("");
   const { image, setImage } = useImage();
-  const navigate = useNavigate();
 
   const uploadImage = () => {
     if (imgRef.current) {

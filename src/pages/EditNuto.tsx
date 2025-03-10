@@ -4,6 +4,8 @@ import Footer from "../components/Footer";
 import style from "../styles/EditNuto.module.css";
 import { useRef, useState, useEffect } from "react";
 import * as fabric from "fabric";
+import { usePolariod } from "../context/PolariodContext";
+import axios from "axios";
 
 function EditNuto() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -42,7 +44,7 @@ function EditNuto() {
       });
 
       const textBox = new fabric.IText("응원글을\n입력해 주세요.", {
-        fontSize: 24,
+        fontSize: 16,
         fontFamily: "Ownglyph PDH",
         fill: "white",
         textAlign: "center",
@@ -89,8 +91,9 @@ function EditNuto() {
           })}
         </div>
         <input />
-        <canvas ref={canvasRef} id="canvas" />
+        <canvas ref={canvasRef} id="canvas" className={style.NutoCanvas} />
       </div>
+      <div className={style.background}></div>
       <Footer />
     </div>
   );

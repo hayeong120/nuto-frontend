@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import style from "../styles/EditPost.module.css";
+import { usePolariod } from "../context/PolariodContext";
 import * as fabric from "fabric";
 
 function EditPost() {
@@ -11,6 +12,7 @@ function EditPost() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [fabricCanvas, setFabricCanvas] = useState<fabric.Canvas | null>(null);
   const [framedPhoto, setFramedPhoto] = useState<string | null>(null);
+  const { polariod, setPolariod } = usePolariod();
 
   const deleteIcon = "/images/Delete.png";
   var deleteImg = document.createElement("img");
@@ -151,19 +153,15 @@ function EditPost() {
     ctx.restore();
   }
 
-  const downloadFile = () => {
-    if (!framedPhoto) return;
-    const a = document.createElement("a");
-    a.href = framedPhoto;
-    a.download = "framed_photo.png";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+  const setPolariodImage = () => {
+    if (canvasRef.current) {
+      setPolariod(canvasRef.current?.toDataURL());
+    }
   };
 
   return (
     <div className={def.Body}>
-      <Header prevSrc="-1" nextSrc="/nuto" />
+      <Header prevSrc="-1" nextSrc="/nuto" saveImage={setPolariodImage} />
       <div className={style.EditPostContainer}>
         <p>폴라로이드를 취향에 맞게 꾸며주세요!</p>
         <canvas ref={canvasRef} id="canvas"></canvas>

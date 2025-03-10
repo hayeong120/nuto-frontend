@@ -1,12 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import style from "../styles/Header.module.css";
 
-function Header(props: { prevSrc: string; nextSrc: string }) {
+function Header(props: {
+  prevSrc: string;
+  nextSrc: string;
+  saveImage?: () => void;
+}) {
   const navigate = useNavigate();
   const headerImages = ["/images/backButton", "/images/checkButton"];
 
   const returnBack = () => {
-    if (props.prevSrc == "-1") {
+    if (props.prevSrc === "-1") {
       navigate(-1);
     } else {
       navigate(props.prevSrc);
@@ -14,6 +18,9 @@ function Header(props: { prevSrc: string; nextSrc: string }) {
   };
 
   const moveNext = () => {
+    if (props.saveImage) {
+      props.saveImage();
+    }
     navigate(props.nextSrc);
   };
 

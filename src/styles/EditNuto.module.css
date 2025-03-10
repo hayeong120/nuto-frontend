@@ -5,15 +5,19 @@
   margin-top: 20px;
 }
 
-/* .NutoContainer > canvas {
-  width: 358px;
-  height: 277.63px;
-} */
+.NutoCanvas {
+  z-index: 19;
+}
+
+.canvas-container {
+  z-index: 10;
+}
 
 .ChooseTomatoContainer {
   display: flex;
   justify-content: space-between;
   /* column-gap: 20px; */
+  z-index: 10;
 }
 
 .ChooseTomatoContainer > div {
@@ -43,4 +47,14 @@
 
 .NutoContainer img {
   margin-top: 14px;
+}
+
+.background {
+  position: fixed;
+  top: 260px;
+  left: 0;
+  z-index: 0;
+  background-color: #f1efe9;
+  height: 404px;
+  width: 100%;
 }
