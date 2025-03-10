@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 interface PolariodContextProps {
   nutoFile: File | null;
@@ -16,8 +16,24 @@ export const PolariodProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [nutoFile, setNutoFile] = useState<File | null>(null);
-  const [polariodFile, setPolariodFile] = useState<File | null>(null);
+  const [nutoFile, setNutoFile] = useState<File | null>(() => {
+    const savedNutoFile = sessionStorage.getItem("nutoFile");
+    return savedNutoFile ? JSON.parse(savedNutoFile) : null;
+  });
+  const [polariodFile, setPolariodFile] = useState<File | null>(() => {
+    const savedPolariodFile = sessionStorage.getItem("polariodFile");
+    return savedPolariodFile ? JSON.parse(savedPolariodFile) : null;
+  });
+
+  useEffect(() => {
+    if (nutoFile) {
+      sessionStorage.setItem("nutoFile", JSON.stringify(nutoFile));
+    }
+
+    if (polariodFile) {
+      sessionStorage.setItem("polariodFile", JSON.stringify(polariodFile));
+    }
+  }, [nutoFile, polariodFile]);
 
   return (
     <PolariodContext.Provider

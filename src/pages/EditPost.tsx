@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import style from "../styles/EditPost.module.css";
 import { usePolariod } from "../context/PostContext";
 import * as fabric from "fabric";
+import { usePostInfo } from "../context/PostInfoContext";
 
 function EditPost() {
   const { image } = useImage();
@@ -13,6 +14,7 @@ function EditPost() {
   const [fabricCanvas, setFabricCanvas] = useState<fabric.Canvas | null>(null);
   const [framedPhoto, setFramedPhoto] = useState<string | null>(null);
   const { polariodFile, setPolariodFile } = usePolariod();
+  const { name, setName } = usePostInfo();
 
   const deleteIcon = "/images/Delete.png";
   var deleteImg = document.createElement("img");
@@ -86,6 +88,29 @@ function EditPost() {
         newCanvas.renderAll();
       };
     }
+    const date = `${new Date().getFullYear()}.${
+      new Date().getMonth() + 1
+    }.${new Date().getDate()}`;
+    const dateText = new fabric.FabricText(date, {
+      fontSize: 18,
+      fontFamily: "Ownglyph PDH",
+      fill: "#656565",
+      top: 345,
+      left: 22,
+    });
+
+    const nameText = new fabric.FabricText(name, {
+      fontSize: 18,
+      fontFamily: "Ownglyph PDH",
+      fill: "#656565",
+      top: 345,
+      left: 300,
+      // right: 200,
+    });
+
+    console.log(name);
+    newCanvas.add(dateText);
+    newCanvas.add(nameText);
 
     setFabricCanvas(newCanvas);
 

@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 
 interface ImageContextType {
   image: string;
@@ -8,7 +14,16 @@ interface ImageContextType {
 const ImageContext = createContext<ImageContextType | undefined>(undefined);
 
 export function ImageProvider({ children }: { children: ReactNode }) {
-  const [image, setImage] = useState<string>("");
+  const [image, setImage] = useState<string>(() => {
+    const savedImage = sessionStorage.getItem("image");
+    return savedImage ? JSON.parse(savedImage) : "";
+  });
+
+  useEffect(() => {
+    if (image) {
+      sessionStorage.setItem("image", JSON.stringify(image));
+    }
+  }, [image]);
 
   return (
     <ImageContext.Provider value={{ image, setImage }}>

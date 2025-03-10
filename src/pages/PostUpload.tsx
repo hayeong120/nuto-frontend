@@ -4,11 +4,13 @@ import def from "../styles/Default.module.css";
 import style from "../styles/PostUpload.module.css";
 import { useRef, useState } from "react";
 import { useImage } from "../context/ImageContext";
+import { usePostInfo } from "../context/PostInfoContext";
 
 function PostUpload() {
   const imgRef = useRef<HTMLInputElement | null>(null);
   const [previewImage, setPreviewImage] = useState<string>("");
   const { image, setImage } = useImage();
+  const { name, setName } = usePostInfo();
 
   const uploadImage = () => {
     if (imgRef.current) {
@@ -30,6 +32,10 @@ function PostUpload() {
     }
   };
 
+  const onChange = (event: any) => {
+    setName(event.target.value);
+  };
+
   return (
     <div className={def.Body}>
       <Header prevSrc="-1" nextSrc="/edit" />
@@ -38,7 +44,7 @@ function PostUpload() {
       </div>
       <div className={style.NameContainer}>
         <p>당신의 이름은 무엇인가요?</p>
-        <input />
+        <input onChange={onChange} value={name} />
       </div>
       <div className={style.ImageContainer}>
         <p>폴라로이드에 첨부할 사진을 선택해주세요.</p>
