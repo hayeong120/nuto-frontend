@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import style from "../styles/EditPost.module.css";
-import { usePolariod } from "../context/PolariodContext";
+import { usePolariod } from "../context/PostContext";
 import * as fabric from "fabric";
 
 function EditPost() {
@@ -12,7 +12,7 @@ function EditPost() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [fabricCanvas, setFabricCanvas] = useState<fabric.Canvas | null>(null);
   const [framedPhoto, setFramedPhoto] = useState<string | null>(null);
-  const { polariod, setPolariod } = usePolariod();
+  const { polariodFile, setPolariodFile } = usePolariod();
 
   const deleteIcon = "/images/Delete.png";
   var deleteImg = document.createElement("img");
@@ -153,9 +153,25 @@ function EditPost() {
     ctx.restore();
   }
 
+  const dataURLtoFile = (dataURL: string, filename: string) => {
+    const arr = dataURL.split(",");
+    const mime = arr[0].match(/:(.*?);/)![1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], filename, { type: mime });
+  };
+
   const setPolariodImage = () => {
-    if (canvasRef.current) {
-      setPolariod(canvasRef.current?.toDataURL());
+    if (fabricCanvas) {
+      const dataURL = fabricCanvas.toDataURL({ format: "png", multiplier: 4 });
+      const file = dataURLtoFile(dataURL, "polariod.png");
+      setPolariodFile(file);
     }
   };
 

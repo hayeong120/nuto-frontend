@@ -4,12 +4,14 @@ import Footer from "../components/Footer";
 import style from "../styles/EditNuto.module.css";
 import { useRef, useState, useEffect } from "react";
 import * as fabric from "fabric";
-import { usePolariod } from "../context/PolariodContext";
+import { usePolariod } from "../context/PostContext";
 import axios from "axios";
 
 function EditNuto() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [fabricCanvas, setFabricCanvas] = useState<fabric.Canvas | null>(null);
   const [imgSrc, setImgSrc] = useState<string>("/images/redTomato.png");
+  const { nutoFile, setNutoFile } = usePolariod();
   const tomatos = [
     { src: "/images/redTomato.png", comment: "최고였다는 극찬" },
     { src: "/images/orangeTomato.png", comment: "신선한 아이디어" },
@@ -56,6 +58,7 @@ function EditNuto() {
       newCanvas.add(imgObj);
       newCanvas.add(textBox);
       newCanvas.renderAll();
+      setFabricCanvas(newCanvas);
     };
 
     return () => {
@@ -67,9 +70,31 @@ function EditNuto() {
     setImgSrc(tomatos[idx]["src"]);
   };
 
+  const dataURLtoFile = (dataURL: string, filename: string) => {
+    const arr = dataURL.split(",");
+    const mime = arr[0].match(/:(.*?);/)![1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], filename, { type: mime });
+  };
+
+  const setPolariodImage = () => {
+    if (fabricCanvas) {
+      const dataURL = fabricCanvas.toDataURL({ format: "png", multiplier: 4 });
+      const file = dataURLtoFile(dataURL, "polariod.png");
+      setNutoFile(file);
+    }
+  };
+
   return (
     <div className={def.Body}>
-      <Header prevSrc="-1" nextSrc="/" />
+      <Header prevSrc="-1" nextSrc="/" saveImage={setPolariodImage} />
       <div className={style.NutoContainer}>
         <p>토마토를 선택해 주세요.</p>
         <div className={style.ChooseTomatoContainer}>
