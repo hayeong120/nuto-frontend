@@ -12,6 +12,7 @@ function EditNuto() {
   const [fabricCanvas, setFabricCanvas] = useState<fabric.Canvas | null>(null);
   const [imgSrc, setImgSrc] = useState<string>("/images/redTomato.png");
   const { nutoFile, setNutoFile } = usePolariod();
+  const { polariodFile, setPolariodFile } = usePolariod();
   const tomatos = [
     { src: "/images/redTomato.png", comment: "최고였다는 극찬" },
     { src: "/images/orangeTomato.png", comment: "신선한 아이디어" },
@@ -84,11 +85,45 @@ function EditNuto() {
     return new File([u8arr], filename, { type: mime });
   };
 
-  const setPolariodImage = () => {
-    if (fabricCanvas) {
-      const dataURL = fabricCanvas.toDataURL({ format: "png", multiplier: 4 });
-      const file = dataURLtoFile(dataURL, "polariod.png");
-      setNutoFile(file);
+  const setPolariodImage = async () => {
+    if (!fabricCanvas) return;
+
+    const dataURL = fabricCanvas.toDataURL({ format: "png", multiplier: 4 });
+    const file = dataURLtoFile(dataURL, "nuto.png");
+
+    const password = prompt("비밀번호를 입력하세요.");
+    if (!password) {
+      alert("비밀번호를 입력해야 합니다.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("nutoImage", file); // `file`을 `nutoImage`로 저장
+    if (polariodFile) {
+      formData.append("polariodImage", polariodFile); // `polariodImage` 추가
+    }
+
+    formData.append("name", "오지은");
+    formData.append("location", "nuto");
+    formData.append("password", password);
+
+    console.log(file, polariodFile);
+
+    console.log("FormData 내용:");
+
+    formData.forEach((value, key) => {
+      console.log(`${key}: ${value}`);
+    });
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/post",
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      console.log("업로드 성공:", response);
+    } catch (err) {
+      console.error("업로드 실패:", err);
     }
   };
 
