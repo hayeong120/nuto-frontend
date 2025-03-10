@@ -14,13 +14,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <ImageProvider>
     <BrowserRouter>
-      <React.StrictMode>
-        <Routes>
-          <Route path="/" element={<PostUpload />}></Route>
-          <Route path="/edit" element={<EditPost />}></Route>
-          <Route path="/nuto" element={<EditNuto />}></Route>
-        </Routes>
-      </React.StrictMode>
+      {/* <React.StrictMode> */}
+      <Routes>
+        <Route path="/" element={<PostUpload />}></Route>
+        <Route path="/edit" element={<EditPost />}></Route>
+        <Route path="/nuto" element={<EditNuto />}></Route>
+      </Routes>
+      {/* </React.StrictMode> */}
     </BrowserRouter>
   </ImageProvider>
 );

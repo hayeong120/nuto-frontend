@@ -58,7 +58,7 @@ function EditPost() {
         const scaleX = 314 / img.width;
         const scaleY = 314 / img.height;
 
-        const imgObj = new fabric.Image(img, {
+        const imgObj = new fabric.FabricImage(img, {
           left: 22,
           top: 22,
           selectable: false,

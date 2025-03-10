@@ -1,23 +1,46 @@
 .NutoContainer {
   display: flex;
   flex-direction: column;
-  row-gap: 30px;
+  row-gap: 26px;
   margin-top: 20px;
 }
+
+/* .NutoContainer > canvas {
+  width: 358px;
+  height: 277.63px;
+} */
 
 .ChooseTomatoContainer {
   display: flex;
   justify-content: space-between;
+  /* column-gap: 20px; */
 }
 
 .ChooseTomatoContainer > div {
   display: flex;
   flex-direction: column;
   row-gap: 14px;
+  align-items: center;
 }
 
 .ChooseTomatoContainer p {
   font-family: "Ownglyph PDH";
   text-align: center;
   color: #656565;
+}
+
+.NutoContainer input {
+  position: fixed;
+  background-color: transparent;
+  border: 0;
+  font-family: "Ownglyph PDH";
+  font-size: 16px;
+  top: 50%;
+  width: 200px;
+  left: calc(50% - 100px);
+  color: white;
+}
+
+.NutoContainer img {
+  margin-top: 14px;
 }
