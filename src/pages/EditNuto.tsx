@@ -5,6 +5,7 @@ import style from "../styles/EditNuto.module.css";
 import { useRef, useState, useEffect } from "react";
 import * as fabric from "fabric";
 import { usePolariod } from "../context/PostContext";
+import { usePostInfo } from "../context/PostInfoContext";
 import axios from "axios";
 import bcrypt from "bcryptjs";
 
@@ -12,6 +13,8 @@ function EditNuto() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [fabricCanvas, setFabricCanvas] = useState<fabric.Canvas | null>(null);
   const [imgSrc, setImgSrc] = useState<string>("/images/redTomato.png");
+  const { location, setLocation } = usePostInfo();
+  const { name, setName } = usePostInfo();
   const { nutoFile, setNutoFile } = usePolariod();
   const { polariodFile, setPolariodFile } = usePolariod();
   const tomatos = [
@@ -131,6 +134,10 @@ function EditNuto() {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
       console.log("업로드 성공:", response);
+      setLocation("");
+      setName("");
+      setNutoFile(null);
+      setPolariodFile(null);
     } catch (err) {
       console.error("업로드 실패:", err);
     }
@@ -160,9 +167,10 @@ function EditNuto() {
           })}
         </div>
         <input />
-        <canvas ref={canvasRef} id="canvas" className={style.NutoCanvas} />
+        <div className={style.canvasContainer}>
+          <canvas ref={canvasRef} id="canvas" className={style.NutoCanvas} />
+        </div>
       </div>
-      <div className={style.background}></div>
       <Footer />
     </div>
   );

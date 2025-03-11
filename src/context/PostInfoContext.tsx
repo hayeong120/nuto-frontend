@@ -3,10 +3,8 @@ import { createContext, useContext, useEffect, useState } from "react";
 interface PostInfoContextProps {
   name: string;
   location: string;
-  password: string;
   setName: (name: string) => void;
   setLocation: (location: string) => void;
-  setPassword: (password: string) => void;
 }
 
 const PostInfoContext = createContext<PostInfoContextProps | undefined>(
@@ -22,9 +20,6 @@ export const PostInfoProvider = ({
   const [location, setLocation] = useState(
     () => sessionStorage.getItem("location") || ""
   );
-  const [password, setPassword] = useState(
-    () => sessionStorage.getItem("password") || ""
-  );
 
   useEffect(() => {
     if (name !== "") {
@@ -33,15 +28,10 @@ export const PostInfoProvider = ({
     if (location !== "") {
       sessionStorage.setItem("location", location);
     }
-    if (password !== "") {
-      sessionStorage.setItem("password", password);
-    }
-  }, [name, location, password]);
+  }, [name, location]);
 
   return (
-    <PostInfoContext.Provider
-      value={{ name, location, password, setName, setLocation, setPassword }}
-    >
+    <PostInfoContext.Provider value={{ name, location, setName, setLocation }}>
       {children}
     </PostInfoContext.Provider>
   );

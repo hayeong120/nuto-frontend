@@ -205,7 +205,9 @@ function EditPost() {
       <Header prevSrc="-1" nextSrc="/nuto" saveImage={setPolariodImage} />
       <div className={style.EditPostContainer}>
         <p>폴라로이드를 취향에 맞게 꾸며주세요!</p>
-        <canvas ref={canvasRef} id="canvas"></canvas>
+        <div className={style.canvasContainer}>
+          <canvas ref={canvasRef} id="canvas" style={{ zIndex: 10 }} />
+        </div>
         <div className={style.stickerContainer}>
           {stickers.map((sticker: string, idx: number) => {
             return (
@@ -218,7 +220,7 @@ function EditPost() {
 
         {/* <button onClick={downloadFile}>다운로드</button> */}
       </div>
-      <div className={style.background}></div>
+      {/* <div className={style.background}></div> */}
 
       <Footer />
     </div>
