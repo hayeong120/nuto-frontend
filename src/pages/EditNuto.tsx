@@ -6,6 +6,7 @@ import { useRef, useState, useEffect } from "react";
 import * as fabric from "fabric";
 import { usePolariod } from "../context/PostContext";
 import axios from "axios";
+import bcrypt from "bcryptjs";
 
 function EditNuto() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -85,6 +86,12 @@ function EditNuto() {
     return new File([u8arr], filename, { type: mime });
   };
 
+  const hashing = async (password: string) => {
+    const saltRound = 10;
+    const salt = await bcrypt.genSalt(saltRound);
+    return await bcrypt.hash(password, salt);
+  };
+
   const setPolariodImage = async () => {
     if (!fabricCanvas) return;
 
@@ -97,6 +104,8 @@ function EditNuto() {
       return;
     }
 
+    const hashedPassword = await hashing(password);
+
     const formData = new FormData();
     formData.append("nutoImage", file); // `file`을 `nutoImage`로 저장
     if (polariodFile) {
@@ -105,7 +114,7 @@ function EditNuto() {
 
     formData.append("name", "오지은");
     formData.append("location", "nuto");
-    formData.append("password", password);
+    formData.append("password", hashedPassword);
 
     console.log(file, polariodFile);
 
