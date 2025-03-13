@@ -97,6 +97,7 @@ function EditPost() {
       fill: "#656565",
       top: 345,
       left: 22,
+      selectable: false,
     });
 
     const nameText = new fabric.FabricText(name, {
@@ -104,11 +105,13 @@ function EditPost() {
       fontFamily: "Ownglyph PDH",
       fill: "#656565",
       top: 345,
-      left: 300,
+      // left: 310,
+      right: 200,
+      textAlign: "RIGHT",
       // right: 200,
+      selectable: false,
     });
 
-    console.log(name);
     newCanvas.add(dateText);
     newCanvas.add(nameText);
 

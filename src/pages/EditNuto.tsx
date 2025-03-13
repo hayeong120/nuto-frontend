@@ -6,6 +6,7 @@ import { useRef, useState, useEffect } from "react";
 import * as fabric from "fabric";
 import { usePolariod } from "../context/PostContext";
 import { usePostInfo } from "../context/PostInfoContext";
+import { useImage } from "../context/ImageContext";
 import axios from "axios";
 import bcrypt from "bcryptjs";
 
@@ -17,6 +18,9 @@ function EditNuto() {
   const { name, setName } = usePostInfo();
   const { nutoFile, setNutoFile } = usePolariod();
   const { polariodFile, setPolariodFile } = usePolariod();
+  const { image, setImage } = useImage();
+  const API_KEY = process.env.REACT_APP_HUGGING_FACE_API_KEY;
+
   const tomatos = [
     { src: "/images/redTomato.png", comment: "최고였다는 극찬" },
     { src: "/images/orangeTomato.png", comment: "신선한 아이디어" },
@@ -64,6 +68,7 @@ function EditNuto() {
       newCanvas.add(textBox);
       newCanvas.renderAll();
       setFabricCanvas(newCanvas);
+      fabricCanvas?.renderAll();
     };
 
     return () => {
@@ -73,6 +78,40 @@ function EditNuto() {
 
   const changeFrame = (idx: number) => {
     setImgSrc(tomatos[idx]["src"]);
+  };
+
+  const chkText = async (text: string) => {
+    text = text.replace(/\n/g, " ");
+
+    const response = await axios.post("http://localhost:3000/check", {
+      text: text,
+    });
+
+    // response.data가 문자열일 경우 JSON 객체로 변환
+    const data = { inputs: response.data };
+
+    console.log(await available_check(data));
+  };
+
+  const available_check = async (data: object) => {
+    console.log(
+      "HUGGING_FACE_API_KEY:",
+      process.env.REACT_APP_HUGGING_FACE_API_KEY
+    );
+
+    const response = await fetch(
+      "https://router.huggingface.co/hf-inference/models/cardiffnlp/twitter-roberta-base-sentiment-latest",
+      {
+        headers: {
+          Authorization: `Bearer ${API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(data), // JSON 형식으로 변환
+      }
+    );
+    const result = await response.json();
+    return result;
   };
 
   const dataURLtoFile = (dataURL: string, filename: string) => {
@@ -101,6 +140,12 @@ function EditNuto() {
     const dataURL = fabricCanvas.toDataURL({ format: "png", multiplier: 4 });
     const file = dataURLtoFile(dataURL, "nuto.png");
 
+    const objects = fabricCanvas.getObjects();
+    const textObject = objects.find((obj) => obj.type === "i-text");
+    const text = (textObject as fabric.IText).text;
+    console.log(text);
+    await chkText(text);
+
     const password = prompt("비밀번호를 입력하세요.");
     if (!password) {
       alert("비밀번호를 입력해야 합니다.");
@@ -119,14 +164,6 @@ function EditNuto() {
     formData.append("location", "nuto");
     formData.append("password", hashedPassword);
 
-    console.log(file, polariodFile);
-
-    console.log("FormData 내용:");
-
-    formData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
-
     try {
       const response = await axios.post(
         "http://localhost:3000/post",
@@ -138,6 +175,7 @@ function EditNuto() {
       setName("");
       setNutoFile(null);
       setPolariodFile(null);
+      setImage("");
     } catch (err) {
       console.error("업로드 실패:", err);
     }
