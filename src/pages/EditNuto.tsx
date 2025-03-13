@@ -9,6 +9,7 @@ import { usePostInfo } from "../context/PostInfoContext";
 import { useImage } from "../context/ImageContext";
 import axios from "axios";
 import bcrypt from "bcryptjs";
+import { useNavigate } from "react-router-dom";
 
 function EditNuto() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -19,7 +20,7 @@ function EditNuto() {
   const { nutoFile, setNutoFile } = usePolariod();
   const { polariodFile, setPolariodFile } = usePolariod();
   const { image, setImage } = useImage();
-  const API_KEY = process.env.REACT_APP_HUGGING_FACE_API_KEY;
+  const navigate = useNavigate();
 
   const tomatos = [
     { src: "/images/redTomato.png", comment: "최고였다는 극찬" },
@@ -87,27 +88,23 @@ function EditNuto() {
       text: text,
     });
 
-    // response.data가 문자열일 경우 JSON 객체로 변환
     const data = { inputs: response.data };
 
-    console.log(await available_check(data));
+    const available = await available_check(data);
+
+    return available[0];
   };
 
   const available_check = async (data: object) => {
-    console.log(
-      "HUGGING_FACE_API_KEY:",
-      process.env.REACT_APP_HUGGING_FACE_API_KEY
-    );
-
     const response = await fetch(
       "https://router.huggingface.co/hf-inference/models/cardiffnlp/twitter-roberta-base-sentiment-latest",
       {
         headers: {
-          Authorization: `Bearer ${API_KEY}`,
+          Authorization: `Bearer ${process.env.REACT_APP_HUGGING_FACE_API_KEY}`,
           "Content-Type": "application/json",
         },
         method: "POST",
-        body: JSON.stringify(data), // JSON 형식으로 변환
+        body: JSON.stringify(data),
       }
     );
     const result = await response.json();
@@ -143,8 +140,12 @@ function EditNuto() {
     const objects = fabricCanvas.getObjects();
     const textObject = objects.find((obj) => obj.type === "i-text");
     const text = (textObject as fabric.IText).text;
-    console.log(text);
-    await chkText(text);
+    const result = await chkText(text);
+
+    if (result[0]["label"] === "negative") {
+      alert("부정적인 문장은 금지되어 있습니다");
+      return;
+    }
 
     const password = prompt("비밀번호를 입력하세요.");
     if (!password) {
@@ -176,6 +177,8 @@ function EditNuto() {
       setNutoFile(null);
       setPolariodFile(null);
       setImage("");
+
+      navigate("/");
     } catch (err) {
       console.error("업로드 실패:", err);
     }
@@ -183,7 +186,7 @@ function EditNuto() {
 
   return (
     <div className={def.Body}>
-      <Header prevSrc="-1" nextSrc="/" saveImage={setPolariodImage} />
+      <Header prevSrc="-1" nextSrc="/" />
       <div className={style.NutoContainer}>
         <p>토마토를 선택해 주세요.</p>
         <div className={style.ChooseTomatoContainer}>
