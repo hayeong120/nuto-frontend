@@ -2,7 +2,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import def from "../styles/Default.module.css";
 import style from "../styles/PostUpload.module.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useImage } from "../context/ImageContext";
 import { usePostInfo } from "../context/PostInfoContext";
 
@@ -18,7 +18,7 @@ function PostUpload() {
     }
   };
 
-  const showPreview = () => {
+  const showPreview = async () => {
     if (imgRef.current && imgRef.current.files) {
       const file = imgRef.current.files[0];
       const reader = new FileReader();
@@ -60,11 +60,7 @@ function PostUpload() {
             style={{ display: "none" }}
           />
 
-          <img
-            className={style.InputedImage}
-            src={previewImage}
-            alt={previewImage}
-          />
+          <img className={style.InputedImage} src={image} alt={previewImage} />
         </div>
       </div>
 
