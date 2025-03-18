@@ -124,7 +124,7 @@ function EditNuto() {
 
     const available = await available_check(data);
 
-    return available[0];
+    return available[0][0]["label"];
   };
 
   const available_check = async (data: object) => {
@@ -164,7 +164,9 @@ function EditNuto() {
   };
 
   const setPolariodImage = async () => {
-    if (!fabricCanvas) return;
+    if (!fabricCanvasRef.current) return;
+
+    const fabricCanvas = fabricCanvasRef.current;
 
     const dataURL = fabricCanvas.toDataURL({ format: "png", multiplier: 4 });
     const file = dataURLtoFile(dataURL, "nuto.png");
@@ -174,6 +176,7 @@ function EditNuto() {
     const text = (textObject as fabric.IText).text || "";
 
     const label = await chkText(text); // chkText가 "negative" | "neutral" | "positive" 반환
+    console.log(label);
     if (label === "negative") {
       alert("부정적인 문장은 금지되어 있습니다.");
       return;
@@ -220,7 +223,7 @@ function EditNuto() {
 
   return (
     <div className={def.Body}>
-      <Header prevSrc="-1" nextSrc="" />
+      <Header prevSrc="-1" nextSrc="" saveImage={setPolariodImage} />
       <div className={style.NutoContainer}>
         <p>토마토를 선택해 주세요.</p>
         <div className={style.ChooseTomatoContainer}>
