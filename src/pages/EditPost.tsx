@@ -100,17 +100,16 @@ function EditPost() {
       selectable: false,
     });
 
-    const nameText = new fabric.FabricText(name, {
+    const canvasWidth = newCanvas.width;
+    const nameText = new fabric.Text(name, {
       fontSize: 18,
       fontFamily: "Ownglyph PDH",
       fill: "#656565",
       top: 345,
-      // left: 310,
-      right: 200,
-      textAlign: "RIGHT",
-      // right: 200,
+      textAlign: "right", // 텍스트 정렬을 오른쪽으로 설정
       selectable: false,
     });
+    nameText.left = canvasWidth - nameText.width - 20;
 
     newCanvas.add(dateText);
     newCanvas.add(nameText);

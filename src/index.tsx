@@ -20,7 +20,7 @@ root.render(
       <PolariodProvider>
         <ImageProvider>
           <Routes>
-            {/* <Route path="/" element={<Navigate to="/home" replace />} /> */}
+            <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<Home />} />
             <Route path="/post" element={<PostUpload />}></Route>
             <Route path="/edit" element={<EditPost />}></Route>

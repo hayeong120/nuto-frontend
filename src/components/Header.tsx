@@ -21,7 +21,9 @@ function Header(props: {
     if (props.saveImage) {
       props.saveImage();
     }
-    navigate(props.nextSrc);
+    if (props.nextSrc) {
+      navigate(props.nextSrc);
+    }
   };
 
   return (
