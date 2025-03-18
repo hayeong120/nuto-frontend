@@ -5,10 +5,11 @@ import { ImageProvider } from "./context/ImageContext";
 import { PolariodProvider } from "./context/PostContext";
 import { PostInfoProvider } from "./context/PostInfoContext";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import PostUpload from "./pages/PostUpload";
 import EditPost from "./pages/EditPost";
 import EditNuto from "./pages/EditNuto";
+import Home from "./pages/Home";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -20,6 +21,7 @@ root.render(
         <BrowserRouter>
           {/* <React.StrictMode> */}
           <Routes>
+            <Route path="/home" element={<Home />} />
             <Route path="/" element={<PostUpload />}></Route>
             <Route path="/edit" element={<EditPost />}></Route>
             <Route path="/nuto" element={<EditNuto />}></Route>

@@ -1,0 +1,97 @@
+@font-face {
+    font-family: 'NanumGothic';
+    src: url('../fonts/NanumGothic.ttf') format('truetype');
+}
+
+.body {
+    width: 100%;
+    height: calc(100vh - 80px);
+    background-color: #FDFAF4;
+    overflow: scroll;
+}
+.body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.logo {
+    margin-top: 32px;
+    margin-bottom: 56px;
+    margin-left: 16px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 9px;
+    margin-left: 15px;
+}
+
+.profileImg {
+    width: 37px;
+    height: 37px;
+    margin-right: 8px;
+}
+
+.profileName {
+    font-family: 'NanumGothic';
+    font-weight: 600;
+    font-size: 14px;
+    color: #424242;
+    padding-bottom: 2px;
+}
+
+.postContainer {
+    background-color: #F0EEE8;
+    width: 100%;
+    height: 123.2vw;
+}
+
+.postImg {
+    width: 100%;
+    height: auto;
+    padding: 15px 16px 29px;
+    border-radius: 3px;
+    filter: drop-shadow(0 4px 20.1px rgba(0, 0, 0, 0.08));
+}
+
+.postInfo {
+    display: flex;
+    justify-content: space-between;
+    margin: 13px 17px 20px;
+}
+
+.infoContainer {
+    display: flex;
+}
+
+.commentImg {
+    width: 23px;
+    height: 23px;
+}
+
+.commentCnt {
+    font-family: 'NanumGothic';
+    font-weight: 600;
+    font-size: 14px;
+    color: #656565;
+    margin-top: 5px;
+    margin-left: 6px;
+}
+
+.writerText {
+    width: 58px;
+    height: 20px;
+    font-family: 'NanumGothic';
+    font-weight: 600;
+    font-size: 14px;
+    color: #656565;
+}
+
+.writer {
+    width: 41px;
+    height: 20px;
+    font-family: 'NanumGothic';
+    font-size: 14px;
+    color: #656565;
+}
