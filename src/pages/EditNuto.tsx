@@ -10,10 +10,13 @@ import { useImage } from "../context/ImageContext";
 import axios from "axios";
 import bcrypt from "bcryptjs";
 import { useNavigate } from "react-router-dom";
+import { text } from "stream/consumers";
 
 function EditNuto() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [fabricCanvas, setFabricCanvas] = useState<fabric.Canvas | null>(null);
+  const textObjectRef = useRef<fabric.IText | null>(null);
+  const fabricCanvasRef = useRef<fabric.Canvas | null>(null);
   const [imgSrc, setImgSrc] = useState<string>("/images/redTomato.png");
   const { location, setLocation } = usePostInfo();
   const { name, setName } = usePostInfo();
@@ -31,32 +34,39 @@ function EditNuto() {
   useEffect(() => {
     if (!canvasRef.current) return;
 
-    const newCanvas = new fabric.Canvas(canvasRef.current, {
-      width: 358,
-      height: 343,
-    });
-
-    const img = new Image();
-    img.src = imgSrc;
-    img.onload = () => {
-      const scaleX = 358 / img.width;
-      const scaleY = 278 / img.height;
-
-      const imgObj = new fabric.FabricImage(img, {
-        top: 36,
-        left: 0,
-        selectable: false,
+    if (!fabricCanvasRef.current) {
+      fabricCanvasRef.current = new fabric.Canvas(canvasRef.current, {
+        width: 358,
+        height: 343,
       });
 
-      imgObj.set({
-        scaleX: scaleX,
-        scaleY: scaleY,
-        width: img.width,
-        height: img.height,
-      });
+      const fabricCanvas = fabricCanvasRef.current;
 
-      const canvasHeight = newCanvas.height;
-      const canvasWidth = newCanvas.width;
+      const backgroundImage = new Image();
+      backgroundImage.src = imgSrc;
+      backgroundImage.onload = () => {
+        const scaleX = 358 / backgroundImage.width;
+        const scaleY = 278 / backgroundImage.height;
+
+        const imgObj = new fabric.FabricImage(backgroundImage, {
+          top: 36,
+          left: 0,
+          selectable: false,
+        });
+
+        imgObj.set({
+          scaleX: scaleX,
+          scaleY: scaleY,
+          width: backgroundImage.width,
+          height: backgroundImage.height,
+        });
+
+        fabricCanvas.add(imgObj);
+        fabricCanvas.sendObjectToBack(imgObj);
+      };
+
+      const canvasHeight = fabricCanvasRef.current.height;
+      const canvasWidth = fabricCanvasRef.current.width;
       const textBox = new fabric.IText("응원글을\n입력해 주세요.", {
         fontSize: 16,
         fontFamily: "Ownglyph PDH",
@@ -65,18 +75,39 @@ function EditNuto() {
       });
       textBox.left = (canvasWidth - textBox.width) / 2;
       textBox.top = (canvasHeight - textBox.height) / 2;
+      textObjectRef.current = textBox;
+      fabricCanvas?.add(textBox);
+    }
 
-      newCanvas.add(imgObj);
-      newCanvas.add(textBox);
-      newCanvas.renderAll();
-      setFabricCanvas(newCanvas);
-      fabricCanvas?.renderAll();
-    };
+    const fabricCanvas = fabricCanvasRef.current;
+    const image = new Image();
+    image.src = imgSrc;
+    image.onload = () => {
+      const scaleX = 358 / image.width;
+      const scaleY = 278 / image.height;
+      const imgObj = new fabric.FabricImage(image, {
+        top: 36,
+        left: 0,
+        selectable: false,
+      });
 
-    return () => {
-      newCanvas.dispose();
+      imgObj.set({
+        scaleX: scaleX,
+        scaleY: scaleY,
+        width: image.width,
+        height: image.height,
+      });
+
+      const existingBg = fabricCanvas
+        ?.getObjects()
+        .find((obj) => obj.type === "image");
+      if (existingBg) fabricCanvas?.remove(existingBg);
+
+      fabricCanvas?.add(imgObj);
+      fabricCanvas?.sendObjectToBack(imgObj);
+      fabricCanvas.renderAll();
     };
-  }, [imgSrc]);
+  }, [imgSrc, textObjectRef]);
 
   const changeFrame = (idx: number) => {
     setImgSrc(tomatos[idx]["src"]);
