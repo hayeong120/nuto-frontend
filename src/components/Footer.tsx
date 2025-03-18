@@ -1,10 +1,7 @@
 import style from "../styles/Footer.module.css";
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Footer({}) {
-  const navigate = useNavigate();
-
   const [clickedButton, setClickedButton] = useState(0);
   const footerButtons = [
     "/images/homeButton.png",
@@ -23,14 +20,7 @@ function Footer({}) {
   const clickFooter = (idx: number) => {
     setClickedButton(idx);
   };
-
-  useEffect(() => {
-    switch(clickedButton){
-      case 0:
-        navigate('/home');
-    }
-  }, [clickedButton])
-
+  
   return (
     <div className={style.Footer}>
       {footerButtons.map((footerButton, idx) => {

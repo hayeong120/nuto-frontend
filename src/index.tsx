@@ -15,22 +15,21 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <PostInfoProvider>
-    <PolariodProvider>
-      <ImageProvider>
-        <BrowserRouter>
-          {/* <React.StrictMode> */}
+  <BrowserRouter>
+    <PostInfoProvider>
+      <PolariodProvider>
+        <ImageProvider>
           <Routes>
+            {/* <Route path="/" element={<Navigate to="/home" replace />} /> */}
             <Route path="/home" element={<Home />} />
-            <Route path="/" element={<PostUpload />}></Route>
+            <Route path="/post" element={<PostUpload />}></Route>
             <Route path="/edit" element={<EditPost />}></Route>
             <Route path="/nuto" element={<EditNuto />}></Route>
           </Routes>
-          {/* </React.StrictMode> */}
-        </BrowserRouter>
-      </ImageProvider>
-    </PolariodProvider>
-  </PostInfoProvider>
+        </ImageProvider>
+      </PolariodProvider>
+    </PostInfoProvider>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
