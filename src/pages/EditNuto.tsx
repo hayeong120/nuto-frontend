@@ -140,11 +140,11 @@ function EditNuto() {
 
     const objects = fabricCanvas.getObjects();
     const textObject = objects.find((obj) => obj.type === "i-text");
-    const text = (textObject as fabric.IText).text;
-    const result = await chkText(text);
+    const text = (textObject as fabric.IText).text || "";
 
-    if (result[0]["label"] === "negative") {
-      alert("부정적인 문장은 금지되어 있습니다");
+    const label = await chkText(text); // chkText가 "negative" | "neutral" | "positive" 반환
+    if (label === "negative") {
+      alert("부정적인 문장은 금지되어 있습니다.");
       return;
     }
 
@@ -157,9 +157,9 @@ function EditNuto() {
     const hashedPassword = await hashing(password);
 
     const formData = new FormData();
-    formData.append("nutoImage", file); // `file`을 `nutoImage`로 저장
+    formData.append("nutoImage", file);
     if (polariodFile) {
-      formData.append("polariodImage", polariodFile); // `polariodImage` 추가
+      formData.append("polariodImage", polariodFile);
     }
 
     formData.append("name", "오지은");
@@ -170,7 +170,9 @@ function EditNuto() {
       const response = await axios.post(
         "http://localhost:3000/post",
         formData,
-        { headers: { "Content-Type": "multipart/form-data" } }
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
       );
       console.log("업로드 성공:", response);
       setLocation("");
@@ -187,7 +189,7 @@ function EditNuto() {
 
   return (
     <div className={def.Body}>
-      <Header prevSrc="-1" nextSrc="/" />
+      <Header prevSrc="-1" nextSrc="" />
       <div className={style.NutoContainer}>
         <p>토마토를 선택해 주세요.</p>
         <div className={style.ChooseTomatoContainer}>
