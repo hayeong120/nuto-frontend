@@ -55,15 +55,16 @@ function EditNuto() {
         height: img.height,
       });
 
+      const canvasHeight = newCanvas.height;
+      const canvasWidth = newCanvas.width;
       const textBox = new fabric.IText("응원글을\n입력해 주세요.", {
         fontSize: 16,
         fontFamily: "Ownglyph PDH",
         fill: "white",
         textAlign: "center",
-        top: 139,
-        left: 125,
-        // txtAlign: CENTER,
       });
+      textBox.left = (canvasWidth - textBox.width) / 2;
+      textBox.top = (canvasHeight - textBox.height) / 2;
 
       newCanvas.add(imgObj);
       newCanvas.add(textBox);
