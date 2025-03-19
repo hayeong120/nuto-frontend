@@ -11,7 +11,9 @@ function Home(){
             <img src='/images/logo.svg' className={style.logo} />
             {/* </Link> */}
             <div className={style.profile}>
-                <img src='/images/nutoProfileImg.png' className={style.profileImg}/>
+                <div className={style.profileImgContainer} style={{backgroundImage: 'url(/images/nutoProfileImg.png)', backgroundSize: 'cover', backgroundPosition: 'center'}}>
+                    {/* <img src='/images/nutoProfileImg.png' className={style.profileImg}/> */}
+                </div>
                 <p className={style.profileName}>뉴토</p>
             </div>
             <div className={style.postContainer}>
