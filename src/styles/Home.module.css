@@ -27,11 +27,24 @@
     margin-left: 15px;
 }
 
-.profileImg {
+.profileImgContainer {
     width: 37px;
     height: 37px;
+    border-radius: 50px;
     margin-right: 8px;
+    border: 0.7px solid #C2C2C2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
+
+/* .profileImg {
+    width: auto;
+    height: 37px;
+    position: absolute;
+    z-index: 0;
+} */
 
 .profileName {
     font-family: 'NanumGothic';
