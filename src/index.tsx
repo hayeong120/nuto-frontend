@@ -10,6 +10,7 @@ import PostUpload from "./pages/PostUpload";
 import EditPost from "./pages/EditPost";
 import EditNuto from "./pages/EditNuto";
 import Home from "./pages/Home";
+import Search from './pages/Search'
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -22,6 +23,7 @@ root.render(
           <Routes>
             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/search" element={<Search />} />
             <Route path="/post" element={<PostUpload />}></Route>
             <Route path="/edit" element={<EditPost />}></Route>
             <Route path="/nuto" element={<EditNuto />}></Route>
