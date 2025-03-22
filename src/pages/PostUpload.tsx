@@ -5,12 +5,16 @@ import style from "../styles/PostUpload.module.css";
 import { useEffect, useRef, useState } from "react";
 import { useImage } from "../context/ImageContext";
 import { usePostInfo } from "../context/PostInfoContext";
+import { useLocation } from 'react-router-dom';
 
 function PostUpload() {
   const imgRef = useRef<HTMLInputElement | null>(null);
   const [previewImage, setPreviewImage] = useState<string>("");
   const { image, setImage } = useImage();
   const { name, setName } = usePostInfo();
+  const location = useLocation();
+  const booth = location.state;
+  console.log(booth);
 
   const uploadImage = () => {
     if (imgRef.current) {

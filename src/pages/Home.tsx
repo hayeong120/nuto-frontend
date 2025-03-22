@@ -29,11 +29,6 @@ function Home(){
                     <span className={style.writer}>{"정해인"}</span>
                 </div>
             </div>
-            {/* <Board
-                booth={[
-                  { booth: "nuto", member: ["조혜원", "박세봄", "오지은", "장하영", "이소리"] },
-                ]}
-            /> */}
             <Footer />
         </div>
     )
