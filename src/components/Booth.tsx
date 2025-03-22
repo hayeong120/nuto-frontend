@@ -27,7 +27,7 @@ const Booth: React.FC<BoothProps> = ({ booth }) => {
             <img src='/images/boothImg.png' className={style.boothImg} />
             <div className={style.gradient}/>
             <div className={style.boothInfo}>
-                <img src='/images/boothName.svg' className={style.boothName} />
+                <img src='/images/boothName.svg' className={style.boothName} height={20} />
                 <p className={style.memberName}>{memberName(booth.member)}</p>
             </div>
         </div>
