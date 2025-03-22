@@ -48,7 +48,7 @@ const Board: React.FC<BoardProps> = ({ booth = [] }) => {
                     <div>{booth.booth}</div>
                     <div>{memberName(booth.member)}</div> */}
                     {/* <Booth booth={b.booth} member={b.member} /> */}
-                    <Booth booth={b} />
+                    {/* <Booth booth={b} /> */}
                 </div>
             ))}
             

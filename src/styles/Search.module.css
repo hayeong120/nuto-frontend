@@ -54,7 +54,8 @@
 
 .boothContainer {
     width: 100%;
-    height: calc(100vh - 245px);
+    height: auto;
+    max-height: calc(100vh - 245px);
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: 15px;
@@ -62,4 +63,11 @@
     padding: 0 16px 30px;
     overflow: scroll;
     margin-bottom: 81px;
+}
+
+.noBooth {
+    grid-column: 2 span;
+    text-align: center;
+    font-family: 'Ownglyph';
+    font-size: 20px;
 }
