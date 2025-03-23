@@ -1,57 +1,30 @@
 import React from 'react';
 import style from '../styles/Board.module.css'
 import Booth from './Booth';
+import { useNavigate } from 'react-router-dom';
 
 interface BoothProps {
-  booth: string;
-  member: string[];
-}
-interface BoardProps {
-  booth: BoothProps[] | null; 
+    booth: { 
+        booth_id: string; 
+        members: string[];  
+        s3_path: string;
+    };
 }
 
-const Board: React.FC<BoardProps> = ({ booth = [] }) => {
-    if (typeof booth === null) {
-      return <div>부스가 없습니다.</div>;
+const Board: React.FC<BoothProps> = ({ booth }) => {
+    const navigate = useNavigate();
+    // todo 함수이름 바꾸기
+    const goB = (booth: string) => {
+        // 부소소개 페이지 이동, 부스 이름 넘기기
+        console.log(booth);
+        navigate('/home', { state: booth }); 
     }
-    const memberName = (names: string[]): string => {
-        let nameString = "";
-        names.forEach((name, i) => {
-            if(i === names.length-1){
-                nameString += name;
-            }
-            else {
-                nameString += `${name}, `;
-            }
-        })
-        return nameString;
-    }
-
     return (
-        <div>
-            {/* {booth?.map((b, index) => (
-                <div key={index}>
-                    <h2>부스 이름: {b.booth}</h2>
-                    <h3>멤버:</h3>
-                    <ul>
-                      {b.member.map((name, idx) => (
-                        <li key={idx}>{name}</li>
-                      ))}
-                    </ul>
-                </div>
-            ))} */}
-            {booth?.map((b, index) => (
-                <div key={index}>
-                    <img src='/images/board.svg' className={style.boardImg}/>
-                    {/* <div />
-                    <img src='/images/boothImg.png' className={style.boothNameImg} />
-                    <div>{booth.booth}</div>
-                    <div>{memberName(booth.member)}</div> */}
-                    {/* <Booth booth={b.booth} member={b.member} /> */}
-                    {/* <Booth booth={b} /> */}
-                </div>
-            ))}
-            
+        <div className={style.body} onClick={() => goB(booth.booth_id)}>
+            <img src='/images/board.svg' className={style.boardImg}/>
+            <div className={style.BoothBox}>
+                <Booth booth={booth} navi={{go: false}}/>
+            </div>
         </div>
     )
 }

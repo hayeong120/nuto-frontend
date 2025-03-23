@@ -4,13 +4,17 @@ import { useNavigate } from 'react-router-dom';
 
 interface BoothProps {
     booth: { 
-        booth_id: string;  // 부스 이름
-        members: string[];  // 부스 멤버
+        booth_id: string; 
+        members: string[];  
         s3_path: string;
+    };
+    navi: {
+        go: boolean;
+        path?: string;
     };
 }
   
-const Booth: React.FC<BoothProps> = ({ booth }) => {
+const Booth: React.FC<BoothProps> = ({ booth, navi }) => {
     const navigate = useNavigate();
     const memberName = (names: string[]): string => {
         let nameString = "";
@@ -25,12 +29,13 @@ const Booth: React.FC<BoothProps> = ({ booth }) => {
         return nameString;
     }
     const goPost = (booth: string) => {
-        console.log(booth);
-        navigate('/post', { state: booth });
+        if(navi.go){
+            navigate(`/${navi.path}`, { state: booth });
+        }
     }
 
     return(
-        <div className={style.boothContainer} onClick={() => {goPost(booth.booth_id)}}>
+        <div className={style.boothContainer} onClick={() => goPost(booth.booth_id)}>
             <img src='/images/boothImg.png' className={style.boothImg} />
             <div className={style.gradient}/>
             <div className={style.boothInfo}>

@@ -50,7 +50,7 @@ function Search() {
             </div>
             <div className={style.boothContainer}>
                 {booths.length > 0 ? (
-                    booths.map((booth, index) => <Booth key={index} booth={booth} />)
+                    booths.map((booth, index) => <div style={{borderRadius: '10px', overflow: 'hidden'}}><Booth key={index} booth={booth} navi={{go: true, path: 'post'}}/></div>)
                 ) : (
                     <p className={style.noBooth}>부스가 없습니다.</p> 
                 )}
