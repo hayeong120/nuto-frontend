@@ -12,20 +12,17 @@ function BusinessCard(props: {
 }) {
   const imgs = ["/images/downArrow.png", "/images/upArrow.png"];
   const [toggle, setToggle] = useState(false);
+
   return (
     <div className={style.BusinessCard}>
-      <div className={style["toggle-container"]}>
-        <p>{props.profile.introduce}</p>
-        <img
-          src={toggle ? imgs[0] : imgs[1]}
-          alt={toggle ? imgs[0] : imgs[1]}
-          onClick={() => setToggle(!toggle)}
-        />
-      </div>
       <div
-        style={{ display: toggle ? "flex" : "none" }}
-        className={style["member-info"]}
+        className={style["toggle-container"]}
+        onClick={() => setToggle(!toggle)}
       >
+        <p>{props.profile.introduce}</p>
+        <img src={toggle ? imgs[1] : imgs[0]} alt="toggle" />
+      </div>
+      <div className={`${style["member-info"]} ${toggle ? style.open : ""}`}>
         <div className={style["member-info-container"]}>
           <img src={props.profile.img} alt={props.profile.name} />
           <div className={style["member-infos"]}>
@@ -36,9 +33,9 @@ function BusinessCard(props: {
         <div className={style["skill-set-container"]}>
           <p>기술스택</p>
           <div className={style["skill-set"]}>
-            {props.profile.skills.map((skill) => {
-              return <p>{skill}</p>;
-            })}
+            {props.profile.skills.map((skill, index) => (
+              <p key={index}>{skill}</p>
+            ))}
           </div>
         </div>
       </div>
