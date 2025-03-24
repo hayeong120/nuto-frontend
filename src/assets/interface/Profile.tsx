@@ -4,4 +4,5 @@ export interface Profile {
   img: string;
   introduce: string;
   skills: string[];
+  comment: string;
 }
