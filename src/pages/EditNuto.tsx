@@ -10,7 +10,6 @@ import { useImage } from "../context/ImageContext";
 import axios from "axios";
 import bcrypt from "bcryptjs";
 import { useNavigate } from "react-router-dom";
-import { text } from "stream/consumers";
 
 function EditNuto() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
