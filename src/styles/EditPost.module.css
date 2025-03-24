@@ -17,8 +17,21 @@
   z-index: 2;
 }
 
-.EditPostContainer > canvas {
+.canvasContainer {
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  width: calc(100% + 40px);
+  background-color: #f1efe9;
+  padding: 13px 16px;
+  margin-left: -20px;
+}
+
+.EditPostContainer canvas {
   justify-self: center;
+  position: relative;
+  z-index: 10;
+  margin: 0 auto;
 }
 
 .stickerContainer {

@@ -20,7 +20,7 @@ function Footer({}) {
   const clickFooter = (idx: number) => {
     setClickedButton(idx);
   };
-
+  
   return (
     <div className={style.Footer}>
       {footerButtons.map((footerButton, idx) => {

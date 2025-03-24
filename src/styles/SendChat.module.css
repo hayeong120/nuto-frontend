@@ -1,0 +1,26 @@
+.send-chat-container {
+  position: absolute;
+  right: 16px;
+}
+
+.send-chat {
+  background-image: url("../assets/images/Union-1.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  max-width: 60%;
+  min-width: 109.04px;
+  width: fit-content;
+  height: max-content;
+  padding: 20px 16px 12px;
+  position: relative;
+  right: 0;
+  word-wrap: break-word;
+  display: inline-block;
+}
+
+.send-chat > p {
+  font-size: 12px;
+  line-height: 15px;
+  margin: 0;
+}

@@ -1,0 +1,100 @@
+.BusinessCard {
+  background-color: #b23228;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 17px 16px;
+  border-radius: 10px;
+  /* row-gap: 16px; */
+}
+
+.toggle-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.toggle-container:hover {
+  transition: all 0.3s ease-in-out;
+}
+
+.toggle-container > p {
+  color: #fefbf5;
+  font-size: 12px;
+}
+
+.toggle-container img {
+  width: 13px;
+  height: 7px;
+}
+
+.member-info {
+  background-color: #fdfaf4;
+  border-radius: 4px;
+  padding: 0 15px;
+  flex-direction: column;
+  row-gap: 20px;
+  width: 100%;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out,
+    padding 0.5s ease-in-out;
+  display: flex;
+  row-gap: 20px;
+}
+
+.member-info.open {
+  max-height: 500px;
+  opacity: 1;
+  padding: 21px 15px;
+  margin-top: 16px;
+}
+
+.member-info-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 13px;
+}
+
+.member-info-container img {
+  width: 57px;
+  height: 57px;
+  border-radius: 50%;
+}
+
+.member-info-container p:first-child {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.member-info-container p:last-child {
+  font-size: 10px;
+}
+
+.member-infos {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  row-gap: 5px;
+}
+
+.skill-set-container {
+  display: flex;
+  row-gap: 12px;
+  flex-direction: column;
+}
+
+.skill-set-container > p {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.skill-set {
+  display: flex;
+  column-gap: 20px;
+  font-size: 11px;
+}

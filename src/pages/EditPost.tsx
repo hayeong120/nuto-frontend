@@ -97,18 +97,20 @@ function EditPost() {
       fill: "#656565",
       top: 345,
       left: 22,
+      selectable: false,
     });
 
-    const nameText = new fabric.FabricText(name, {
+    const canvasWidth = newCanvas.width;
+    const nameText = new fabric.Text(name, {
       fontSize: 18,
       fontFamily: "Ownglyph PDH",
       fill: "#656565",
       top: 345,
-      left: 300,
-      // right: 200,
+      textAlign: "right", // 텍스트 정렬을 오른쪽으로 설정
+      selectable: false,
     });
+    nameText.left = canvasWidth - nameText.width - 20;
 
-    console.log(name);
     newCanvas.add(dateText);
     newCanvas.add(nameText);
 
@@ -205,7 +207,9 @@ function EditPost() {
       <Header prevSrc="-1" nextSrc="/nuto" saveImage={setPolariodImage} />
       <div className={style.EditPostContainer}>
         <p>폴라로이드를 취향에 맞게 꾸며주세요!</p>
-        <canvas ref={canvasRef} id="canvas"></canvas>
+        <div className={style.canvasContainer}>
+          <canvas ref={canvasRef} id="canvas" style={{ zIndex: 10 }} />
+        </div>
         <div className={style.stickerContainer}>
           {stickers.map((sticker: string, idx: number) => {
             return (
@@ -218,7 +222,7 @@ function EditPost() {
 
         {/* <button onClick={downloadFile}>다운로드</button> */}
       </div>
-      <div className={style.background}></div>
+      {/* <div className={style.background}></div> */}
 
       <Footer />
     </div>
