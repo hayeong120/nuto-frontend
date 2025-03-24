@@ -1,0 +1,4 @@
+.member-container {
+  display: flex;
+  column-gap: 16px;
+}

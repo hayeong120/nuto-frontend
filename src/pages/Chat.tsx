@@ -1,18 +1,18 @@
+import React, { useState } from "react";
 import BusinessCard from "../components/BusinessCard";
 import def from "../styles/Default.module.css";
-import Member from "../components/Member";
+import Members from "../components/Members";
+import { profiles } from "../assets/json/profiles";
+import style from "../styles/Chat.module.css";
 
 function Chat({}) {
-  const profile = {
-    name: "오지은",
-    type: "백엔드 개발자",
-    img: "/images/꽃.png",
-    introduce: "성장하는 개발자 오지은입니다.",
-    skills: ["TypeScript", "Java"],
+  const [profile, setProfile] = useState(profiles[0]);
+  const changeMember = (idx: number) => {
+    setProfile(profiles[idx]);
   };
   return (
     <div className={def.Body}>
-      <Member img="/images/해.png" name="오지은" />
+      <Members profiles={profiles} changeMember={changeMember} />
       <BusinessCard profile={profile} />
     </div>
   );
