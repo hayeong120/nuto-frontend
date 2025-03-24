@@ -2,3 +2,40 @@
   display: flex;
   column-gap: 16px;
 }
+
+.message-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: fixed;
+  bottom: 86px;
+  left: 16px;
+  width: calc(100% - 32px);
+  height: 36px;
+  display: flex;
+  column-gap: 10px;
+}
+
+.message-container > img {
+  width: 36px;
+  height: 36px;
+}
+
+.input-container {
+  background-color: #f1efe9;
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  padding: 8.75px 13px;
+  width: 100%;
+}
+
+.input-container > input {
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  width: 100%;
+  font-size: 12px;
+}
