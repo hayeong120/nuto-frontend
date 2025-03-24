@@ -7,7 +7,6 @@
   background-color: #f1efe9;
   border-radius: 0px 10px 10px 10px;
   max-width: 60%;
-  min-width: 109.04px;
   width: fit-content;
   height: max-content;
   padding: 12px;
@@ -51,7 +50,6 @@
   border-radius: 10px 0px 10px 10px;
   background-repeat: no-repeat;
   max-width: 60%;
-  min-width: 109.04px;
   width: fit-content;
   height: max-content;
   padding: 12px;
@@ -64,4 +62,5 @@
   font-size: 12px;
   line-height: 15px;
   margin: 0;
+  color: #fefaf5;
 }

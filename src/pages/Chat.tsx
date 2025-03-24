@@ -37,6 +37,16 @@ function Chat() {
     },
   ]);
   const changeMember = (idx: number) => {
+    const changeDefaultChat: defaultChat = {
+      type: "default-chat",
+      data: {
+        name: profiles[idx].name,
+        comment: profiles[idx].comment,
+        img: profiles[idx].img,
+      },
+    };
+
+    setChattings([changeDefaultChat]);
     setProfile(profiles[idx]);
   };
 

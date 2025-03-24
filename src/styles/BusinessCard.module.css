@@ -42,6 +42,8 @@
   overflow: hidden;
   transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out,
     padding 0.5s ease-in-out;
+  display: flex;
+  row-gap: 20px;
 }
 
 .member-info.open {

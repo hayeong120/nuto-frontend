@@ -3,8 +3,8 @@ import { Profile } from "../interface/Profile";
 export const profiles: Profile[] = [
   {
     name: "오지은",
-    type: "백엔드 개발자",
-    img: "/images/꽃.png",
+    type: "풀스택 개발자",
+    img: "/images/구름캐릭.png",
     introduce: "성장하는 개발자 오지은입니다.",
     skills: ["TypeScript", "Java"],
     comment:
@@ -13,7 +13,7 @@ export const profiles: Profile[] = [
   {
     name: "이소리",
     type: "풀스택 개발자",
-    img: "/images/꽃.png",
+    img: "/images/아이디어.png",
     introduce: "사용자 경험을 중요하게 생각하는 풀스택 개발자 이소리입니다.",
     skills: ["JavaScript", "React", "Node.js"],
     comment:
@@ -31,7 +31,7 @@ export const profiles: Profile[] = [
   {
     name: "조혜원",
     type: "디자이너",
-    img: "/images/꽃.png",
+    img: "/images/풀떼기.png",
     introduce: "감각적인 디자인을 추구하는 조혜원입니다.",
     skills: ["Figma", "Photoshop", "Illustrator"],
     comment:
@@ -41,7 +41,7 @@ export const profiles: Profile[] = [
   {
     name: "박새봄",
     type: "디자이너",
-    img: "/images/꽃.png",
+    img: "/images/해.png",
     introduce: "사용자 중심의 디자인을 연구하는 박새봄입니다.",
     skills: ["Sketch", "After Effects", "Blender"],
     comment:
