@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Booths from "./pages/Booths";
 import Chat from "./pages/Chat";
+import NutoPage from "./pages/NutoPage";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -31,6 +32,7 @@ root.render(
             <Route path="/nuto" element={<EditNuto />}></Route>
             <Route path="/booths" element={<Booths />}></Route>
             <Route path="/members" element={<Chat />}></Route>
+            <Route path="/nutoPage" element={<NutoPage />}></Route>
           </Routes>
         </ImageProvider>
       </PolariodProvider>
