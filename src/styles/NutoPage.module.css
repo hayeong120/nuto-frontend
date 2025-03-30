@@ -1,22 +1,28 @@
 .body {
-    font-family: 'NanumGothic';
     width: 100%;
-    height: calc(100vh - 80px);
-    background-color: #FDFAF4;
+    height: calc(100vh - 70px);
     overflow: scroll;
+    padding: 30px 0;
+    background-color: #FFFBF5;
 }
+
 .body::-webkit-scrollbar {
     width: 0;
     height: 0;
 }
 
 .logo {
-    margin: 32px 30px;
+    margin: 10px 30px;
+}
+
+.profileSection {
+    margin: 20px 30px;
 }
 
 p {
     color: #656565;
 }
+
 .boothImg {
     width: 100vw;
 }
@@ -24,22 +30,27 @@ p {
 .boothInfo {
     margin: 20px 30px;
 }
+
 .name {
     display: inline;
     color: #A1302A;
     margin-right: 15px;
 }
+
 .type {
     display: inline;
     color: #656565;
 }
+
 .dept {
     font-weight: bold;
-    
+
 }
+
 .member {
     margin: 10px 0;
 }
+
 .comment {
     margin: 10px 0;
     text-align: justify;
