@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import BusinessCard from "../components/BusinessCard";
-import def from "../styles/Default.module.css";
 import Members from "../components/Members";
 import { profiles } from "../assets/json/profiles";
 import style from "../styles/Chat.module.css";
@@ -67,7 +66,8 @@ function Chat() {
   };
 
   return (
-    <div className={def.Body}>
+    <div className={style.Body}>
+      <img src='/images/logo.svg' className={style.logo} />
       <Members profiles={profiles} changeMember={changeMember} />
       <BusinessCard profile={profile} />
 

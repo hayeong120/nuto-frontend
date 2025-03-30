@@ -1,6 +1,26 @@
+* {
+  font-family: "Nanum Gothic";
+  box-sizing: border-box;
+}
+
+.Body {
+  height: 100vh;
+  background-color: #fffbf5;
+  padding: 10px 30px;
+}
+
+.logo {
+  margin-top: 30px;
+}
+
 .member-container {
   display: flex;
-  column-gap: 16px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  column-gap: 15px;
+  margin: 13px 0;
 }
 
 .message-container {
