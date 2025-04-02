@@ -64,3 +64,25 @@
   margin: 0;
   color: #fefaf5;
 }
+
+.admin-chat-container {
+  display: flex;
+  align-items: end;
+  column-gap: 4px;
+}
+
+.admin-chat {
+  background-color: #f1efe9;
+  border-radius: 0px 10px 10px 10px;
+  max-width: 60%;
+  width: fit-content;
+  height: max-content;
+  padding: 12px;
+  word-wrap: break-word;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.admin-chat-container > p {
+  font-size: 10px;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import style from "../styles/Booths.module.css";
 import Board from "../components/Board";
 import axios from "axios";
+import Footer from "../components/Footer";
 
 interface Booth {
   booth_id: string;
@@ -38,6 +39,7 @@ function Booths() {
           <p>등록된 부스가 없습니다.</p>
         )}
       </div>
+      <Footer />
     </div>
   );
 }
