@@ -18,7 +18,17 @@ type userChat = {
   };
 };
 
-function Chatting(props: { chattings: (defaultChat | userChat)[] }) {
+type adminChat = {
+  type: "admin-chat";
+  data: {
+    message: string;
+    createdAt: string;
+  };
+};
+
+function Chatting(props: {
+  chattings: (defaultChat | userChat | adminChat)[];
+}) {
   return (
     <div className={style.chattings}>
       {props.chattings.map((chatting, index) => {
@@ -31,8 +41,16 @@ function Chatting(props: { chattings: (defaultChat | userChat)[] }) {
               img={chatting.data.img}
             />
           );
-        } else {
+        } else if (chatting.type === "user-chat") {
           return <ChatBox type="send" comment={chatting.data.comment} />;
+        } else {
+          return (
+            <ChatBox
+              type="admin"
+              comment={chatting.data.message}
+              time={chatting.data.createdAt}
+            />
+          );
         }
       })}
     </div>

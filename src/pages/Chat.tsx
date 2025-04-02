@@ -5,6 +5,7 @@ import { profiles } from "../assets/json/profiles";
 import style from "../styles/Chat.module.css";
 import Footer from "../components/Footer";
 import Chatting from "../components/Chatting";
+import axios from "axios";
 
 type defaultChat = {
   type: "default-chat";
@@ -49,7 +50,7 @@ function Chat() {
     setProfile(profiles[idx]);
   };
 
-  const inputedMessage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const inputedMessage = async (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
   };
 
@@ -61,13 +62,20 @@ function Chat() {
       data: { comment: message },
     };
 
+    const response = axios.post("http://localhost:3000/message", {
+      name: profile.name,
+      message: message,
+    });
+
+    console.log(response);
+
     setChattings([...chattings, newChatting]);
     setMessage("");
   };
 
   return (
     <div className={style.Body}>
-      <img src='/images/logo.svg' className={style.logo} />
+      <img src="/images/logo.svg" className={style.logo} />
       <Members profiles={profiles} changeMember={changeMember} />
       <BusinessCard profile={profile} />
 
