@@ -15,7 +15,12 @@ function Members(props: {
 
   return (
     <div className={style["member-container"]}>
-      <Member img={teamIntro.img} name={teamIntro.name} idx={-1} changeMember={() => navigate("/nutoPage")} />
+      <Member
+        img={teamIntro.img}
+        name={teamIntro.name}
+        idx={-1}
+        changeMember={() => navigate("/nutoPage")}
+      />
       {props.profiles.map((profile, idx) => {
         return (
           <Member

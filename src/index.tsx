@@ -16,6 +16,7 @@ import Chat from "./pages/Chat";
 import NutoPage from "./pages/NutoPage";
 import BoothInfo from "./pages/BoothInfo";
 import Admin from "./pages/Admin";
+import CheckChat from "./pages/CheckChat";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -34,6 +35,7 @@ root.render(
             <Route path="/nuto" element={<EditNuto />}></Route>
             <Route path="/booths" element={<Booths />}></Route>
             <Route path="/members" element={<Chat />}></Route>
+            <Route path="/chats" element={<CheckChat />}></Route>
             <Route path="/nutoPage" element={<NutoPage />}></Route>
             <Route path="/boothInfo" element={<BoothInfo />}></Route>
             <Route path="/admin" element={<Admin />}></Route>

@@ -1,7 +1,7 @@
 import style from "../styles/ChatBox.module.css";
 
 function ChatBox(props: {
-  type: "default" | "send" | "admin";
+  type: "default" | "send" | "admin" | "check";
   img?: string;
   comment: string;
   name?: string;
@@ -25,6 +25,12 @@ function ChatBox(props: {
         <div className={style["send-chat"]}>
           <p>{props.comment}</p>
         </div>
+      </div>
+    );
+  } else if (props.type === "check") {
+    return (
+      <div className={style["check-chat"]}>
+        <p>{props.comment}</p>
       </div>
     );
   } else {
