@@ -50,26 +50,60 @@ function Chat() {
     setProfile(profiles[idx]);
   };
 
+  const available_check = async (data: object) => {
+    const response = await fetch(
+      "https://router.huggingface.co/hf-inference/models/cardiffnlp/twitter-roberta-base-sentiment-latest",
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_HUGGING_FACE_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(data),
+      }
+    );
+    const result = await response.json();
+    return result;
+  };
+
   const inputedMessage = async (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
   };
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (!message.trim()) return;
 
-    const newChatting: userChat = {
-      type: "user-chat",
-      data: { comment: message },
+    const chkText = async (text: string) => {
+      text = text.replace(/\n/g, " ");
+
+      const response = await axios.post("http://localhost:3000/check", {
+        text: text,
+      });
+
+      const data = { inputs: response.data };
+
+      const available = await available_check(data);
+
+      return available[0][0]["label"];
     };
 
-    const response = axios.post("http://localhost:3000/message", {
-      name: profile.name,
-      message: message,
-    });
+    const able = await chkText(message);
 
-    console.log(response);
+    if (able !== "negative") {
+      const newChatting: userChat = {
+        type: "user-chat",
+        data: { comment: message },
+      };
 
-    setChattings([...chattings, newChatting]);
+      await axios.post("http://localhost:3000/message", {
+        name: profile.name,
+        message: message,
+      });
+
+      setChattings([...chattings, newChatting]);
+    } else {
+      alert("부정적인 내용의 메시지는 보낼 수 없습니다.");
+    }
     setMessage("");
   };
 
