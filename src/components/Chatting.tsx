@@ -26,8 +26,16 @@ type adminChat = {
   };
 };
 
+type checkChat = {
+  type: "check-chat";
+  data: {
+    name: string;
+    comment: string;
+  };
+};
+
 function Chatting(props: {
-  chattings: (defaultChat | userChat | adminChat)[];
+  chattings: (defaultChat | userChat | adminChat | checkChat)[];
 }) {
   return (
     <div className={style.chattings}>
@@ -43,6 +51,14 @@ function Chatting(props: {
           );
         } else if (chatting.type === "user-chat") {
           return <ChatBox type="send" comment={chatting.data.comment} />;
+        } else if (chatting.type === "check-chat") {
+          return (
+            <ChatBox
+              type="check"
+              name={chatting.data.name}
+              comment={chatting.data.comment}
+            />
+          );
         } else {
           return (
             <ChatBox

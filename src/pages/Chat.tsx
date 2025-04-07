@@ -110,7 +110,7 @@ function Chat() {
   return (
     <div className={style.Body}>
       <img src="/images/logo.svg" className={style.logo} />
-      <Members profiles={profiles} changeMember={changeMember} />
+      <Members type="send" profiles={profiles} changeMember={changeMember} />
       <BusinessCard profile={profile} />
 
       <Chatting chattings={chattings} />

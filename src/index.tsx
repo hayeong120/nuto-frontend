@@ -16,6 +16,7 @@ import Chat from "./pages/Chat";
 import NutoPage from "./pages/NutoPage";
 import BoothInfo from "./pages/BoothInfo";
 import Admin from "./pages/Admin";
+import Login from "./pages/Login";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -36,7 +37,8 @@ root.render(
             <Route path="/members" element={<Chat />}></Route>
             <Route path="/nutoPage" element={<NutoPage />}></Route>
             <Route path="/boothInfo" element={<BoothInfo />}></Route>
-            <Route path="/admin" element={<Admin />}></Route>
+            <Route path="/admin" element={<Login />}></Route>
+            <Route path="/check-message" element={<Admin />} />
           </Routes>
         </ImageProvider>
       </PolariodProvider>

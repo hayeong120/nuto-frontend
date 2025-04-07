@@ -43,8 +43,6 @@ function Admin() {
         }
       );
 
-      console.log(adminChats);
-
       setChattings(adminChats);
     } catch (error) {
       console.log(error);
@@ -54,7 +52,7 @@ function Admin() {
   return (
     <div className={def.Body}>
       <img src="/images/logo.svg" className={style.logo} />
-      <Members profiles={profiles} changeMember={changeMember} />
+      <Members type="check" profiles={profiles} changeMember={changeMember} />
 
       <Chatting chattings={chattings} />
     </div>
