@@ -4,11 +4,12 @@ export const profiles: Profile[] = [
   {
     name: "오지은",
     type: "풀스택 개발자",
-    img: "/images/cloudProfile.svg",
-    introduce: "성장하는 개발자 오지은입니다.",
-    skills: ["TypeScript", "Java"],
+    img: "/images/jieunProfile.jpeg",
+    introduce: "성장하는 백엔드 개발자 오지은입니다.",
+    skills: ["Nest.js", "Express.js", "Spring", "React (ts, js)"],
     comment:
       "안녕하세요, Nuto에서 백엔드,프론트엔드 개발을 담당한 오지은 입니다! IT Show와 Nuto는 잘 즐기고 계신가요? 질문이 있으시다면 언제든 편하게 질문해주세요!",
+    email: "oje92453488@gmail.com",
   },
   {
     name: "이소리",
@@ -18,6 +19,7 @@ export const profiles: Profile[] = [
     skills: ["JavaScript", "React", "Node.js"],
     comment:
       "안녕하세요, Nuto에서 백엔드,프론트엔드 개발을 담당한 오지은 입니다! IT Show와 Nuto는 잘 즐기고 계신가요? 질문이 있으시다면 언제든 편하게 질문해주세요!",
+    email: "w231",
   },
   {
     name: "장하영",
@@ -27,6 +29,7 @@ export const profiles: Profile[] = [
     skills: ["Vue.js", "Nest.js", "TypeScript"],
     comment:
       "안녕하세요, Nuto에서 백엔드,프론트엔드 개발을 담당한 오지은 입니다! IT Show와 Nuto는 잘 즐기고 계신가요? 질문이 있으시다면 언제든 편하게 질문해주세요!",
+    email: "jangjang",
   },
   {
     name: "조혜원",
@@ -36,6 +39,7 @@ export const profiles: Profile[] = [
     skills: ["Figma", "Photoshop", "Illustrator"],
     comment:
       "안녕하세요, Nuto에서 백엔드,프론트엔드 개발을 담당한 오지은 입니다! IT Show와 Nuto는 잘 즐기고 계신가요? 질문이 있으시다면 언제든 편하게 질문해주세요!",
+    email: "hyewonjo1217@gmail.com",
   },
 
   {
@@ -46,5 +50,6 @@ export const profiles: Profile[] = [
     skills: ["Sketch", "After Effects", "Blender"],
     comment:
       "안녕하세요, Nuto에서 백엔드,프론트엔드 개발을 담당한 오지은 입니다! IT Show와 Nuto는 잘 즐기고 계신가요? 질문이 있으시다면 언제든 편하게 질문해주세요!",
+    email: "bsaebom01@gmail.com",
   },
 ];

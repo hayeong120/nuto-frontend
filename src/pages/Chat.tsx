@@ -100,6 +100,11 @@ function Chat() {
         message: message,
       });
 
+      await axios.post("http://localhost:3000/message/email", {
+        to: profile.email,
+        content: message,
+      });
+
       setChattings([...chattings, newChatting]);
     } else {
       alert("부정적인 내용의 메시지는 보낼 수 없습니다.");
