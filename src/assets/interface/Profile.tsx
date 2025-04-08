@@ -5,4 +5,5 @@ export interface Profile {
   introduce: string;
   skills: string[];
   comment: string;
+  email: string;
 }
