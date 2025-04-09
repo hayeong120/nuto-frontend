@@ -5,6 +5,8 @@ import style from "../styles/Admin.module.css";
 import def from "../styles/Default.module.css";
 import Chatting from "../components/Chatting";
 import axios from "axios";
+import { useIsLogin } from "../context/LoginContext";
+import { Navigate } from "react-router-dom";
 
 type adminChat = {
   type: "admin-chat";
@@ -18,6 +20,7 @@ function Admin() {
   const [profile, setProfile] = useState(profiles[0]);
   const [chattings, setChattings] = useState<adminChat[]>([]);
   const [idx, setIdx] = useState(0);
+  const { isLogin, setIsLogin } = useIsLogin();
 
   useEffect(() => {
     changeMember(idx);
@@ -49,14 +52,18 @@ function Admin() {
     }
   };
 
-  return (
-    <div className={def.Body}>
-      <img src="/images/logo.svg" className={style.logo} />
-      <Members type="check" profiles={profiles} changeMember={changeMember} />
+  if (isLogin) {
+    return (
+      <div className={def.Body}>
+        <img src="/images/logo.svg" className={style.logo} />
+        <Members type="check" profiles={profiles} changeMember={changeMember} />
 
-      <Chatting chattings={chattings} />
-    </div>
-  );
+        <Chatting chattings={chattings} />
+      </div>
+    );
+  } else {
+    return <Navigate to="/admin" />;
+  }
 }
 
 export default Admin;

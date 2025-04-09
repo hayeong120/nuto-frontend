@@ -4,6 +4,7 @@ import "./index.css";
 import { ImageProvider } from "./context/ImageContext";
 import { PolariodProvider } from "./context/PostContext";
 import { PostInfoProvider } from "./context/PostInfoContext";
+import { LoginProvider } from "./context/LoginContext";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import PostUpload from "./pages/PostUpload";
@@ -25,22 +26,24 @@ root.render(
   <BrowserRouter>
     <PostInfoProvider>
       <PolariodProvider>
-        <ImageProvider>
-          <Routes>
-            <Route path="/" element={<Navigate to="/home" replace />}></Route>
-            <Route path="/home" element={<Home />}></Route>
-            <Route path="/search" element={<Search />}></Route>
-            <Route path="/post" element={<PostUpload />}></Route>
-            <Route path="/edit" element={<EditPost />}></Route>
-            <Route path="/nuto" element={<EditNuto />}></Route>
-            <Route path="/booths" element={<Booths />}></Route>
-            <Route path="/members" element={<Chat />}></Route>
-            <Route path="/nutoPage" element={<NutoPage />}></Route>
-            <Route path="/boothInfo" element={<BoothInfo />}></Route>
-            <Route path="/admin" element={<Login />}></Route>
-            <Route path="/check-message" element={<Admin />} />
-          </Routes>
-        </ImageProvider>
+        <LoginProvider>
+          <ImageProvider>
+            <Routes>
+              <Route path="/" element={<Navigate to="/home" replace />}></Route>
+              <Route path="/home" element={<Home />}></Route>
+              <Route path="/search" element={<Search />}></Route>
+              <Route path="/post" element={<PostUpload />}></Route>
+              <Route path="/edit" element={<EditPost />}></Route>
+              <Route path="/nuto" element={<EditNuto />}></Route>
+              <Route path="/booths" element={<Booths />}></Route>
+              <Route path="/members" element={<Chat />}></Route>
+              <Route path="/nutoPage" element={<NutoPage />}></Route>
+              <Route path="/boothInfo" element={<BoothInfo />}></Route>
+              <Route path="/admin" element={<Login />}></Route>
+              <Route path="/check-message" element={<Admin />} />
+            </Routes>
+          </ImageProvider>
+        </LoginProvider>
       </PolariodProvider>
     </PostInfoProvider>
   </BrowserRouter>

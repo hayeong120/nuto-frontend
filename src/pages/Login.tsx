@@ -1,9 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
+import { useIsLogin } from "../context/LoginContext";
 
 const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const { isLogin, setIsLogin } = useIsLogin();
 
   const handleLogin = async () => {
     try {
@@ -15,6 +17,7 @@ const Login = () => {
       if (response.data.success) {
         localStorage.setItem("token", response.data.token); // JWT 저장
         alert("로그인 성공");
+        setIsLogin(true);
         window.location.href = "/check-message";
       }
     } catch (err) {
