@@ -32,9 +32,7 @@ function CheckChat() {
 
   const getChattings = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:3000/message/${profile.name}`
-      );
+      const response = await axios.get(`api/message/${profile.name}`);
 
       const userChats: checkChat[] = response.data.data.map((chat: chat) => {
         return {
