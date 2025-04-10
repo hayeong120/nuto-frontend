@@ -1,5 +1,12 @@
 # .github/workflows/deploy.yml
-name: Deploy to EC2
+name: Deploy to EC2 via SSH
+uses: appleboy/ssh-action@master
+with:
+  host: ${{ secrets.EC2_HOST }}
+  username: ec2-user
+  key: ${{ secrets.EC2_KEY }}
+  script: |
+    echo "✅ 연결 성공!"
 
 on:
   push:
