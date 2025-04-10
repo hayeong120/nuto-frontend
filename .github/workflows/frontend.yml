@@ -1,12 +1,5 @@
 # .github/workflows/deploy.yml
 name: Deploy to EC2 via SSH
-uses: appleboy/ssh-action@master
-with:
-  host: ${{ secrets.EC2_HOST }}
-  username: ec2-user
-  key: ${{ secrets.EC2_KEY }}
-  script: |
-    echo "✅ 연결 성공!"
 
 on:
   push:
@@ -28,9 +21,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
           script: |
-            script: |
-                cd ~/nuto-backend
-                git pull origin main
-                docker-compose down
-                docker-compose up --build -d
-
+            cd ~/nuto-backend
+            git pull origin main
+            docker-compose down
+            docker-compose up --build -d
