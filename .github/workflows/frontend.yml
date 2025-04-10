@@ -1,37 +1,27 @@
-name: Deploy Frontend to EC2
+# .github/workflows/deploy.yml
+name: Deploy to EC2
 
 on:
   push:
-    branches: [ main ]
-    paths:
-      - 'nuto-frontend/**'
+    branches:
+      - main  # main 브랜치에 push 될 때만 실행
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Copy frontend to EC2
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_KEY }}
-          source: "nuto-frontend"
-          target: "~/"
-
-      - name: SSH and Deploy frontend
+      - name: SSH into EC2 and deploy
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
           script: |
-            cd ~/nuto-frontend
-            docker stop nuto-frontend-container || true
-            docker rm nuto-frontend-container || true
-            docker build -t nuto-frontend .
-            docker run -d -p 3000:80 --name nuto-frontend-container nuto-frontend
+            cd ~/nuto-backend
+            git pull origin main
+            docker-compose down
+            docker-compose up --build -d
