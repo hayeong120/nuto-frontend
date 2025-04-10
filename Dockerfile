@@ -1,11 +1,12 @@
-# nuto-frontend/Dockerfile
+# Step 1: 빌드
+FROM node:18 AS builder
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build
+
+# Step 2: 정적 파일만 NGINX로 서빙
 FROM nginx:alpine
-
-# React build 결과물을 nginx가 서비스할 경로로 복사
-COPY build /usr/share/nginx/html
-
-# nginx가 listen할 포트
+COPY --from=builder /app/build /usr/share/nginx/html
 EXPOSE 80
-
-# nginx 실행
 CMD ["nginx", "-g", "daemon off;"]
