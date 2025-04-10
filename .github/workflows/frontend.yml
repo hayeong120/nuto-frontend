@@ -24,5 +24,6 @@ jobs:
             cd ~/nuto-backend
             git pull origin main
             docker rm -f mongo || true
+            docker rm -f nuto-backend || true
             docker-compose down
             docker-compose up --build -d
