@@ -18,14 +18,17 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/nuto-frontend .
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/nuto-frontend:lastest .
+
     - name: Save Docker image as tar
       run: |
-        docker save -o nuto-frontend.tar ${{ secrets.DOCKER_USERNAME }}/nuto-frontend
+        docker save -o nuto-frontend.tar ${{ secrets.DOCKER_USERNAME }}/nuto-frontend:latest
+
     - name: Create PEM key file
       run: |
         echo "${{ secrets.EC2_KEY_BS64 }}" | tr -d '\n' | base64 -d > key.pem
         chmod 600 key.pem
+
     - name: Copy tar to EC2
       run: |
         rsync -avz -e "ssh -i key.pem -o StrictHostKeyChecking=no" nuto-frontend.tar ubuntu@${{ secrets.EC2_IP }}:~/
