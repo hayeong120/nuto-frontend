@@ -24,9 +24,14 @@ jobs:
       run: |
         docker save -o nuto-frontend.tar ${{ secrets.DOCKER_USERNAME }}/nuto-frontend
 
+    - name: Create PEM key file
+      run: |
+        echo "${{ secrets.EC2_KEY }}" > key.pem
+        chmod 600 key.pem
+
     - name: Copy tar to EC2
       run: |
-        scp -i ~/.ssh/ec2-key.pem -o StrictHostKeyChecking=no nuto-frontend.tar ubuntu@${{ secrets.EC2_HOST }}:~/
+        scp -i key.pem -o StrictHostKeyChecking=no nuto-frontend.tar ubuntu@${{ secrets.EC2_HOST }}:~/
 
     - name: SSH into EC2 and deploy
       uses: appleboy/ssh-action@v1.0.0
