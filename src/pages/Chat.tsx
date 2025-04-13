@@ -50,6 +50,8 @@ function Chat() {
     setProfile(profiles[idx]);
   };
 
+  console.log(process.env.REACT_APP_NUTO_ROUTE)
+
   const available_check = async (data: object) => {
     const response = await fetch(
       "https://router.huggingface.co/hf-inference/models/cardiffnlp/twitter-roberta-base-sentiment-latest",
