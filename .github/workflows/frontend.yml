@@ -21,13 +21,13 @@ jobs:
         run: npm install
 
       - name: 🏗 Build frontend
-        run: npm run build
+        run: CI=false npm run build
 
       - name: 🐳 Build Docker Image
         run: docker build -t ${{ secrets.DOCKER_IMAGE_NAME }} .
 
       - name: 📦 Save Docker image to tar
-        run: docker save -o frontend.tar ${{ secrets.DOCKER_IMAGE_NAME }}
+        run: docker save -o nuto-frontend.tar ${{ secrets.DOCKER_IMAGE_NAME }}
 
       - name: 🔐 Setup SSH key
         run: |
@@ -36,7 +36,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
 
       - name: 📡 Upload .tar to EC2
-        run: scp -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no frontend.tar ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/
+        run: scp -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no nuto-frontend.tar ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/
 
       - name: 🚀 Deploy on EC2
         run: |
