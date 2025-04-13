@@ -28,7 +28,7 @@ jobs:
         chmod 600 key.pem
     - name: Copy tar to EC2
       run: |
-        rsync -avz -e "ssh -i key.pem" nuto-frontend.tar ubuntu@${{ secrets.EC2_IP }}:~/
+        rsync -avz -e "ssh -i key.pem -o StrictHostKeyChecking=no" nuto-frontend.tar ubuntu@${{ secrets.EC2_IP }}:~/
     - name: SSH into EC2 and deploy
       uses: appleboy/ssh-action@v1.0.0
       with:
