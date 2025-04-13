@@ -31,7 +31,7 @@ jobs:
 
     - name: Copy tar to EC2
       run: |
-        scp -i key.pem -o StrictHostKeyChecking=no nuto-frontend.tar ubuntu@${{ secrets.EC2_HOST }}:~/
+        scp -v -i key.pem -o nuto-frontend.tar ubuntu@${{ secrets.EC2_HOST }}:~/
 
     - name: SSH into EC2 and deploy
       uses: appleboy/ssh-action@v1.0.0
