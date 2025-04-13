@@ -10,7 +10,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_NUTO_ROUTE}:3000/api/check/login`,
+        `${process.env.REACT_APP_NUTO_ROUTE}/api/check/login`,
         {
           id: id,
           pw: password,
