@@ -1,29 +1,48 @@
-# .github/workflows/deploy.yml
-name: Deploy to EC2 via SSH
+name: Deploy Frontend to EC2
 
 on:
   push:
     branches:
-      - main  # main 브랜치에 push 될 때만 실행
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: SSH into EC2 and deploy
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_KEY }}
-          script: |
-            cd ~/nuto-backend
-            git pull origin main
-            docker rm -f mongo || true
-            docker rm -f nuto-backend || true
-            docker-compose down
-            docker-compose up --build -d
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+    - name: Build Docker image
+      run: |
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/nuto-frontend:latest .
+
+    - name: Save Docker image as tar
+      run: |
+        docker save -o nuto-frontend.tar ${{ secrets.DOCKER_USERNAME }}/nuto-frontend:latest
+
+    - name: Create PEM key file
+      run: |
+        echo "${{ secrets.EC2_KEY_BS64 }}" | tr -d '\n' | base64 -d > key.pem
+        chmod 600 key.pem
+
+    - name: Copy tar to EC2
+      run: |
+        rsync -avz -e "ssh -i key.pem -o StrictHostKeyChecking=no" nuto-frontend.tar ubuntu@${{ secrets.EC2_IP }}:~/
+    - name: SSH into EC2 and deploy
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ubuntu
+        key: ${{ secrets.EC2_KEY }}
+        script: |
+          sudo apt-get update
+          sudo apt-get install docker-compose  
+          sudo docker load -i nuto-frontend.tar
+          cd ~/nuto-backend
+          docker stop nuto-frontend
+          docker rm nuto-frontend
+          docker-compose up -d
