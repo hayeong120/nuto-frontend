@@ -115,9 +115,12 @@ function EditNuto() {
   const chkText = async (text: string) => {
     text = text.replace(/\n/g, " ");
 
-    const response = await axios.post("api/check", {
-      text: text,
-    });
+    const response = await axios.post(
+      `${process.env.REACT_APP_NUTO_ROUTE}/api/check`,
+      {
+        text: text,
+      }
+    );
 
     const data = { inputs: response.data };
 
@@ -200,9 +203,13 @@ function EditNuto() {
     formData.append("password", hashedPassword);
 
     try {
-      const response = await axios.post("api/post", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_NUTO_ROUTE}/api/post`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       console.log("업로드 성공:", response);
       setLocation("");
       setName("");

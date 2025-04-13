@@ -76,9 +76,12 @@ function Chat() {
     const chkText = async (text: string) => {
       text = text.replace(/\n/g, " ");
 
-      const response = await axios.post("api/check", {
-        text: text,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_NUTO_ROUTE}/api/check`,
+        {
+          text: text,
+        }
+      );
 
       const data = { inputs: response.data };
 
@@ -95,15 +98,18 @@ function Chat() {
         data: { comment: message },
       };
 
-      await axios.post("api/message", {
+      await axios.post(`${process.env.REACT_APP_NUTO_ROUTE}/api/message`, {
         name: profile.name,
         message: message,
       });
 
-      await axios.post("api/message/email", {
-        to: profile.email,
-        content: message,
-      });
+      await axios.post(
+        `${process.env.REACT_APP_NUTO_ROUTE}/api/message/email`,
+        {
+          to: profile.email,
+          content: message,
+        }
+      );
 
       setChattings([...chattings, newChatting]);
     } else {

@@ -9,10 +9,13 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("api/check/login", {
-        id: id,
-        pw: password,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_NUTO_ROUTE}/api/check/login`,
+        {
+          id: id,
+          pw: password,
+        }
+      );
 
       if (response.data.success) {
         localStorage.setItem("token", response.data.token); // JWT 저장
