@@ -36,7 +36,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
 
       - name: 📡 Upload .tar to EC2
-        run: scp -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no nuto-frontend.tar ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/ubuntu/nuto-frontend.tar
+        run: scp -v -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no nuto-frontend.tar ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/ubuntu/nuto-frontend.tar
 
       - name: 🚀 Deploy on EC2
         run: |
