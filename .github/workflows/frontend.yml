@@ -26,7 +26,7 @@ jobs:
 
     - name: Create PEM key file
       run: |
-        echo "${{ secrets.EC2_KEY }}" | tr -d '\n' | base64 -d > key.pem
+        echo "${{ secrets.EC2_KEY_BS64 }}" | tr -d '\n' | base64 -d > key.pem
         chmod 600 key.pem
 
     - name: Copy tar to EC2
