@@ -43,6 +43,5 @@ jobs:
           sudo apt-get install docker-compose  
           sudo docker load -i nuto-frontend.tar
           cd ~/nuto-backend
-          docker stop nuto-frontend
-          docker rm nuto-frontend
-          docker-compose up -d
+          sudo docker-compose down
+          sudo docker-compose up -d
