@@ -26,7 +26,7 @@ jobs:
 
     - name: Create PEM key file
       run: |
-        echo "${{ secrets.EC2_KEY }}" > key.pem
+        echo "${{ secrets.EC2_KEY_B64 }}" | base64 -d > key.pem
         chmod 600 key.pem
 
     - name: Copy tar to EC2
@@ -41,5 +41,5 @@ jobs:
         key: ${{ secrets.EC2_KEY }}
         script: |
           sudo docker load -i nuto-frontend.tar
-          cd ~/your-backend-folder  # docker-compose 있는 곳
+          cd ~/nuto-backend
           docker-compose up -d
