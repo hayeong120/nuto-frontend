@@ -1,14 +1,12 @@
-name: Deploy Backend to EC2
+name: Deploy Frontend to EC2
 
 on:
-  workflow_run:
-    workflows: ["Build and Push Backend Docker Image"]
-    types:
-      - completed
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -24,9 +22,10 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
           script: |
-            docker pull jieuniaeyo/nuto-backend:latest
+            # DockerHub에서 프론트엔드 이미지 pull
+            docker pull jieuniaeyo/nuto-frontend:latest
             
             # 기존 컨테이너 종료 및 새로 시작
-            cd ~/nuto-backend
+            cd ~/nuto-frontend
             docker-compose down
             docker-compose up -d
