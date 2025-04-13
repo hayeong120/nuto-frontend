@@ -22,11 +22,13 @@ jobs:
 
     - name: Save Docker image as tar
       run: |
+        set -e
         docker save -o nuto-frontend.tar ${{ secrets.DOCKER_USERNAME }}/nuto-frontend:latest
 
     - name: Create PEM key file
       run: |
         echo "${{ secrets.EC2_KEY_BS64 }}" | tr -d '\n' | base64 -d > key.pem
+        cat key.pem | head -n 5
         chmod 600 key.pem
 
     - name: Copy tar to EC2
@@ -35,7 +37,7 @@ jobs:
     - name: SSH into EC2 and deploy
       uses: appleboy/ssh-action@v1.0.0
       with:
-        host: ${{ secrets.EC2_HOST }}
+        host: ${{ secrets.EC2_IP }}
         username: ubuntu
         key: ${{ secrets.EC2_KEY }}
         script: |
