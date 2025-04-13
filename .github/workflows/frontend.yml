@@ -36,6 +36,8 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_KEY }}
         script: |
+          sudo apt-get update
+          sudo apt-get install docker-compose  
           sudo docker load -i nuto-frontend.tar
           cd ~/nuto-backend
           docker-compose up -d
