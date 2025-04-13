@@ -1,29 +1,49 @@
-# .github/workflows/deploy.yml
-name: Deploy to EC2 via SSH
+name: Deploy Frontend to EC2
 
 on:
   push:
-    branches:
-      - main  # main 브랜치에 push 될 때만 실행
+    branches: [ main ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: ⬇️ Checkout Repo
         uses: actions/checkout@v3
 
-      - name: SSH into EC2 and deploy
-        uses: appleboy/ssh-action@master
+      - name: 🛠 Setup Node
+        uses: actions/setup-node@v3
         with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_KEY }}
-          script: |
-            cd ~/nuto-backend
-            git pull origin main
-            docker rm -f mongo || true
-            docker rm -f nuto-backend || true
-            docker-compose down
-            docker-compose up --build -d
+          node-version: 18
+
+      - name: 📦 Install deps
+        run: npm install
+
+      - name: 🏗 Build frontend
+        run: npm run build
+
+      - name: 🐳 Build Docker Image
+        run: docker build -t ${{ secrets.DOCKER_IMAGE_NAME }} .
+
+      - name: 📦 Save Docker image to tar
+        run: docker save -o frontend.tar ${{ secrets.DOCKER_IMAGE_NAME }}
+
+      - name: 🔐 Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: 📡 Upload .tar to EC2
+        run: scp -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no frontend.tar ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/
+
+      - name: 🚀 Deploy on EC2
+        run: |
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+            docker stop nuto-frontend || true
+            docker rm nuto-frontend || true
+            docker rmi ${{ secrets.DOCKER_IMAGE_NAME }} || true
+            docker load -i frontend.tar
+            docker run -d -p 80:80 --name nuto-frontend ${{ secrets.DOCKER_IMAGE_NAME }}
+          EOF
