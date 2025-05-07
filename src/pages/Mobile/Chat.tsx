@@ -78,12 +78,9 @@ function Chat() {
     const chkText = async (text: string) => {
       text = text.replace(/\n/g, " ");
 
-      const response = await axios.post(
-        `${process.env.REACT_APP_NUTO_ROUTE}/check`,
-        {
-          text: text,
-        }
-      );
+      const response = await axios.post("/check", {
+        text: text,
+      });
 
       const data = { inputs: response.data };
 
@@ -100,12 +97,12 @@ function Chat() {
         data: { comment: message },
       };
 
-      await axios.post(`${process.env.REACT_APP_NUTO_ROUTE}/message`, {
+      await axios.post(`/message`, {
         name: profile.name,
         message: message,
       });
 
-      await axios.post(`${process.env.REACT_APP_NUTO_ROUTE}/message/email`, {
+      await axios.post(`/message/email`, {
         to: profile.email,
         content: message,
       });

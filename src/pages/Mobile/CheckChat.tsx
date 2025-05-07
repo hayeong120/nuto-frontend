@@ -32,9 +32,7 @@ function CheckChat() {
 
   const getChattings = async () => {
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_NUTO_ROUTE}/message/${profile.name}`
-      );
+      const response = await axios.get(`/message/${profile.name}`);
 
       const userChats: checkChat[] = response.data.data.map((chat: chat) => {
         return {
