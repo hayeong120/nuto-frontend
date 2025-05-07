@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import style from "../styles/Booths.module.css";
-import Board from "../components/Board";
+import style from "../../styles/Booths.module.css";
+import Board from "../../components/Board";
 import axios from "axios";
-import Footer from "../components/Footer";
+import Footer from "../../components/Footer";
 
 interface Booth {
   booth_id: string;

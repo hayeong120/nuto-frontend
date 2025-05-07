@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import BusinessCard from "../components/BusinessCard";
-import Members from "../components/Members";
-import { profiles } from "../assets/json/profiles";
-import style from "../styles/Chat.module.css";
-import Footer from "../components/Footer";
-import Chatting from "../components/Chatting";
+import BusinessCard from "../../components/BusinessCard";
+import Members from "../../components/Members";
+import { profiles } from "../../assets/json/profiles";
+import style from "../../styles/Chat.module.css";
+import Footer from "../../components/Footer";
+import Chatting from "../../components/Chatting";
 import axios from "axios";
 
 type defaultChat = {
@@ -50,7 +50,7 @@ function Chat() {
     setProfile(profiles[idx]);
   };
 
-  console.log(process.env.REACT_APP_NUTO_ROUTE)
+  console.log(process.env.REACT_APP_NUTO_ROUTE);
 
   const available_check = async (data: object) => {
     const response = await fetch(

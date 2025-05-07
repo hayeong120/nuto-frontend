@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import style from "../styles/NutoPage.module.css";
-import Footer from "../components/Footer";
-import Members from "../components/Members";
-import { boothsData } from "../assets/json/booths";
-import { profiles } from "../assets/json/profiles";
+import style from "../../styles/NutoPage.module.css";
+import Footer from "../../components/Footer";
+import Members from "../../components/Members";
+import { boothsData } from "../../assets/json/booths";
+import { profiles } from "../../assets/json/profiles";
 
 function NutoPage() {
   const [booth, setBooth] = useState(boothsData[0]);

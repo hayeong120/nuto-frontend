@@ -1,0 +1,12 @@
+.qrContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.qrContainer > canvas {
+  position: fixed;
+  width: 400px !important;
+  height: 400px !important;
+  top: calc(50% - 80px);
+  left: calc(50% - 200px);
+}

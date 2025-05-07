@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useIsLogin } from "../context/LoginContext";
+import { useIsLogin } from "../../context/LoginContext";
 
 const Login = () => {
   const [id, setId] = useState("");

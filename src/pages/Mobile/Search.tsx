@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Footer from "../components/Footer";
-import Booth from "../components/Booth";
-import style from "../styles/Search.module.css";
+import Footer from "../../components/Footer";
+import Booth from "../../components/Booth";
+import style from "../../styles/Search.module.css";
 import axios from "axios";
 
 interface Booth {
