@@ -28,7 +28,7 @@ function Home() {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const response = await axios.get(`/api/post`);
+        const response = await axios.get(`http://3.34.1.190:3000/post`);
         setPosts(response.data);
       } catch (err) {
         console.error(err);
