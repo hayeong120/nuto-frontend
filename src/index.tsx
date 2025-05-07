@@ -19,6 +19,7 @@ import BoothInfo from "./pages/Mobile/BoothInfo";
 import Admin from "./pages/Mobile/Admin";
 import Login from "./pages/Mobile/Login";
 import QRPage from "./pages/Tablet/QRPage";
+import BoothPage from "./pages/Web/BoothPage";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -43,6 +44,7 @@ root.render(
               <Route path="/admin" element={<Login />}></Route>
               <Route path="/check-message" element={<Admin />} />
               <Route path="/qr-page" element={<QRPage />} />
+              <Route path="/show-booth" element={<BoothPage />} />
             </Routes>
           </ImageProvider>
         </LoginProvider>
