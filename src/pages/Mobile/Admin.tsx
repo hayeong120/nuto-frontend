@@ -31,7 +31,7 @@ function Admin() {
     setIdx(idx);
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_NUTO_ROUTE}/api/message/${profile.name}`
+        `${process.env.REACT_APP_NUTO_ROUTE}/message/${profile.name}`
       );
 
       const adminChats: adminChat[] = response.data.data.map(

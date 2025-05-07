@@ -116,7 +116,7 @@ function EditNuto() {
     text = text.replace(/\n/g, " ");
 
     const response = await axios.post(
-      `${process.env.REACT_APP_NUTO_ROUTE}/api/check`,
+      `${process.env.REACT_APP_NUTO_ROUTE}/check`,
       {
         text: text,
       }
@@ -204,7 +204,7 @@ function EditNuto() {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_NUTO_ROUTE}/api/post`,
+        `${process.env.REACT_APP_NUTO_ROUTE}/post`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
