@@ -15,9 +15,7 @@ function Booths() {
 
   const fetchBooths = async () => {
     try {
-      const response = await axios.get<Booth[]>(
-        `${process.env.NUTO_ROUTE}/booth`
-      );
+      const response = await axios.get<Booth[]>(`/booth`);
       setBooths(response.data);
     } catch (err) {
       console.error("데이터를 불러오는 중 오류가 발생했습니다.");
