@@ -30,7 +30,7 @@ function Admin() {
     setProfile(profiles[idx]);
     setIdx(idx);
     try {
-      const response = await axios.get(`/message/${profile.name}`);
+      const response = await axios.get(`/api/message/${profile.name}`);
 
       const adminChats: adminChat[] = response.data.data.map(
         (chat: { message: string; createdAt: string }) => {
