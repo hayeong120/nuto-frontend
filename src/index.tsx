@@ -7,17 +7,18 @@ import { PostInfoProvider } from "./context/PostInfoContext";
 import { LoginProvider } from "./context/LoginContext";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import PostUpload from "./pages/PostUpload";
-import EditPost from "./pages/EditPost";
-import EditNuto from "./pages/EditNuto";
-import Home from "./pages/Home";
-import Search from "./pages/Search";
-import Booths from "./pages/Booths";
-import Chat from "./pages/Chat";
-import NutoPage from "./pages/NutoPage";
-import BoothInfo from "./pages/BoothInfo";
-import Admin from "./pages/Admin";
-import Login from "./pages/Login";
+import PostUpload from "./pages/Mobile/PostUpload";
+import EditPost from "./pages/Mobile/EditPost";
+import EditNuto from "./pages/Mobile/EditNuto";
+import Home from "./pages/Mobile/Home";
+import Search from "./pages/Mobile/Search";
+import Booths from "./pages/Mobile/Booths";
+import Chat from "./pages/Mobile/Chat";
+import NutoPage from "./pages/Mobile/NutoPage";
+import BoothInfo from "./pages/Mobile/BoothInfo";
+import Admin from "./pages/Mobile/Admin";
+import Login from "./pages/Mobile/Login";
+import QRPage from "./pages/Tablet/QRPage";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -41,6 +42,7 @@ root.render(
               <Route path="/boothInfo" element={<BoothInfo />}></Route>
               <Route path="/admin" element={<Login />}></Route>
               <Route path="/check-message" element={<Admin />} />
+              <Route path="/qr-page" element={<QRPage />} />
             </Routes>
           </ImageProvider>
         </LoginProvider>

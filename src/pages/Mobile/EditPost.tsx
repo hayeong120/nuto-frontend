@@ -1,12 +1,12 @@
-import { useImage } from "../context/ImageContext";
-import def from "../styles/Default.module.css";
+import { useImage } from "../../context/ImageContext";
+import def from "../../styles/Default.module.css";
 import { useRef, useEffect, useState } from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import style from "../styles/EditPost.module.css";
-import { usePolariod } from "../context/PostContext";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import style from "../../styles/EditPost.module.css";
+import { usePolariod } from "../../context/PostContext";
 import * as fabric from "fabric";
-import { usePostInfo } from "../context/PostInfoContext";
+import { usePostInfo } from "../../context/PostInfoContext";
 
 function EditPost() {
   const { image } = useImage();

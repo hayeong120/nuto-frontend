@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Members from "../components/Members";
-import { profiles } from "../assets/json/profiles";
-import style from "../styles/Admin.module.css";
-import def from "../styles/Default.module.css";
-import Chatting from "../components/Chatting";
+import Members from "../../components/Members";
+import { profiles } from "../../assets/json/profiles";
+import style from "../../styles/Admin.module.css";
+import def from "../../styles/Default.module.css";
+import Chatting from "../../components/Chatting";
 import axios from "axios";
-import { useIsLogin } from "../context/LoginContext";
+import { useIsLogin } from "../../context/LoginContext";
 import { Navigate } from "react-router-dom";
 
 type adminChat = {
