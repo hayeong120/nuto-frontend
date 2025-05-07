@@ -18,7 +18,7 @@ function Search() {
     try {
       const booth = name.trim() || "";
       const response = await axios.get(
-        `${process.env.REACT_APP_NUTO_ROUTE}/api/booth/${booth}`
+        `${process.env.REACT_APP_NUTO_ROUTE}/booth/${booth}`
       );
       setBooths(response.data);
       console.log(booths);

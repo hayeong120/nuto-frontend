@@ -16,7 +16,7 @@ function Booths() {
   const fetchBooths = async () => {
     try {
       const response = await axios.get<Booth[]>(
-        `${process.env.NUTO_ROUTE}/api/booth`
+        `${process.env.NUTO_ROUTE}/booth`
       );
       setBooths(response.data);
     } catch (err) {

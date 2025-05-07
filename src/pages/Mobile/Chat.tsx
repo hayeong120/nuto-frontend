@@ -79,7 +79,7 @@ function Chat() {
       text = text.replace(/\n/g, " ");
 
       const response = await axios.post(
-        `${process.env.REACT_APP_NUTO_ROUTE}/api/check`,
+        `${process.env.REACT_APP_NUTO_ROUTE}/check`,
         {
           text: text,
         }
@@ -100,18 +100,15 @@ function Chat() {
         data: { comment: message },
       };
 
-      await axios.post(`${process.env.REACT_APP_NUTO_ROUTE}/api/message`, {
+      await axios.post(`${process.env.REACT_APP_NUTO_ROUTE}/message`, {
         name: profile.name,
         message: message,
       });
 
-      await axios.post(
-        `${process.env.REACT_APP_NUTO_ROUTE}/api/message/email`,
-        {
-          to: profile.email,
-          content: message,
-        }
-      );
+      await axios.post(`${process.env.REACT_APP_NUTO_ROUTE}/message/email`, {
+        to: profile.email,
+        content: message,
+      });
 
       setChattings([...chattings, newChatting]);
     } else {
