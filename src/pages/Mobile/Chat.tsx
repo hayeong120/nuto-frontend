@@ -78,7 +78,7 @@ function Chat() {
     const chkText = async (text: string) => {
       text = text.replace(/\n/g, " ");
 
-      const response = await axios.post("/api/check", {
+      const response = await axios.post("http://3.34.1.190:3000/check", {
         text: text,
       });
 
@@ -97,12 +97,12 @@ function Chat() {
         data: { comment: message },
       };
 
-      await axios.post(`/api/message`, {
+      await axios.post(`http://3.34.1.190:3000/message`, {
         name: profile.name,
         message: message,
       });
 
-      await axios.post(`/api/message/email`, {
+      await axios.post(`http://3.34.1.190:3000/message/email`, {
         to: profile.email,
         content: message,
       });

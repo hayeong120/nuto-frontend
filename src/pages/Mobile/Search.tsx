@@ -17,7 +17,7 @@ function Search() {
   const fetchBooths = async (name: string) => {
     try {
       const booth = name.trim() || "";
-      const response = await axios.get(`/api/booth/${booth}`);
+      const response = await axios.get(`http://3.34.1.190:3000/booth/${booth}`);
       setBooths(response.data);
       console.log(booths);
     } catch (err) {
