@@ -3,6 +3,7 @@ import Footer from "../../components/Footer";
 import Booth from "../../components/Booth";
 import style from "../../styles/Search.module.css";
 import axios from "axios";
+import api from "../../api/axios";
 
 interface Booth {
   booth_id: string;
@@ -17,7 +18,7 @@ function Search() {
   const fetchBooths = async (name: string) => {
     try {
       const booth = name.trim() || "";
-      const response = await axios.get(`http://3.34.1.190:3000/booth/${booth}`);
+      const response = await api.get(`/booth/${booth}`);
       setBooths(response.data);
       console.log(booths);
     } catch (err) {
