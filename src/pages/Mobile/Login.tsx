@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useIsLogin } from "../../context/LoginContext";
+import api from "../../api/axios";
 
 const Login = () => {
   const [id, setId] = useState("");
@@ -9,7 +10,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(`http://3.34.1.190:3000/check/login`, {
+      const response = await api.post(`/check/login`, {
         id: id,
         pw: password,
       });

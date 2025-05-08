@@ -5,6 +5,7 @@ import Board from "../../components/Board";
 import style from "../../styles/Home.module.css";
 import Post from "../../components/Post";
 import axios from "axios";
+import api from "../../api/axios";
 
 interface Comment {
   _id: string;
@@ -28,7 +29,7 @@ function Home() {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const response = await axios.get(`http://3.34.1.190:3000/post`);
+        const response = await api.get(`/post`);
         setPosts(response.data);
       } catch (err) {
         console.error(err);

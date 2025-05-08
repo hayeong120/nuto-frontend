@@ -10,6 +10,8 @@ import { useImage } from "../../context/ImageContext";
 import axios from "axios";
 import bcrypt from "bcryptjs";
 import { useNavigate } from "react-router-dom";
+import api from "../../api/axios";
+import api from "../../api/axios";
 
 function EditNuto() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -115,7 +117,7 @@ function EditNuto() {
   const chkText = async (text: string) => {
     text = text.replace(/\n/g, " ");
 
-    const response = await axios.post(`http://3.34.1.190:3000/check`, {
+    const response = await api.post(`/check`, {
       text: text,
     });
 
@@ -200,13 +202,9 @@ function EditNuto() {
     formData.append("password", hashedPassword);
 
     try {
-      const response = await axios.post(
-        `http://3.34.1.190:3000/post`,
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
+      const response = await api.post(`/post`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       console.log("업로드 성공:", response);
       setLocation("");
       setName("");
