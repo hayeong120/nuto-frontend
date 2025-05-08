@@ -4,7 +4,7 @@ WORKDIR /app
 COPY . .
 COPY .env .env
 RUN npm install
-RUN npm start
+RUN npm run build
 
 # Step 2: 정적 파일만 NGINX로 서빙
 FROM nginx:alpine
