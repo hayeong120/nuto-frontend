@@ -4,7 +4,6 @@ import Members from "../../components/Members";
 import Chatting from "../../components/Chatting";
 import style from "../../styles/Chat.module.css";
 import { profiles } from "../../assets/json/profiles";
-import axios from "axios";
 import api from "../../api/axios";
 
 type checkChat = {

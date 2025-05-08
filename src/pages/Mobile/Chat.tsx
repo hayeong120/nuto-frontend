@@ -5,7 +5,6 @@ import { profiles } from "../../assets/json/profiles";
 import style from "../../styles/Chat.module.css";
 import Footer from "../../components/Footer";
 import Chatting from "../../components/Chatting";
-import axios from "axios";
 import api from "../../api/axios";
 
 type defaultChat = {
@@ -50,8 +49,6 @@ function Chat() {
     setChattings([changeDefaultChat]);
     setProfile(profiles[idx]);
   };
-
-  console.log(process.env.REACT_APP_NUTO_ROUTE);
 
   const available_check = async (data: object) => {
     const response = await fetch(
@@ -117,7 +114,7 @@ function Chat() {
 
   return (
     <div className={style.Body}>
-      <img src="/images/logo.svg" className={style.logo} />
+      <img alt="logo" src="/images/logo.svg" className={style.logo} />
       <Members type="send" profiles={profiles} changeMember={changeMember} />
       <BusinessCard profile={profile} />
 
