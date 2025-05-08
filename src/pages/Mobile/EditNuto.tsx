@@ -11,7 +11,6 @@ import axios from "axios";
 import bcrypt from "bcryptjs";
 import { useNavigate } from "react-router-dom";
 import api from "../../api/axios";
-import api from "../../api/axios";
 
 function EditNuto() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
