@@ -1,6 +1,6 @@
 .boothPageContainer {
   position: relative;
-  background-image: url("../../public/images/텃밭.jpg");
+  background-image: url("/images/텃밭.jpg");
 
   background-size: cover;
   width: 100vw;
