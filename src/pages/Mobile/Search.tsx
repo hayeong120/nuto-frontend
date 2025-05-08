@@ -2,17 +2,16 @@ import React, { useState, useEffect } from "react";
 import Footer from "../../components/Footer";
 import Booth from "../../components/Booth";
 import style from "../../styles/Search.module.css";
-import axios from "axios";
 import api from "../../api/axios";
 
-interface Booth {
+interface BoothType {
   booth_id: string;
   members: string[];
   s3_path: string;
 }
 
 function Search() {
-  const [booths, setBooths] = useState<Booth[]>([]);
+  const [booths, setBooths] = useState<BoothType[]>([]);
   const [inputText, setInputText] = useState("");
 
   const fetchBooths = async (name: string) => {
@@ -50,10 +49,12 @@ function Search() {
         />
         <img
           src="/images/searchIcon.png"
+          alt="Search Icon"
           className={style.searchIcon}
           onClick={() => fetchBooths(inputText)}
         />
         <img
+          alt="Search Underbar"
           src="/images/searchUnderbar.png"
           className={style.searchUnderbar}
         />

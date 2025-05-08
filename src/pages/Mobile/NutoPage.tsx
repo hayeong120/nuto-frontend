@@ -18,11 +18,11 @@ function NutoPage() {
 
   return (
     <div className={style.body}>
-      <img src="/images/logo.svg" className={style.logo} />
+      <img alt="logo" src="/images/logo.svg" className={style.logo} />
       <div className={style.profileSection}>
         <Members type="send" profiles={profiles} changeMember={changeMember} />
       </div>
-      <img src={booth.img} className={style.boothImg} />
+      <img alt="boothImg" src={booth.img} className={style.boothImg} />
       <div className={style.boothInfo}>
         <h1 className={style.name}>{booth.name}</h1>
         <p className={style.type}>{booth.type.join(" | ")}</p>

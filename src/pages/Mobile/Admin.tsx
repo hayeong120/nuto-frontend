@@ -4,7 +4,6 @@ import { profiles } from "../../assets/json/profiles";
 import style from "../../styles/Admin.module.css";
 import def from "../../styles/Default.module.css";
 import Chatting from "../../components/Chatting";
-import axios from "axios";
 import { useIsLogin } from "../../context/LoginContext";
 import { Navigate } from "react-router-dom";
 import api from "../../api/axios";
@@ -54,7 +53,7 @@ function Admin() {
   if (isLogin) {
     return (
       <div className={def.Body}>
-        <img src="/images/logo.svg" className={style.logo} />
+        <img alt="logo" src="/images/logo.svg" className={style.logo} />
         <Members type="check" profiles={profiles} changeMember={changeMember} />
 
         <Chatting chattings={chattings} />
