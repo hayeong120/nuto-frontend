@@ -5,7 +5,7 @@ import api from "../../api/axios";
 const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const { isLogin, setIsLogin } = useIsLogin();
+  const { setIsLogin } = useIsLogin();
 
   const handleLogin = async () => {
     try {

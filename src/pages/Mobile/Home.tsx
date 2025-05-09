@@ -38,7 +38,7 @@ function Home() {
 
   return (
     <div className={style.body}>
-      <img src="/images/logo.svg" className={style.logo} />
+      <img src="/images/logo.svg" alt="로고" className={style.logo} />
       {posts.length === 0 ? (
         <p>게시물이 없습니다.</p>
       ) : (

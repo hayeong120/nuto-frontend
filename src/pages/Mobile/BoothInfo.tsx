@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 import { boothsData } from "../../assets/json/booths";
 
 function BoothInfo() {
-  const [booth, setBooth] = useState(boothsData[0]);
+  const [booth] = useState(boothsData[0]);
   const navigate = useNavigate();
 
   if (!booth)
@@ -20,9 +20,9 @@ function BoothInfo() {
           onClick={() => navigate(-1)}
           alt="뒤로 가기"
         />
-        <img src="/images/logo.svg" className={style.logo} />
+        <img src="/images/logo.svg" alt="로고이미지" className={style.logo} />
       </div>
-      <img src={booth.img} className={style.boothImg} />
+      <img src={booth.img} alt="부스이미지" className={style.boothImg} />
       <div className={style.boothInfo}>
         <div>
           <h1 className={style.name}>{booth.name}</h1>
