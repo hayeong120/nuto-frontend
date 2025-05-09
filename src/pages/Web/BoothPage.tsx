@@ -4,7 +4,7 @@ import style from "../../styles/BoothPage.module.css";
 import { boothsData } from "../../assets/json/booths";
 import { useNavigate } from "react-router-dom";
 
-function BoothPage({}) {
+function BoothPage() {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("/home");

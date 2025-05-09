@@ -6,8 +6,8 @@ import { boothsData } from "../../assets/json/booths";
 import { profiles } from "../../assets/json/profiles";
 
 function NutoPage() {
-  const [booth, setBooth] = useState(boothsData[0]);
-  const [profile, setProfile] = useState(profiles[0]);
+  const [booth] = useState(boothsData[0]);
+  const [_, setProfile] = useState(profiles[0]);
   // 멤버 변경 함수
   const changeMember = (idx: number) => {
     setProfile(profiles[idx]);

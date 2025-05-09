@@ -2,7 +2,7 @@ import React from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import style from "../../styles/QRPage.module.css";
 
-function QRPage({}) {
+function QRPage() {
   return (
     <div className={style.qrContainer}>
       <img
