@@ -13,15 +13,14 @@ import api from "../../api/axios";
 
 function EditNuto() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [fabricCanvas, setFabricCanvas] = useState<fabric.Canvas | null>(null);
   const textObjectRef = useRef<fabric.IText | null>(null);
   const fabricCanvasRef = useRef<fabric.Canvas | null>(null);
   const [imgSrc, setImgSrc] = useState<string>("/images/redTomato.png");
-  const { location, setLocation } = usePostInfo();
-  const { name, setName } = usePostInfo();
-  const { nutoFile, setNutoFile } = usePolariod();
+  const { setLocation } = usePostInfo();
+  const { setName } = usePostInfo();
+  const { setNutoFile } = usePolariod();
   const { polariodFile, setPolariodFile } = usePolariod();
-  const { image, setImage } = useImage();
+  const { setImage } = useImage();
   const navigate = useNavigate();
 
   const tomatos = [

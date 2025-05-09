@@ -1,9 +1,8 @@
 import style from "../styles/Footer.module.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-function Footer({}) {
+function Footer() {
   const [clickedButton, setClickedButton] = useState(
     parseInt(sessionStorage.getItem("footerIdx") ?? "0")
   );

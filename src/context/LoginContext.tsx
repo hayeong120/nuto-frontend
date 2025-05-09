@@ -3,7 +3,6 @@ import {
   useContext,
   useState,
   ReactNode,
-  useEffect,
 } from "react";
 
 interface LoginContextType {

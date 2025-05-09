@@ -1,6 +1,6 @@
 import { useImage } from "../../context/ImageContext";
 import def from "../../styles/Default.module.css";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import style from "../../styles/EditPost.module.css";
@@ -12,8 +12,8 @@ function EditPost() {
   const { image } = useImage();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [fabricCanvas, setFabricCanvas] = useState<fabric.Canvas | null>(null);
-  const [framedPhoto, setFramedPhoto] = useState<string | null>(null);
-  const { polariodFile, setPolariodFile } = usePolariod();
+  const [_, setFramedPhoto] = useState<string | null>(null);
+  const { setPolariodFile } = usePolariod();
   const { name, setName } = usePostInfo();
 
   const deleteIcon = "/images/Delete.png";
@@ -119,7 +119,7 @@ function EditPost() {
     return () => {
       newCanvas.dispose();
     };
-  }, [image]);
+  }, [image, name, renderIcon]);
 
   const add = (idx: number) => {
     const stickerImg = new Image();
