@@ -27,7 +27,7 @@ function Home() {
     const getPosts = async () => {
       try {
         const response = await api.get(`/post`);
-        setPosts(response.data);
+        setPosts(response.data ?? []);
       } catch (err) {
         console.error(err);
       }
@@ -38,11 +38,11 @@ function Home() {
 
   return (
     <div className={style.body}>
-      <img src="/images/logo.svg" className={style.logo} />
+      <img alt="logo" src="/images/logo.svg" className={style.logo} />
       {posts.length === 0 ? (
         <p>게시물이 없습니다.</p>
       ) : (
-        posts.map((post) => <Post post={post} />)
+        posts && posts.map((post) => <Post post={post} />)
       )}
       <Footer />
     </div>
