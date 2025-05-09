@@ -5,7 +5,7 @@ import { profiles } from "../../assets/json/profiles";
 import style from "../../styles/Chat.module.css";
 import Footer from "../../components/Footer";
 import Chatting from "../../components/Chatting";
-import api from "../../api/axios";
+import axios from "axios";
 
 type defaultChat = {
   type: "default-chat";
@@ -76,7 +76,7 @@ function Chat() {
     const chkText = async (text: string) => {
       text = text.replace(/\n/g, " ");
 
-      const response = await api.post("/check", {
+      const response = await axios.post("http://3.34.1.190:3000/check", {
         text: text,
       });
 
@@ -95,12 +95,12 @@ function Chat() {
         data: { comment: message },
       };
 
-      await api.post(`/message`, {
+      await axios.post(`http://3.34.1.190:3000/message`, {
         name: profile.name,
         message: message,
       });
 
-      await api.post(`/message/email`, {
+      await axios.post(`http://3.34.1.190:3000/message/email`, {
         to: profile.email,
         content: message,
       });

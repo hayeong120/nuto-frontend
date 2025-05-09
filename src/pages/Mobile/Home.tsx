@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "../../components/Footer";
 import style from "../../styles/Home.module.css";
 import Post from "../../components/Post";
-import api from "../../api/axios";
-
+import axios from "axios";
 interface Comment {
   _id: string;
   name: string;
@@ -26,7 +25,8 @@ function Home() {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const response = await api.get(`/post`);
+        const response = await axios.get(`http://3.34.1.190:3000/post`);
+        console.log(response);
         setPosts(response.data ?? []);
       } catch (err) {
         console.error(err);

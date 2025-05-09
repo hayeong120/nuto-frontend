@@ -6,7 +6,7 @@ import def from "../../styles/Default.module.css";
 import Chatting from "../../components/Chatting";
 import { useIsLogin } from "../../context/LoginContext";
 import { Navigate } from "react-router-dom";
-import api from "../../api/axios";
+import axios from "axios";
 
 type adminChat = {
   type: "admin-chat";
@@ -30,7 +30,9 @@ function Admin() {
     setProfile(profiles[idx]);
     setIdx(idx);
     try {
-      const response = await api.get(`/message${profile.name}`);
+      const response = await axios.get(
+        `http://3.34.1.190:3000/message${profile.name}`
+      );
 
       const adminChats: adminChat[] = response.data.data.map(
         (chat: { message: string; createdAt: string }) => {

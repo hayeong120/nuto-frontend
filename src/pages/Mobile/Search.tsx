@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "../../components/Footer";
 import Booth from "../../components/Booth";
 import style from "../../styles/Search.module.css";
-import api from "../../api/axios";
+import axios from "axios";
 
 interface BoothType {
   booth_id: string;
@@ -17,7 +17,7 @@ function Search() {
   const fetchBooths = async (name: string) => {
     try {
       const booth = name.trim() || "";
-      const response = await api.get(`/booth/${booth}`);
+      const response = await axios.get(`http://3.34.1.190:3000/booth/${booth}`);
       setBooths(response.data);
       console.log(booths);
     } catch (err) {
