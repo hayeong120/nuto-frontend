@@ -2,7 +2,6 @@
   "name": "nuto-frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ahkjeflhkeuvha.github.io/2025-ITshow-Nuto/nuto-frontend",
   "dependencies": {
     "@huggingface/inference": "^3.5.2",
     "@testing-library/dom": "^10.4.0",
