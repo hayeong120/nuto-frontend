@@ -1,27 +1,26 @@
-import def from "../styles/Default.module.css";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import style from "../styles/EditNuto.module.css";
+import def from "../../styles/Default.module.css";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import style from "../../styles/EditNuto.module.css";
 import { useRef, useState, useEffect } from "react";
 import * as fabric from "fabric";
-import { usePolariod } from "../context/PostContext";
-import { usePostInfo } from "../context/PostInfoContext";
-import { useImage } from "../context/ImageContext";
-import axios from "axios";
+import { usePolariod } from "../../context/PostContext";
+import { usePostInfo } from "../../context/PostInfoContext";
+import { useImage } from "../../context/ImageContext";
 import bcrypt from "bcryptjs";
 import { useNavigate } from "react-router-dom";
+import api from "../../api/axios";
 
 function EditNuto() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [fabricCanvas, setFabricCanvas] = useState<fabric.Canvas | null>(null);
   const textObjectRef = useRef<fabric.IText | null>(null);
   const fabricCanvasRef = useRef<fabric.Canvas | null>(null);
   const [imgSrc, setImgSrc] = useState<string>("/images/redTomato.png");
-  const { location, setLocation } = usePostInfo();
-  const { name, setName } = usePostInfo();
-  const { nutoFile, setNutoFile } = usePolariod();
+  const { setLocation } = usePostInfo();
+  const { setName } = usePostInfo();
+  const { setNutoFile } = usePolariod();
   const { polariodFile, setPolariodFile } = usePolariod();
-  const { image, setImage } = useImage();
+  const { setImage } = useImage();
   const navigate = useNavigate();
 
   const tomatos = [
@@ -115,7 +114,7 @@ function EditNuto() {
   const chkText = async (text: string) => {
     text = text.replace(/\n/g, " ");
 
-    const response = await axios.post("http://localhost:3000/check", {
+    const response = await api.post(`/check`, {
       text: text,
     });
 
@@ -200,13 +199,9 @@ function EditNuto() {
     formData.append("password", hashedPassword);
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/post",
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
+      const response = await api.post(`/post`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       console.log("업로드 성공:", response);
       setLocation("");
       setName("");

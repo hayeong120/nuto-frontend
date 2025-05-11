@@ -1,0 +1,20 @@
+.boothPageContainer {
+  position: relative;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+.boothPageContainer > button {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  font-family: "Ownglyph PDH";
+}
+
+.boothContainer {
+  display: flex;
+  position: absolute;
+  top: 200px;
+  padding: 80px;
+}

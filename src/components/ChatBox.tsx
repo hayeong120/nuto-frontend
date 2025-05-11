@@ -1,10 +1,11 @@
 import style from "../styles/ChatBox.module.css";
 
 function ChatBox(props: {
-  type: "default" | "send";
+  type: "default" | "send" | "admin" | "check";
   img?: string;
   comment: string;
   name?: string;
+  time?: string;
 }) {
   if (props.type === "default") {
     return (
@@ -18,12 +19,33 @@ function ChatBox(props: {
         </div>
       </div>
     );
-  } else {
+  } else if (props.type === "send") {
     return (
       <div className={style["send-chat-container"]}>
         <div className={style["send-chat"]}>
           <p>{props.comment}</p>
         </div>
+      </div>
+    );
+  } else if (props.type === "check") {
+    return (
+      <div className={style["check-chat"]}>
+        <p>{props.comment}</p>
+      </div>
+    );
+  } else {
+    return (
+      <div className={style["admin-chat-container"]}>
+        <div className={style["admin-chat"]}>
+          <p>{props.comment}</p>
+        </div>
+        <p>
+          {props.time
+            ? new Date(props.time).getHours() +
+              ":" +
+              new Date(props.time).getMinutes()
+            : ""}
+        </p>
       </div>
     );
   }

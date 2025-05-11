@@ -1,8 +1,12 @@
 import style from "../styles/Footer.module.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Footer({}) {
-  const [clickedButton, setClickedButton] = useState(0);
+function Footer() {
+  const [clickedButton, setClickedButton] = useState(
+    parseInt(sessionStorage.getItem("footerIdx") ?? "0")
+  );
+  const navigate = useNavigate();
   const footerButtons = [
     "/images/homeButton.png",
     "/images/postButton.png",
@@ -16,11 +20,14 @@ function Footer({}) {
     "/images/clickedNutoButton.png",
   ];
   const footerIconName = ["홈", "게시물 추가", "부스 소개", "Nuto"];
+  const footerRouter = ["/", "/post", "/booths", "/members"];
 
   const clickFooter = (idx: number) => {
     setClickedButton(idx);
+    sessionStorage.setItem("footerIdx", idx.toString());
+    navigate(footerRouter[idx]);
   };
-  
+
   return (
     <div className={style.Footer}>
       {footerButtons.map((footerButton, idx) => {

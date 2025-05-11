@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import style from "../styles/Booths.module.css";
-import Board from "../components/Board";
-import axios from "axios";
+import style from "../../styles/Booths.module.css";
+import Board from "../../components/Board";
+import Footer from "../../components/Footer";
+import api from "../../api/axios";
 
 interface Booth {
   booth_id: string;
@@ -14,7 +15,7 @@ function Booths() {
 
   const fetchBooths = async () => {
     try {
-      const response = await axios.get<Booth[]>("http://localhost:3000/booth");
+      const response = await api.get<Booth[]>(`/booth`);
       setBooths(response.data);
     } catch (err) {
       console.error("데이터를 불러오는 중 오류가 발생했습니다.");
@@ -38,6 +39,7 @@ function Booths() {
           <p>등록된 부스가 없습니다.</p>
         )}
       </div>
+      <Footer />
     </div>
   );
 }

@@ -1,11 +1,11 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import def from "../styles/Default.module.css";
-import style from "../styles/PostUpload.module.css";
-import { useEffect, useRef, useState } from "react";
-import { useImage } from "../context/ImageContext";
-import { usePostInfo } from "../context/PostInfoContext";
-import { useLocation } from 'react-router-dom';
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import def from "../../styles/Default.module.css";
+import style from "../../styles/PostUpload.module.css";
+import { useRef, useState } from "react";
+import { useImage } from "../../context/ImageContext";
+import { usePostInfo } from "../../context/PostInfoContext";
+import { useLocation } from "react-router-dom";
 
 function PostUpload() {
   const imgRef = useRef<HTMLInputElement | null>(null);
