@@ -180,6 +180,44 @@ function EditNuto() {
     if (negativeEmotions.includes(label.label)) {
       alert("부정적인 문장은 금지되어 있습니다.");
       return;
+    } else {
+      const password = prompt("비밀번호를 입력하세요.");
+      if (!password) {
+        alert("비밀번호를 입력해야 합니다.");
+        return;
+      }
+
+      const hashedPassword = await hashing(password);
+
+      const formData = new FormData();
+      formData.append("nutoImage", file);
+      if (polariodFile) {
+        formData.append("polariodImage", polariodFile);
+      }
+
+      formData.append("name", "오지은");
+      formData.append("location", "nuto");
+      formData.append("password", hashedPassword);
+
+      try {
+        const response = await axios.post(
+          "https://nuto.mirim-it-show.site/post",
+          formData,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          }
+        );
+        console.log("업로드 성공:", response);
+        setLocation("");
+        setName("");
+        setNutoFile(null);
+        setPolariodFile(null);
+        setImage("");
+
+        navigate("/");
+      } catch (err) {
+        console.error("업로드 실패:", err);
+      }
     }
   };
 
