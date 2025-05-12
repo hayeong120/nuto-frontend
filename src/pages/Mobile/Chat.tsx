@@ -60,9 +60,12 @@ function Chat() {
     const chkText = async (text: string) => {
       text = text.replace(/\n/g, " ");
 
-      const response = await axios.post("http://localhost:3000/check", {
-        text: text,
-      });
+      const response = await axios.post(
+        "https://nuto.mirim-it-show.site/check",
+        {
+          text: text,
+        }
+      );
 
       console.log(response);
 
