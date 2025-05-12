@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Members from "../../components/Members";
 import { profiles } from "../../assets/json/profiles";
 import style from "../../styles/Admin.module.css";
@@ -20,13 +20,13 @@ function Admin() {
   const [profile, setProfile] = useState(profiles[0]);
   const [chattings, setChattings] = useState<adminChat[]>([]);
   const [idx, setIdx] = useState(0);
-  const { isLogin, setIsLogin } = useIsLogin();
+  const { isLogin } = useIsLogin();
 
   useEffect(() => {
     changeMember(idx);
   }, [profile, idx]);
 
-  const changeMember = async (idx: number) => {
+  const changeMember = useCallback(async (idx: number) => {
     setProfile(profiles[idx]);
     setIdx(idx);
     try {
@@ -50,7 +50,7 @@ function Admin() {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [profiles]);
 
   if (isLogin) {
     return (
