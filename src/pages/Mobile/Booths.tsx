@@ -15,7 +15,9 @@ function Booths() {
 
   const fetchBooths = async () => {
     try {
-      const response = await axios.get<Booth[]>(`http://3.34.1.190:3000/booth`);
+      const response = await axios.get<Booth[]>(
+        `https://nuto.mirim-it-show.site/booth`
+      );
       setBooths(response.data);
     } catch (err) {
       console.error("데이터를 불러오는 중 오류가 발생했습니다.");

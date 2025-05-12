@@ -31,7 +31,7 @@ function Admin() {
     setIdx(idx);
     try {
       const response = await axios.get(
-        `http://3.34.1.190:3000/message${profile.name}`
+        `https://nuto.mirim-it-show.site/message${profile.name}`
       );
 
       const adminChats: adminChat[] = response.data.data.map(

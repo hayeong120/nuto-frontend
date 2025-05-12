@@ -8,10 +8,13 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(`http://3.34.1.190:3000/check/login`, {
-        id: id,
-        pw: password,
-      });
+      const response = await axios.post(
+        `https://nuto.mirim-it-show.site/check/login`,
+        {
+          id: id,
+          pw: password,
+        }
+      );
 
       if (response.data.success) {
         localStorage.setItem("token", response.data.token); // JWT 저장

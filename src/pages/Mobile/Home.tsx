@@ -25,7 +25,9 @@ function Home() {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const response = await axios.get(`http://3.34.1.190:3000/post`);
+        const response = await axios.get(
+          `https://nuto.mirim-it-show.site/post`
+        );
         console.log(response);
         setPosts(response.data ?? []);
       } catch (err) {

@@ -76,9 +76,12 @@ function Chat() {
     const chkText = async (text: string) => {
       text = text.replace(/\n/g, " ");
 
-      const response = await axios.post("http://3.34.1.190:3000/check", {
-        text: text,
-      });
+      const response = await axios.post(
+        "https://nuto.mirim-it-show.site/check",
+        {
+          text: text,
+        }
+      );
 
       const data = { inputs: response.data };
 
@@ -95,12 +98,12 @@ function Chat() {
         data: { comment: message },
       };
 
-      await axios.post(`http://3.34.1.190:3000/message`, {
+      await axios.post(`https://nuto.mirim-it-show.site/message`, {
         name: profile.name,
         message: message,
       });
 
-      await axios.post(`http://3.34.1.190:3000/message/email`, {
+      await axios.post(`https://nuto.mirim-it-show.site/message/email`, {
         to: profile.email,
         content: message,
       });

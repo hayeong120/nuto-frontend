@@ -115,7 +115,7 @@ function EditNuto() {
   const chkText = async (text: string) => {
     text = text.replace(/\n/g, " ");
 
-    const response = await axios.post(`http://3.34.1.190:3000/check`, {
+    const response = await axios.post(`https://nuto.mirim-it-show.site/check`, {
       text: text,
     });
 
@@ -201,7 +201,7 @@ function EditNuto() {
 
     try {
       const response = await axios.post(
-        `http://3.34.1.190:3000/post`,
+        `https://nuto.mirim-it-show.site/post`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

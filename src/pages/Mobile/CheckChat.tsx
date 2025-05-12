@@ -33,7 +33,7 @@ function CheckChat() {
   const getChattings = async () => {
     try {
       const response = await axios.get(
-        `http://3.34.1.190:3000/message/${profile.name}`
+        `https://nuto.mirim-it-show.site/message/${profile.name}`
       );
 
       const userChats: checkChat[] = response.data.data.map((chat: chat) => {
