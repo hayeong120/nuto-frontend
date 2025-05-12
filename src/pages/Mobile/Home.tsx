@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "../../components/Footer";
 import style from "../../styles/Home.module.css";
 import Post from "../../components/Post";
-import api from "../../api/axios";
-
+import axios from "axios";
 interface Comment {
   _id: string;
   name: string;
@@ -26,7 +25,10 @@ function Home() {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const response = await api.get(`/post`);
+        const response = await axios.get(
+          `https://nuto.mirim-it-show.site/post`
+        );
+        console.log(response);
         setPosts(response.data);
       } catch (err) {
         console.error(err);
@@ -38,11 +40,11 @@ function Home() {
 
   return (
     <div className={style.body}>
-      <img src="/images/logo.svg" alt="로고" className={style.logo} />
+      <img alt="logo" src="/images/logo.svg" className={style.logo} />
       {posts.length === 0 ? (
         <p>게시물이 없습니다.</p>
       ) : (
-        posts.map((post) => <Post post={post} />)
+        posts && posts.map((post) => <Post post={post} />)
       )}
       <Footer />
     </div>

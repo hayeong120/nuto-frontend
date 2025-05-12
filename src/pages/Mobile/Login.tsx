@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useIsLogin } from "../../context/LoginContext";
-import api from "../../api/axios";
-
+import axios from "axios";
 const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
@@ -9,10 +8,13 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await api.post(`/check/login`, {
-        id: id,
-        pw: password,
-      });
+      const response = await axios.post(
+        `https://nuto.mirim-it-show.site/check/login`,
+        {
+          id: id,
+          pw: password,
+        }
+      );
 
       if (response.data.success) {
         localStorage.setItem("token", response.data.token); // JWT 저장
