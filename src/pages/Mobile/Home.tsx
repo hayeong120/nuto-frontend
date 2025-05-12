@@ -29,7 +29,7 @@ function Home() {
           `https://nuto.mirim-it-show.site/post`
         );
         console.log(response);
-        setPosts(response.data.statusCode === 500 ? [] : response.data.posts);
+        setPosts(response.data);
       } catch (err) {
         console.error(err);
       }
