@@ -50,22 +50,6 @@ function Chat() {
     setProfile(profiles[idx]);
   };
 
-  const available_check = async (data: object) => {
-    const response = await fetch(
-      "https://router.huggingface.co/hf-inference/models/cardiffnlp/twitter-roberta-base-sentiment-latest",
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_HUGGING_FACE_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify(data),
-      }
-    );
-    const result = await response.json();
-    return result;
-  };
-
   const inputedMessage = async (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
   };
@@ -76,23 +60,37 @@ function Chat() {
     const chkText = async (text: string) => {
       text = text.replace(/\n/g, " ");
 
-      const response = await axios.post(
-        "https://nuto.mirim-it-show.site/check",
-        {
-          text: text,
-        }
-      );
+      const response = await axios.post("http://localhost:3000/check", {
+        text: text,
+      });
 
-      const data = { inputs: response.data };
+      console.log(response);
 
-      const available = await available_check(data);
-
-      return available[0][0]["label"];
+      return response.data.label;
     };
 
     const able = await chkText(message);
 
-    if (able !== "negative") {
+    const negativeEmotions = [
+      "anger",
+      "annoyance",
+      "confusion",
+      "disappointment",
+      "disapproval",
+      "disgust",
+      "embarrassment",
+      "fear",
+      "grief",
+      "nervousness",
+      "realization",
+      "remorse",
+      "sadness",
+      "surprise",
+    ];
+
+    console.log(able);
+
+    if (!negativeEmotions.includes(able.label)) {
       const newChatting: userChat = {
         type: "user-chat",
         data: { comment: message },
