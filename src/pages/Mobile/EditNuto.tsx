@@ -115,31 +115,11 @@ function EditNuto() {
   const chkText = async (text: string) => {
     text = text.replace(/\n/g, " ");
 
-    const response = await axios.post(`https://nuto.mirim-it-show.site/check`, {
+    const response = await axios.post("https://nuto.mirim-it-show.site/check", {
       text: text,
     });
 
-    const data = { inputs: response.data };
-
-    const available = await available_check(data);
-
-    return available[0][0]["label"];
-  };
-
-  const available_check = async (data: object) => {
-    const response = await fetch(
-      "https://router.huggingface.co/hf-inference/models/cardiffnlp/twitter-roberta-base-sentiment-latest",
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_HUGGING_FACE_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify(data),
-      }
-    );
-    const result = await response.json();
-    return result;
+    return response.data.label;
   };
 
   const dataURLtoFile = (dataURL: string, filename: string) => {
@@ -174,49 +154,28 @@ function EditNuto() {
     const textObject = objects.find((obj) => obj.type === "i-text");
     const text = (textObject as fabric.IText).text || "";
 
-    const label = await chkText(text); // chkText가 "negative" | "neutral" | "positive" 반환
-    console.log(label);
-    if (label === "negative") {
+    const label = await chkText(text);
+
+    const negativeEmotions = [
+      "anger",
+      "annoyance",
+      "confusion",
+      "disappointment",
+      "disapproval",
+      "disgust",
+      "embarrassment",
+      "fear",
+      "grief",
+      "nervousness",
+      "realization",
+      "remorse",
+      "sadness",
+      "surprise",
+    ];
+
+    if (negativeEmotions.includes(label.label)) {
       alert("부정적인 문장은 금지되어 있습니다.");
       return;
-    }
-
-    const password = prompt("비밀번호를 입력하세요.");
-    if (!password) {
-      alert("비밀번호를 입력해야 합니다.");
-      return;
-    }
-
-    const hashedPassword = await hashing(password);
-
-    const formData = new FormData();
-    formData.append("nutoImage", file);
-    if (polariodFile) {
-      formData.append("polariodImage", polariodFile);
-    }
-
-    formData.append("name", "오지은");
-    formData.append("location", "nuto");
-    formData.append("password", hashedPassword);
-
-    try {
-      const response = await axios.post(
-        `https://nuto.mirim-it-show.site/post`,
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
-      console.log("업로드 성공:", response);
-      setLocation("");
-      setName("");
-      setNutoFile(null);
-      setPolariodFile(null);
-      setImage("");
-
-      navigate("/");
-    } catch (err) {
-      console.error("업로드 실패:", err);
     }
   };
 

@@ -67,8 +67,6 @@ function Chat() {
         }
       );
 
-      console.log(response);
-
       return response.data.label;
     };
 
@@ -90,8 +88,6 @@ function Chat() {
       "sadness",
       "surprise",
     ];
-
-    console.log(able);
 
     if (!negativeEmotions.includes(able.label)) {
       const newChatting: userChat = {
