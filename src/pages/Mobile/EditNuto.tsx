@@ -119,6 +119,8 @@ function EditNuto() {
       text: text,
     });
 
+    console.log(response);
+
     return response.data.label;
   };
 
@@ -155,6 +157,8 @@ function EditNuto() {
     const text = (textObject as fabric.IText).text || "";
 
     const label = await chkText(text);
+
+    console.log(label);
 
     const negativeEmotions = [
       "anger",
