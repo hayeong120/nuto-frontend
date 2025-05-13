@@ -89,9 +89,9 @@ function Chat() {
       "surprise",
     ];
 
-    console.log(able);
+    console.log(JSON.parse(able).label);
 
-    if (!negativeEmotions.includes(able.label)) {
+    if (!negativeEmotions.includes(JSON.parse(able).label)) {
       const newChatting: userChat = {
         type: "user-chat",
         data: { comment: message },
