@@ -50,7 +50,6 @@ function Post({ post }: { post: PostProps }) {
             src="/images/commentImg.png"
             className={style.commentImg}
           />
-          <div className={style.commentCnt}>{post.comments.length}</div>
         </div>
         <div className={style.infoContainer}>
           <span className={style.writerText}>작성자 |</span>
