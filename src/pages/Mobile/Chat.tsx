@@ -89,6 +89,8 @@ function Chat() {
       "surprise",
     ];
 
+    console.log(able);
+
     if (!negativeEmotions.includes(able.label)) {
       const newChatting: userChat = {
         type: "user-chat",
