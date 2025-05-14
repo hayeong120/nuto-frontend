@@ -119,7 +119,7 @@ function EditPost() {
     return () => {
       newCanvas.dispose();
     };
-  }, [image, name, renderIcon]);
+  }, [image]);
 
   const add = (idx: number) => {
     const stickerImg = new Image();
