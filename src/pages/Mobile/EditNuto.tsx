@@ -16,8 +16,8 @@ function EditNuto() {
   const textObjectRef = useRef<fabric.IText | null>(null);
   const fabricCanvasRef = useRef<fabric.Canvas | null>(null);
   const [imgSrc, setImgSrc] = useState<string>("/images/redTomato.png");
-  const { setLocation } = usePostInfo();
-  const { setName } = usePostInfo();
+  const { location, setLocation } = usePostInfo();
+  const { name, setName } = usePostInfo();
   const { setNutoFile } = usePolariod();
   const { polariodFile, setPolariodFile } = usePolariod();
   const { setImage } = useImage();
@@ -194,8 +194,8 @@ function EditNuto() {
         formData.append("polariodImage", polariodFile);
       }
 
-      formData.append("name", "오지은");
-      formData.append("location", "nuto");
+      formData.append("name", name);
+      formData.append("location", location);
       formData.append("password", hashedPassword);
 
       try {
