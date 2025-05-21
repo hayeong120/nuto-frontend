@@ -197,7 +197,6 @@ function EditNuto() {
       formData.append("name", name);
       formData.append("location", location);
       formData.append("password", hashedPassword);
-      formData.append("location", "nuto");
 
       try {
         const response = await axios.post(
