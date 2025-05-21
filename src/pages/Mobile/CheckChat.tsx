@@ -33,7 +33,33 @@ function CheckChat() {
   };
 
   const getChattings = async () => {
-    console.log(profile.name, profiles);
+    try {
+      console.log(
+        "요청 URL: ",
+        `https://nuto.mirim-it-show.site/message/${encodeURIComponent(
+          profile.name
+        )}`
+      );
+
+      const response = await axios.get(
+        `https://nuto.mirim-it-show.site/message/${encodeURIComponent(
+          profile.name
+        )}`
+      );
+
+      const userChats: checkChat[] = response.data.data.map((chat: chat) => {
+        return {
+          type: "check-chat",
+          data: {
+            name: chat.name,
+            comment: chat.message,
+          },
+        };
+      });
+      setChattings(userChats);
+    } catch (error) {
+      console.error("Failed to fetch chattings:", error);
+    }
   };
 
   useEffect(() => {
