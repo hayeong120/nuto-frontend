@@ -16,6 +16,7 @@ interface PostProps {
 }
 
 function Post({ post }: { post: PostProps }) {
+  console.log(post);
   return (
     <div className={style.post} key={post._id}>
       {/* </Link> */}
