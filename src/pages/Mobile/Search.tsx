@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "../../components/Footer";
 import Booth from "../../components/Booth";
 import style from "../../styles/Search.module.css";
+import { usePostInfo } from "../../context/PostInfoContext";
 import axios from "axios";
 
 interface BoothType {
@@ -13,6 +14,7 @@ interface BoothType {
 function Search() {
   const [booths, setBooths] = useState<BoothType[]>([]);
   const [inputText, setInputText] = useState("");
+  const { location, setLocation } = usePostInfo();
 
   const fetchBooths = async (name: string) => {
     try {
@@ -21,11 +23,14 @@ function Search() {
         `https://nuto.mirim-it-show.site/booth/${booth}`
       );
       setBooths(response.data);
-      console.log(booths);
     } catch (err) {
       console.error("데이터를 불러오는 중 오류가 발생했습니다.");
     }
   };
+
+  useEffect(() => {
+    fetchBooths("");
+  }, [])
 
   return (
     <div className={style.body}>
@@ -56,10 +61,12 @@ function Search() {
       </div>
       <div className={style.boothContainer}>
         {booths.length > 0 ? (
-          booths.map((booth, index) => (
-            <div style={{ borderRadius: "10px", overflow: "hidden" }}>
+          booths.map((booth) => (
+            <div 
+              style={{ borderRadius: "10px", overflow: "hidden" }}
+              onClick={() => setLocation(booth.booth_id)}>
               <Booth
-                key={index}
+                key={booth.booth_id}
                 booth={booth}
                 navi={{ go: true, path: "post" }}
               />
