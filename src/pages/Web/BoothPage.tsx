@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 function BoothPage() {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/home");
+    navigate("/qr-page");
     console.log("응원 토마토 남기기");
   };
   return (
