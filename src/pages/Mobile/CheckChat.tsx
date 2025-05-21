@@ -25,30 +25,15 @@ type chat = {
 function CheckChat() {
   const [profile, setProfile] = useState(profiles[0]);
   const [chattings, setChattings] = useState<checkChat[]>([]);
+  console.log("member : ", profile);
+  console.log(profile.name, profiles);
 
   const changeMember = (idx: number) => {
     setProfile(profiles[idx]);
   };
 
   const getChattings = async () => {
-    try {
-      const response = await axios.get(
-        `https://nuto.mirim-it-show.site/message/${profile.name}`
-      );
-
-      const userChats: checkChat[] = response.data.data.map((chat: chat) => {
-        return {
-          type: "check-chat",
-          data: {
-            name: chat.name,
-            comment: chat.message,
-          },
-        };
-      });
-      setChattings(userChats);
-    } catch (error) {
-      console.error("Failed to fetch chattings:", error);
-    }
+    console.log(profile.name, profiles);
   };
 
   useEffect(() => {

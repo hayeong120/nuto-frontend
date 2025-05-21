@@ -21,6 +21,7 @@ import Login from "./pages/Mobile/Login";
 import QRPage from "./pages/Tablet/QRPage";
 import BoothPage from "./pages/Web/BoothPage";
 import NutoGarden from "./pages/Web/NutoGarden";
+import CheckChat from "./pages/Mobile/CheckChat";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -46,7 +47,9 @@ root.render(
               <Route path="/check-message" element={<Admin />} />
               <Route path="/qr-page" element={<QRPage />} />
               <Route path="/show-booth" element={<BoothPage />} />
-              <Route path="/nuto-garden" element={<NutoGarden />} />            </Routes>
+              <Route path="/nuto-garden" element={<NutoGarden />} />
+              <Route path="/check-message" element={<CheckChat />} />
+            </Routes>
           </ImageProvider>
         </LoginProvider>
       </PolariodProvider>
