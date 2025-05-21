@@ -16,6 +16,7 @@
     "@types/react-dom": "^19.0.4",
     "axios": "^1.8.2",
     "bcryptjs": "^3.0.2",
+    "classnames": "^2.5.1",
     "dotenv": "^16.4.7",
     "fabric": "^6.6.1",
     "gh-pages": "^6.3.0",
@@ -28,7 +29,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
@@ -52,6 +53,7 @@
     ]
   },
   "devDependencies": {
-    "@types/bcryptjs": "^2.4.6"
+    "@types/bcryptjs": "^2.4.6",
+    "cross-env": "^7.0.3"
   }
 }

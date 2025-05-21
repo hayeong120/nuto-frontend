@@ -9,15 +9,15 @@ import { usePostInfo } from "../../context/PostInfoContext";
 import { useImage } from "../../context/ImageContext";
 import bcrypt from "bcryptjs";
 import { useNavigate } from "react-router-dom";
-import api from "../../api/axios";
+import axios from "axios";
 
 function EditNuto() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const textObjectRef = useRef<fabric.IText | null>(null);
   const fabricCanvasRef = useRef<fabric.Canvas | null>(null);
   const [imgSrc, setImgSrc] = useState<string>("/images/redTomato.png");
-  const { setLocation } = usePostInfo();
-  const { setName } = usePostInfo();
+  const { location, setLocation } = usePostInfo();
+  const { name, setName } = usePostInfo();
   const { setNutoFile } = usePolariod();
   const { polariodFile, setPolariodFile } = usePolariod();
   const { setImage } = useImage();
@@ -114,31 +114,13 @@ function EditNuto() {
   const chkText = async (text: string) => {
     text = text.replace(/\n/g, " ");
 
-    const response = await api.post(`/check`, {
+    const response = await axios.post("https://nuto.mirim-it-show.site/check", {
       text: text,
     });
 
-    const data = { inputs: response.data };
+    console.log(response);
 
-    const available = await available_check(data);
-
-    return available[0][0]["label"];
-  };
-
-  const available_check = async (data: object) => {
-    const response = await fetch(
-      "https://router.huggingface.co/hf-inference/models/cardiffnlp/twitter-roberta-base-sentiment-latest",
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_HUGGING_FACE_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify(data),
-      }
-    );
-    const result = await response.json();
-    return result;
+    return response.data.label;
   };
 
   const dataURLtoFile = (dataURL: string, filename: string) => {
@@ -173,45 +155,68 @@ function EditNuto() {
     const textObject = objects.find((obj) => obj.type === "i-text");
     const text = (textObject as fabric.IText).text || "";
 
-    const label = await chkText(text); // chkText가 "negative" | "neutral" | "positive" 반환
+    const label = await chkText(text);
+
     console.log(label);
-    if (label === "negative") {
+
+    const negativeEmotions = [
+      "anger",
+      "annoyance",
+      "confusion",
+      "disappointment",
+      "disapproval",
+      "disgust",
+      "embarrassment",
+      "fear",
+      "grief",
+      "nervousness",
+      "realization",
+      "remorse",
+      "sadness",
+      "surprise",
+    ];
+
+    if (negativeEmotions.includes(label.label)) {
       alert("부정적인 문장은 금지되어 있습니다.");
       return;
-    }
+    } else {
+      const password = prompt("비밀번호를 입력하세요.");
+      if (!password) {
+        alert("비밀번호를 입력해야 합니다.");
+        return;
+      }
 
-    const password = prompt("비밀번호를 입력하세요.");
-    if (!password) {
-      alert("비밀번호를 입력해야 합니다.");
-      return;
-    }
+      const hashedPassword = await hashing(password);
 
-    const hashedPassword = await hashing(password);
+      const formData = new FormData();
+      formData.append("nutoImage", file);
+      if (polariodFile) {
+        formData.append("polariodImage", polariodFile);
+      }
 
-    const formData = new FormData();
-    formData.append("nutoImage", file);
-    if (polariodFile) {
-      formData.append("polariodImage", polariodFile);
-    }
+      formData.append("name", name);
+      formData.append("location", location);
+      formData.append("password", hashedPassword);
 
-    formData.append("name", "오지은");
-    formData.append("location", "nuto");
-    formData.append("password", hashedPassword);
+      try {
+        const response = await axios.post(
+          "https://nuto.mirim-it-show.site/post",
+          formData,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          }
+        );
+        console.log("업로드 성공:", response);
+        setLocation("");
+        setName("");
+        setNutoFile(null);
+        setPolariodFile(null);
+        setImage("");
 
-    try {
-      const response = await api.post(`/post`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      console.log("업로드 성공:", response);
-      setLocation("");
-      setName("");
-      setNutoFile(null);
-      setPolariodFile(null);
-      setImage("");
-
-      navigate("/");
-    } catch (err) {
-      console.error("업로드 실패:", err);
+        navigate("/");
+      } catch (err) {
+        console.error("업로드 실패:", err);
+      }
     }
   };
 

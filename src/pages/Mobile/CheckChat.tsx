@@ -4,7 +4,7 @@ import Members from "../../components/Members";
 import Chatting from "../../components/Chatting";
 import style from "../../styles/Chat.module.css";
 import { profiles } from "../../assets/json/profiles";
-import api from "../../api/axios";
+import axios from "axios";
 
 type checkChat = {
   type: "check-chat";
@@ -32,7 +32,9 @@ function CheckChat() {
 
   const getChattings = async () => {
     try {
-      const response = await api.get(`/message/${profile.name}`);
+      const response = await axios.get(
+        `https://nuto.mirim-it-show.site/message/${profile.name}`
+      );
 
       const userChats: checkChat[] = response.data.data.map((chat: chat) => {
         return {
