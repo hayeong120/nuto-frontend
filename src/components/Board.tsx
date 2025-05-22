@@ -14,16 +14,15 @@ interface BoothProps {
 const Board: React.FC<BoothProps> = ({ booth }) => {
   const navigate = useNavigate();
   // todo 함수이름 바꾸기
-  const goB = (booth: string) => {
+  const goB = (booth_id: string) => {
     // 부소소개 페이지 이동, 부스 이름 넘기기
-    console.log(booth);
-    navigate("/home", { state: booth });
+    navigate(`/nuto-garden`, { state: booth_id });
   };
   return (
     <div className={style.body} onClick={() => goB(booth.booth_id)}>
       <img src="/images/board.svg" alt="보드" className={style.boardImg} />
       <div className={style.BoothBox}>
-        <Booth booth={booth} navi={{ go: false }} />
+        <Booth booth={booth} navi={{ go: true, path: booth.booth_id }} />
       </div>
     </div>
   );
