@@ -4,6 +4,7 @@ import axios from "axios";
 import Nuto from "../../components/Nuto";
 import DotIndicator from "../../components/DotIndicator";
 import NutoPost from "./NutoPost";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 
 export interface FullPost {
   _id: string;
@@ -21,6 +22,13 @@ function NutoGarden() {
   const [nutos, setNutos] = useState<FullPost[][]>([]);
   const [index, setIndex] = useState(0);
   const [selectPost, setSelectPost] = useState(null);
+  const [searchParams] = useSearchParams();
+  const booth = searchParams.get('booth');
+
+  const navigate = useNavigate();
+  const handleClick = (route: string) => {
+    navigate(route);
+  };
 
   const chunkPost = (posts: FullPost[]) => {
     const result: FullPost[][] = [];
@@ -31,17 +39,20 @@ function NutoGarden() {
   };
 
   useEffect(() => {
-    const newNutos = async () => {
+    const fetchPosts = async () => {
       try {
-        const response = await axios.get(
-          `https://nuto.mirim-it-show.site/post`
-        );
-        setNutos(chunkPost(response.data));
+        const url = booth
+          ? `https://nuto.mirim-it-show.site/post/nuto-garden/${booth}`
+          : `https://nuto.mirim-it-show.site/post`;
+
+        const response = await axios.get(url);
+        setNutos(chunkPost(response.data?.data || response.data));
       } catch (error) {
         console.error(error);
       }
-    };
-    newNutos();
+    }
+    console.log(booth);
+    fetchPosts()
   }, []);
 
   return (
@@ -53,10 +64,11 @@ function NutoGarden() {
           width={203}
           height={44}
           style={{ marginTop: "5px" }}
+          onClick={() => handleClick("/nuto-garden")}
         />
         <span>
-          <span className={style.goTomato}>응원 토마토 남기기</span>
-          <span className={style.goBooth}>부스별 텃밭 보러가기</span>
+          <span className={style.goTomato} onClick={() => handleClick("/qr-page")}>응원 토마토 남기기</span>
+          <span className={style.goBooth} onClick={() => handleClick("/show-booth")}>부스별 텃밭 보러가기</span>
         </span>
       </header>
       <div className={style.nutoContainer}>
