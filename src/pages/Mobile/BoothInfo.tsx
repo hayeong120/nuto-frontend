@@ -8,6 +8,8 @@ function BoothInfo() {
   const [booth] = useState(boothsData[0]);
   const navigate = useNavigate();
 
+  console.log(boothsData);
+
   if (!booth)
     return <div>해당 부스의 정보가 아직 업데이트되지 않았습니다.</div>;
 
