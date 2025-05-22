@@ -31,7 +31,7 @@ function Post({ post }: { post: PostProps }) {
         >
           {/* <img src='/images/nutoProfileImg.png' className={style.profileImg}/> */}
         </div>
-        <p className={style.profileName}>뉴토</p>
+        <p className={style.profileName}>{post.location}</p>
       </div>
       <div
         className={style.postContainer}
@@ -45,13 +45,6 @@ function Post({ post }: { post: PostProps }) {
         <img alt="nutoImg" src={post.nutoImage} className={style.postImg} />
       </div>
       <div className={style.postInfo}>
-        <div className={style.infoContainer}>
-          <img
-            alt="commentImg"
-            src="/images/commentImg.png"
-            className={style.commentImg}
-          />
-        </div>
         <div className={style.infoContainer}>
           <span className={style.writerText}>작성자 |</span>
           <span className={style.writer}>{post.name}</span>
