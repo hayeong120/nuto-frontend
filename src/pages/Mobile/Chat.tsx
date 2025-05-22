@@ -116,25 +116,29 @@ function Chat() {
 
   return (
     <div className={style.Body}>
-      <img alt="logo" src="/images/logo.svg" className={style.logo} />
-      <Members type="send" profiles={profiles} changeMember={changeMember} />
-      <BusinessCard profile={profile} />
+      <header>
+        <img alt="logo" src="/images/logo.svg" className={style.logo} />
+      </header>
+      <div className={style.sendMessageContainer}>
+        <Members type="send" profiles={profiles} changeMember={changeMember} />
+        <BusinessCard profile={profile} />
 
-      <Chatting chattings={chattings} />
+        <Chatting chattings={chattings} />
 
-      <div className={style["message-container"]}>
-        <div className={style["input-container"]}>
-          <input
-            placeholder="텍스트 입력"
-            value={message}
-            onChange={inputedMessage}
+        <div className={style["message-container"]}>
+          <div className={style["input-container"]}>
+            <input
+              placeholder="텍스트 입력"
+              value={message}
+              onChange={inputedMessage}
+            />
+          </div>
+          <img
+            src="/images/sendButton.png"
+            alt="sendButton"
+            onClick={sendMessage}
           />
         </div>
-        <img
-          src="/images/sendButton.png"
-          alt="sendButton"
-          onClick={sendMessage}
-        />
       </div>
       <Footer />
     </div>

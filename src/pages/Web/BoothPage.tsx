@@ -36,7 +36,15 @@ function BoothPage() {
       />
       <div className={style.boothContainer}>
         {boothsData.map((booth, index) => {
-          return <Board booth={booth} />;
+          return (
+            <Board
+              booth={booth}
+              width={300}
+              fontSize={16}
+              bottom={13}
+              logoWidth={112}
+            />
+          );
         })}
       </div>
     </div>

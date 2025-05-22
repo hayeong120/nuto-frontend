@@ -20,7 +20,7 @@ function QRPage() {
         />
         <span>
           <span
-            onClick={() => handleClick("/nuto-garden")}
+            onClick={() => handleClick("/show-booth")}
             className={style.goBooth}
           >
             부스별 텃밭 보러가기
@@ -32,7 +32,7 @@ function QRPage() {
         alt="QR"
         style={{ width: "100vw", height: "100vh", scrollBehavior: "smooth" }}
       />
-      <QRCodeCanvas value={process.env.REACT_APP_NUTO_ROUTE!} />
+      <QRCodeCanvas value="https://nuto-frontend.vercel.app/home" />
     </div>
   );
 }
