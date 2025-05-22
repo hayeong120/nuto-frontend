@@ -32,7 +32,7 @@ function QRPage() {
         alt="QR"
         style={{ width: "100vw", height: "100vh", scrollBehavior: "smooth" }}
       />
-      <QRCodeCanvas value={process.env.REACT_APP_NUTO_ROUTE!} />
+      <QRCodeCanvas value="https://nuto-frontend.vercel.app/home" />
     </div>
   );
 }

@@ -19,7 +19,7 @@ function Footer() {
     "/images/clickedBoothButton.png",
     "/images/clickedNutoButton.png",
   ];
-  const footerIconName = ["홈", "게시물 추가", "부스 소개", "Nuto"];
+  const footerIconName = ["홈", "업로드", "부스 소개", "Nuto"];
   const footerRouter = ["/", "/search", "/booths", "/members"];
 
   const clickFooter = (idx: number) => {

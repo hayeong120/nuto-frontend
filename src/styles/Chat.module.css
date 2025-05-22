@@ -13,6 +13,12 @@
   margin-top: 30px;
 }
 
+.sendMessageContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 17px;
+}
+
 .member-container {
   display: flex;
   overflow-x: auto;
