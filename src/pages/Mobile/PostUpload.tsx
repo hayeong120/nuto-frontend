@@ -2,19 +2,38 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import def from "../../styles/Default.module.css";
 import style from "../../styles/PostUpload.module.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useImage } from "../../context/ImageContext";
 import { usePostInfo } from "../../context/PostInfoContext";
-import { useLocation } from "react-router-dom";
+import Booth from "../../components/Booth";
+import { boothsData } from "../../assets/json/booths";
+
+type BoothType = {
+  name: string;
+  type: ("웹사이트" | "게임" | "앱")[];
+  img: string;
+  developer: string[];
+  designer: string[];
+  comment: string;
+} & {
+  members: string[];
+  booth_id: string;
+  s3_path: string;
+};
 
 function PostUpload() {
   const imgRef = useRef<HTMLInputElement | null>(null);
   const [previewImage, setPreviewImage] = useState<string>("");
   const { image, setImage } = useImage();
-  const { name, setName } = usePostInfo();
-  const location = useLocation();
-  const booth = location.state;
-  console.log(booth);
+  const { name, setName, location, setLocation } = usePostInfo();
+  const [selectedLocation, setSelectedLocation] = useState<BoothType>(null);
+
+  useEffect(() => {
+    const selectedBooth = boothsData.filter(
+      (booth) => booth.booth_id === location
+    )[0];
+    setSelectedLocation(selectedBooth);
+  });
 
   const uploadImage = () => {
     if (imgRef.current) {
@@ -45,6 +64,17 @@ function PostUpload() {
       <Header prevSrc="-1" nextSrc="/edit" />
       <div className={style.BoothContainer}>
         <p>선택한 부스</p>
+        {selectedLocation && (
+          <Booth
+            booth={selectedLocation}
+            navi={{ go: false }}
+            boardStyle={{
+              logoWidth: 60,
+              bottom: 10,
+              fontSize: 8,
+            }}
+          />
+        )}
       </div>
       <div className={style.NameContainer}>
         <p>당신의 이름은 무엇인가요?</p>
