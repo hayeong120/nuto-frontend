@@ -213,6 +213,12 @@ function EditNuto() {
         setPolariodFile(null);
         setImage("");
 
+        sessionStorage.setItem("name", "");
+        sessionStorage.setItem("image", "");
+        sessionStorage.setItem("nutoFile", "");
+        sessionStorage.setItem("polariodFile", "");
+        sessionStorage.setItem("location", "");
+
         navigate("/");
       } catch (err) {
         console.error("업로드 실패:", err);
