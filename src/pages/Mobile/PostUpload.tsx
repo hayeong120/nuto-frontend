@@ -11,9 +11,9 @@ function PostUpload() {
   const imgRef = useRef<HTMLInputElement | null>(null);
   const [previewImage, setPreviewImage] = useState<string>("");
   const { image, setImage } = useImage();
-  const { name, setName } = usePostInfo();
-  const location = useLocation();
-  const booth = location.state;
+  const { name, setName, location } = usePostInfo();
+  const locationBooth = useLocation();
+  const booth = locationBooth.state;
   console.log(booth);
 
   const uploadImage = () => {
@@ -44,7 +44,7 @@ function PostUpload() {
     <div className={def.Body}>
       <Header prevSrc="-1" nextSrc="/edit" />
       <div className={style.BoothContainer}>
-        <p>선택한 부스</p>
+        <p>{location}</p>
       </div>
       <div className={style.NameContainer}>
         <p>당신의 이름은 무엇인가요?</p>
