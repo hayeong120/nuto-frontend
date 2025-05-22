@@ -49,7 +49,10 @@ const Booth: React.FC<BoothProps> = ({ booth, navi, boardStyle }) => {
         className={style.boothImg}
       />
       <div className={style.gradient} />
-      <div className={style.boothInfo} style={{ bottom: boardStyle.bottom }}>
+      <div
+        className={style.boothInfo}
+        style={{ bottom: boardStyle.bottom || 8 }}
+      >
         <img
           src="/images/boothName.svg"
           alt="부스 이름"
