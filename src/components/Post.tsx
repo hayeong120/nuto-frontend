@@ -31,7 +31,7 @@ function Post({ post }: { post: PostProps }) {
         >
           {/* <img src='/images/nutoProfileImg.png' className={style.profileImg}/> */}
         </div>
-        <p className={style.profileName}>뉴토</p>
+        <p className={style.profileName}>{post.name}</p>
       </div>
       <div
         className={style.postContainer}
