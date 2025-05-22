@@ -30,7 +30,7 @@ function Search() {
 
   useEffect(() => {
     fetchBooths("");
-  }, [])
+  }, []);
 
   return (
     <div className={style.body}>
@@ -62,13 +62,15 @@ function Search() {
       <div className={style.boothContainer}>
         {booths.length > 0 ? (
           booths.map((booth) => (
-            <div 
+            <div
               style={{ borderRadius: "10px", overflow: "hidden" }}
-              onClick={() => setLocation(booth.booth_id)}>
+              onClick={() => setLocation(booth.booth_id)}
+            >
               <Booth
                 key={booth.booth_id}
                 booth={booth}
                 navi={{ go: true, path: "post" }}
+                boardStyle={{ logoWidth: 112, bottom: 8, fontSize: 8 }}
               />
             </div>
           ))
