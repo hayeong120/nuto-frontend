@@ -37,6 +37,7 @@ function BoothPage() {
       <div className={style.boothContainer}>
         {boothsData.map((booth, index) => {
           return (
+            <div onClick={() => handleClick(`/nuto-garden?booth=${booth.booth_id}`)}>
             <Board
               booth={booth}
               width={300}
@@ -44,6 +45,7 @@ function BoothPage() {
               bottom={13}
               logoWidth={112}
             />
+            </div>
           );
         })}
       </div>
