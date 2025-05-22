@@ -25,6 +25,8 @@ type chat = {
 function CheckChat() {
   const [profile, setProfile] = useState(profiles[0]);
   const [chattings, setChattings] = useState<checkChat[]>([]);
+  console.log("member : ", profile);
+  console.log(profile.name, profiles);
 
   const changeMember = (idx: number) => {
     setProfile(profiles[idx]);
@@ -32,8 +34,17 @@ function CheckChat() {
 
   const getChattings = async () => {
     try {
+      console.log(
+        "요청 URL: ",
+        `https://nuto.mirim-it-show.site/message/${encodeURIComponent(
+          profile.name
+        )}`
+      );
+
       const response = await axios.get(
-        `https://nuto.mirim-it-show.site/message/${profile.name}`
+        `https://nuto.mirim-it-show.site/message/${encodeURIComponent(
+          profile.name
+        )}`
       );
 
       const userChats: checkChat[] = response.data.data.map((chat: chat) => {

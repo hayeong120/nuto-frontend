@@ -195,7 +195,7 @@ function EditNuto() {
       }
 
       formData.append("name", name);
-      formData.append("location", location);
+      formData.append("location", "nuto");
       formData.append("password", hashedPassword);
 
       try {
