@@ -12,9 +12,14 @@ interface BoothProps {
     go: boolean;
     path?: string;
   };
+  boardStyle?: {
+    logoWidth: number;
+    bottom: number;
+    fontSize: number;
+  };
 }
 
-const Booth: React.FC<BoothProps> = ({ booth, navi }) => {
+const Booth: React.FC<BoothProps> = ({ booth, navi, boardStyle }) => {
   const navigate = useNavigate();
   const memberName = (names: string[]): string => {
     let nameString = "";
@@ -44,14 +49,19 @@ const Booth: React.FC<BoothProps> = ({ booth, navi }) => {
         className={style.boothImg}
       />
       <div className={style.gradient} />
-      <div className={style.boothInfo}>
+      <div className={style.boothInfo} style={{ bottom: boardStyle.bottom }}>
         <img
           src="/images/boothName.svg"
           alt="부스 이름"
           className={style.boothName}
-          height={20}
+          style={{ width: boardStyle.logoWidth }}
         />
-        <p className={style.memberName}>{memberName(booth.members)}</p>
+        <p
+          className={style.memberName}
+          style={{ fontSize: boardStyle.fontSize }}
+        >
+          {memberName(booth.members)}
+        </p>
       </div>
     </div>
   );

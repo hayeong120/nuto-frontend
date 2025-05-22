@@ -26,7 +26,7 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
   column-gap: 15px;
-  margin: 13px 0;
+  margin: 13px 0 0 0;
 }
 
 .message-container {

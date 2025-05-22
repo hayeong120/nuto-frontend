@@ -36,7 +36,16 @@ function Booths() {
       <p className={style.text}>다양한 부스들이 있는 텃밭을 구경해보세요!</p>
       <div className={style.boardContainer}>
         {booths.length > 0 ? (
-          booths.map((booth, index) => <Board key={index} booth={booth} />)
+          booths.map((booth, index) => (
+            <Board
+              key={index}
+              booth={booth}
+              logoWidth={60}
+              bottom={10}
+              fontSize={8}
+              width={155}
+            />
+          ))
         ) : (
           <p>등록된 부스가 없습니다.</p>
         )}

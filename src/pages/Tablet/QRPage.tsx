@@ -20,7 +20,7 @@ function QRPage() {
         />
         <span>
           <span
-            onClick={() => handleClick("/nuto-garden")}
+            onClick={() => handleClick("/show-booth")}
             className={style.goBooth}
           >
             부스별 텃밭 보러가기
