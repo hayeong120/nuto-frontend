@@ -25,6 +25,7 @@ function PostUpload() {
   const imgRef = useRef<HTMLInputElement | null>(null);
   const [previewImage, setPreviewImage] = useState<string>("");
   const { image, setImage } = useImage();
+
   const { name, setName, location, setLocation } = usePostInfo();
   const [selectedLocation, setSelectedLocation] = useState<BoothType>(null);
 
@@ -63,6 +64,7 @@ function PostUpload() {
     <div className={def.Body}>
       <Header prevSrc="-1" nextSrc="/edit" />
       <div className={style.BoothContainer}>
+
         <p>선택한 부스</p>
         {selectedLocation && (
           <Booth
