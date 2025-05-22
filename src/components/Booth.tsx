@@ -39,7 +39,7 @@ const Booth: React.FC<BoothProps> = ({ booth, navi }) => {
       onClick={() => goPost(booth.booth_id)}
     >
       <img
-        src="/images/boothImg.png"
+        src={`/images/booths/${booth.booth_id}.png`}
         alt="부스 이미지"
         className={style.boothImg}
       />

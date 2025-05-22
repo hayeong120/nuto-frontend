@@ -23,7 +23,7 @@ function Post({ post }: { post: PostProps }) {
         <div
           className={style.profileImgContainer}
           style={{
-            backgroundImage: "url(/images/nutoProfileImg.png)",
+            backgroundImage: `url(/images/profiles/${post.location}.png)`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
