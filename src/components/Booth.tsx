@@ -38,8 +38,6 @@ const Booth: React.FC<BoothProps> = ({ booth, navi, boardStyle }) => {
     }
   };
 
-  console.log(boardStyle);
-
   return (
     <div
       className={style.boothContainer}

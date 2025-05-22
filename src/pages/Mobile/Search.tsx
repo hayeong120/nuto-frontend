@@ -4,6 +4,7 @@ import Booth from "../../components/Booth";
 import style from "../../styles/Search.module.css";
 import { usePostInfo } from "../../context/PostInfoContext";
 import axios from "axios";
+import { boothsData } from "../../assets/json/booths";
 
 interface BoothType {
   booth_id: string;
@@ -19,18 +20,25 @@ function Search() {
   const fetchBooths = async (name: string) => {
     try {
       const booth = name.trim() || "";
-      const response = await axios.get(
-        `https://nuto.mirim-it-show.site/booth/${booth}`
-      );
-      setBooths(response.data);
+      if (booth === "") {
+        setBooths(boothsData);
+      } else {
+        const findBooths = boothsData.filter(
+          (boothInfo) =>
+            boothInfo.booth_id.includes(booth) ||
+            boothInfo.members.includes(booth)
+        );
+        console.log(findBooths);
+        setBooths(findBooths);
+      }
     } catch (err) {
       console.error("데이터를 불러오는 중 오류가 발생했습니다.");
     }
   };
 
   useEffect(() => {
-    fetchBooths("");
-  }, []);
+    fetchBooths(inputText);
+  }, [inputText]);
 
   return (
     <div className={style.body}>
