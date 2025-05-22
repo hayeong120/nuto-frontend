@@ -46,13 +46,6 @@ function Post({ post }: { post: PostProps }) {
       </div>
       <div className={style.postInfo}>
         <div className={style.infoContainer}>
-          <img
-            alt="commentImg"
-            src="/images/commentImg.png"
-            className={style.commentImg}
-          />
-        </div>
-        <div className={style.infoContainer}>
           <span className={style.writerText}>작성자 |</span>
           <span className={style.writer}>{post.name}</span>
         </div>
