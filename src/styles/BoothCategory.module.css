@@ -3,6 +3,8 @@
   grid-template-columns: 1fr 1fr;
   overflow-y: scroll;
   place-items: center;
+  height: 500px;
+  margin-bottom: 100px;
 }
 
 .dataContainer > img {
