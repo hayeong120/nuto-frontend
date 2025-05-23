@@ -14,7 +14,7 @@ import Home from "./pages/Mobile/Home";
 import Search from "./pages/Mobile/Search";
 import Booths from "./pages/Mobile/Booths";
 import Chat from "./pages/Mobile/Chat";
-import NutoPage from "./pages/Mobile/NutoPage";
+import NutoPage from "./components/NutoExplain";
 import BoothInfo from "./pages/Mobile/BoothInfo";
 import Admin from "./pages/Mobile/Admin";
 import Login from "./pages/Mobile/Login";
@@ -22,6 +22,7 @@ import QRPage from "./pages/Tablet/QRPage";
 import BoothPage from "./pages/Web/BoothPage";
 import NutoGarden from "./pages/Web/NutoGarden";
 import CheckChat from "./pages/Mobile/CheckChat";
+import BoothAccount from "./pages/Mobile/BoothAccount";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -40,6 +41,11 @@ root.render(
               <Route path="/edit" element={<EditPost />}></Route>
               <Route path="/nuto" element={<EditNuto />}></Route>
               <Route path="/booths" element={<Booths />}></Route>
+              <Route path="/booths/:boothId" element={<BoothInfo />}></Route>
+              <Route
+                path="/booth-account/:boothId"
+                element={<BoothAccount />}
+              ></Route>
               <Route path="/members" element={<Chat />}></Route>
               <Route path="/nutoPage" element={<NutoPage />}></Route>
               <Route path="/boothInfo" element={<BoothInfo />}></Route>

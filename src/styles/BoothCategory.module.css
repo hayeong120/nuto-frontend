@@ -1,0 +1,10 @@
+.dataContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow-y: scroll;
+  place-items: center;
+}
+
+.dataContainer > img {
+  width: 160px;
+}

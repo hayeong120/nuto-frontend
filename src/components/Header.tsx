@@ -28,17 +28,23 @@ function Header(props: {
 
   return (
     <div className={style.Header}>
-      {headerImages.map((headerImage, idx) => {
-        return (
-          <div key={idx} onClick={idx === 0 ? returnBack : moveNext}>
-            <img
-              className={idx === 0 ? style.HeaderBackImg : style.HeaderNextImg}
-              src={`${headerImage}.png`}
-              alt={`${idx}번째 요소`}
-            />
-          </div>
-        );
-      })}
+      <div key={0} onClick={returnBack}>
+        <img
+          className={style.HeaderBackImg}
+          src={`${headerImages[0]}.png`}
+          alt={`${0}번째 요소`}
+        />
+      </div>
+
+      {props.nextSrc !== "-1" && (
+        <div key={1} onClick={moveNext}>
+          <img
+            className={style.HeaderBackImg}
+            src={`${headerImages[1]}.png`}
+            alt={`${1}번째 요소`}
+          />
+        </div>
+      )}
     </div>
   );
 }

@@ -13,6 +13,7 @@ interface BoothProps {
   fontSize?: number;
   logoWidth?: number;
   bottom?: number;
+  path?: string;
 }
 
 const Board: React.FC<BoothProps> = ({
@@ -21,12 +22,17 @@ const Board: React.FC<BoothProps> = ({
   fontSize,
   logoWidth,
   bottom,
+  path,
 }) => {
   const navigate = useNavigate();
   // todo 함수이름 바꾸기
   const goB = (booth_id: string) => {
     // 부소소개 페이지 이동, 부스 이름 넘기기
-    navigate(`/nuto-garden`, { state: booth_id });
+    navigate(path, {
+      state: {
+        booth_id: booth_id,
+      },
+    });
   };
   return (
     <div

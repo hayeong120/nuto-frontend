@@ -30,6 +30,7 @@ function Booths() {
               bottom={10}
               fontSize={8}
               width={155}
+              path={`/booths/${booth.s3_path}`}
             />
           ))
         ) : (
