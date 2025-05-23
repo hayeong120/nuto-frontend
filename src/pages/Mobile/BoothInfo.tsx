@@ -39,7 +39,10 @@ function BoothInfo() {
           </p>
         </div>
         <p className={style.comment}>{booth.comment}</p>
-        <button className={style.nuto} onClick={() => navigate("/nuto")}>
+        <button
+          className={style.nuto}
+          onClick={() => navigate(`/booth-account/${boothId}`)}
+        >
           부스 구경하기
         </button>
       </div>
