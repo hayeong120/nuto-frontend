@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import style from "../../styles/BoothInfo.module.css";
 import Footer from "../../components/Footer";
 import { boothsData } from "../../assets/json/booths";
 
 function BoothInfo() {
-  const [booth] = useState(boothsData[0]);
+  const boothId = useParams().boothId;
+  console.log(boothId);
+  const [booth] = boothsData.filter((booth) => booth.booth_id === boothId);
   const navigate = useNavigate();
-
-  console.log(boothsData);
 
   if (!booth)
     return <div>해당 부스의 정보가 아직 업데이트되지 않았습니다.</div>;
@@ -40,7 +40,7 @@ function BoothInfo() {
         </div>
         <p className={style.comment}>{booth.comment}</p>
         <button className={style.nuto} onClick={() => navigate("/nuto")}>
-          토마토 남기기
+          부스 구경하기
         </button>
       </div>
       <Footer />

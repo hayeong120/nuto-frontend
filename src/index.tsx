@@ -40,6 +40,7 @@ root.render(
               <Route path="/edit" element={<EditPost />}></Route>
               <Route path="/nuto" element={<EditNuto />}></Route>
               <Route path="/booths" element={<Booths />}></Route>
+              <Route path="/booths/:boothId" element={<BoothInfo />}></Route>
               <Route path="/members" element={<Chat />}></Route>
               <Route path="/nutoPage" element={<NutoPage />}></Route>
               <Route path="/boothInfo" element={<BoothInfo />}></Route>
