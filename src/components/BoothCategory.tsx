@@ -18,11 +18,15 @@ function BoothCategory(props: { type: string; boothId: string }) {
   const [datas, setDatas] = useState<dataType[] | null>(null);
   useEffect(() => {
     const getPolariod = async () => {
-      const response = await axios.get(
-        `https://nuto.mirim-it-show.site/post/nuto-garden/${props.boothId}`
-      );
-      setDatas(response.data.data);
-      console.log(response);
+      try {
+        const response = await axios.get(
+          `https://nuto.mirim-it-show.site/post/nuto-garden/${props.boothId}`
+        );
+        setDatas(response.data.data);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     getPolariod();

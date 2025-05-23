@@ -26,7 +26,7 @@ function PostUpload() {
   const [previewImage, setPreviewImage] = useState<string>("");
   const { image, setImage } = useImage();
 
-  const { name, setName, location, setLocation } = usePostInfo();
+  const { name, setName, location } = usePostInfo();
   const [selectedLocation, setSelectedLocation] = useState<BoothType>(null);
 
   useEffect(() => {
@@ -64,7 +64,6 @@ function PostUpload() {
     <div className={def.Body}>
       <Header prevSrc="-1" nextSrc="/edit" />
       <div className={style.BoothContainer}>
-
         <p>선택한 부스</p>
         {selectedLocation && (
           <Booth
