@@ -26,7 +26,7 @@ function BoothCategory(props: { type: string; boothId: string }) {
     };
 
     getPolariod();
-  }, []);
+  }, [props.boothId]);
 
   return (
     <div className={style.dataContainer}>

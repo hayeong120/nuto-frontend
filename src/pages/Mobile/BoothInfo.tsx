@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import style from "../../styles/BoothInfo.module.css";
 import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 import { boothsData } from "../../assets/json/booths";
 
 function BoothInfo() {
@@ -19,7 +20,7 @@ function BoothInfo() {
         <img
           src="/images/backButton.png"
           className={style.back}
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/booths")}
           alt="뒤로 가기"
         />
         <img src="/images/logo.svg" alt="로고이미지" className={style.logo} />
