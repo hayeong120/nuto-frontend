@@ -14,7 +14,7 @@ import Home from "./pages/Mobile/Home";
 import Search from "./pages/Mobile/Search";
 import Booths from "./pages/Mobile/Booths";
 import Chat from "./pages/Mobile/Chat";
-import NutoPage from "./pages/Mobile/NutoPage";
+import NutoPage from "./components/NutoExplain";
 import BoothInfo from "./pages/Mobile/BoothInfo";
 import Admin from "./pages/Mobile/Admin";
 import Login from "./pages/Mobile/Login";

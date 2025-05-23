@@ -6,6 +6,7 @@ import style from "../../styles/Chat.module.css";
 import Footer from "../../components/Footer";
 import Chatting from "../../components/Chatting";
 import axios from "axios";
+import NutoPage from "../../components/NutoExplain";
 
 type defaultChat = {
   type: "default-chat";
@@ -36,18 +37,25 @@ function Chat() {
       },
     },
   ]);
+  const [showcase, setShowcase] = useState("nuto");
   const changeMember = (idx: number) => {
-    const changeDefaultChat: defaultChat = {
-      type: "default-chat",
-      data: {
-        name: profiles[idx].name,
-        comment: profiles[idx].comment,
-        img: profiles[idx].img,
-      },
-    };
+    console.log(idx, showcase);
+    if (idx >= 0) {
+      const changeDefaultChat: defaultChat = {
+        type: "default-chat",
+        data: {
+          name: profiles[idx].name,
+          comment: profiles[idx].comment,
+          img: profiles[idx].img,
+        },
+      };
 
-    setChattings([changeDefaultChat]);
-    setProfile(profiles[idx]);
+      setChattings([changeDefaultChat]);
+      setProfile(profiles[idx]);
+      setShowcase("members");
+    } else {
+      setShowcase("nuto");
+    }
   };
 
   const inputedMessage = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -121,24 +129,29 @@ function Chat() {
       </header>
       <div className={style.sendMessageContainer}>
         <Members type="send" profiles={profiles} changeMember={changeMember} />
-        <BusinessCard profile={profile} />
+        {showcase === "members" ? (
+          <>
+            <BusinessCard profile={profile} />
+            <Chatting chattings={chattings} />
 
-        <Chatting chattings={chattings} />
-
-        <div className={style["message-container"]}>
-          <div className={style["input-container"]}>
-            <input
-              placeholder="텍스트 입력"
-              value={message}
-              onChange={inputedMessage}
-            />
-          </div>
-          <img
-            src="/images/sendButton.png"
-            alt="sendButton"
-            onClick={sendMessage}
-          />
-        </div>
+            <div className={style["message-container"]}>
+              <div className={style["input-container"]}>
+                <input
+                  placeholder="텍스트 입력"
+                  value={message}
+                  onChange={inputedMessage}
+                />
+              </div>
+              <img
+                src="/images/sendButton.png"
+                alt="sendButton"
+                onClick={sendMessage}
+              />
+            </div>
+          </>
+        ) : (
+          <NutoPage />
+        )}
       </div>
       <Footer />
     </div>

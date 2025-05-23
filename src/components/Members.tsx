@@ -21,7 +21,7 @@ function Members(props: {
           img={teamIntro.img}
           name={teamIntro.name}
           idx={-1}
-          changeMember={() => navigate("/nutoPage")}
+          changeMember={() => props.changeMember(-1)}
         />
       ) : null}
       {props.profiles.map((profile, idx) => {
