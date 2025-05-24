@@ -5,6 +5,7 @@ import style from "../../styles/Search.module.css";
 import { usePostInfo } from "../../context/PostInfoContext";
 import axios from "axios";
 import { boothsData } from "../../assets/json/booths";
+import { Helmet } from "react-helmet";
 
 interface BoothType {
   booth_id: string;
@@ -42,6 +43,9 @@ function Search() {
 
   return (
     <div className={style.body}>
+      <Helmet>
+        <title>post search</title>
+      </Helmet>
       <p className={style.text}>어느부스에 토마토를 남길까요?</p>
       <div className={style.searchContainer}>
         <input

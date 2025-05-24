@@ -7,6 +7,7 @@ import { useImage } from "../../context/ImageContext";
 import { usePostInfo } from "../../context/PostInfoContext";
 import Booth from "../../components/Booth";
 import { boothsData } from "../../assets/json/booths";
+import { Helmet } from "react-helmet";
 
 type BoothType = {
   name: string;
@@ -62,6 +63,9 @@ function PostUpload() {
 
   return (
     <div className={def.Body}>
+      <Helmet>
+        <title>nuto post</title>
+      </Helmet>
       <Header prevSrc="-1" nextSrc="/edit" />
       <div className={style.BoothContainer}>
         <p>선택한 부스</p>

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import style from "../../styles/BoothInfo.module.css";
 import Footer from "../../components/Footer";
-import Header from "../../components/Header";
 import { boothsData } from "../../assets/json/booths";
+import { Helmet } from "react-helmet";
 
 function BoothInfo() {
   const boothId = useParams().boothId;
@@ -16,6 +16,9 @@ function BoothInfo() {
 
   return (
     <div className={style.body}>
+      <Helmet>
+        <title>booth explain</title>
+      </Helmet>
       <div className={style.header}>
         <img
           src="/images/backButton.png"

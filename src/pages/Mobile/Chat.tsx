@@ -7,6 +7,7 @@ import Footer from "../../components/Footer";
 import Chatting from "../../components/Chatting";
 import axios from "axios";
 import NutoPage from "../../components/NutoExplain";
+import { Helmet } from "react-helmet";
 
 type defaultChat = {
   type: "default-chat";
@@ -124,6 +125,9 @@ function Chat() {
 
   return (
     <div className={style.Body}>
+      <Helmet>
+        <title>chat</title>
+      </Helmet>
       <header>
         <img alt="logo" src="/images/logo.svg" className={style.logo} />
       </header>
