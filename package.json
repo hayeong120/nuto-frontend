@@ -23,6 +23,7 @@
     "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-helmet": "^6.1.0",
     "react-router-dom": "^7.4.1",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
@@ -54,6 +55,7 @@
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
+    "@types/react-helmet": "^6.1.11",
     "cross-env": "^7.0.3"
   }
 }

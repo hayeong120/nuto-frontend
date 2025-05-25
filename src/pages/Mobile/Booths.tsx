@@ -4,6 +4,7 @@ import Board from "../../components/Board";
 import Footer from "../../components/Footer";
 import axios from "axios";
 import { boothsData } from "../../assets/json/booths";
+import { Helmet } from "react-helmet";
 
 interface Booth {
   booth_id: string;
@@ -19,6 +20,9 @@ function Booths() {
       style={{ backgroundImage: "url(/images/boothsBackground.png)" }}
       className={style.body}
     >
+      <Helmet>
+        <title>booth explain</title>
+      </Helmet>
       <p className={style.text}>다양한 부스들이 있는 텃밭을 구경해보세요!</p>
       <div className={style.boardContainer}>
         {booths.length > 0 ? (

@@ -3,6 +3,7 @@ import Footer from "../../components/Footer";
 import style from "../../styles/Home.module.css";
 import Post from "../../components/Post";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 interface Comment {
   _id: string;
   name: string;
@@ -40,6 +41,10 @@ function Home() {
 
   return (
     <div className={style.body}>
+      <Helmet>
+        <title>nuto home</title>
+      </Helmet>
+
       <img alt="logo" src="/images/logo.svg" className={style.logo} />
       {posts.length === 0 ? (
         <p>게시물이 없습니다.</p>

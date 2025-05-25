@@ -9,6 +9,7 @@ import BoothCategory from "../../components/BoothCategory";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { usePostInfo } from "../../context/PostInfoContext";
+import { Helmet } from "react-helmet";
 
 function BoothAccount() {
   const boothId = useParams().boothId;
@@ -42,6 +43,9 @@ function BoothAccount() {
 
   return (
     <div className={def.Body}>
+      <Helmet>
+        <title>booth explain</title>
+      </Helmet>
       <Header prevSrc={`/booths/${boothId}`} nextSrc="-1" />
       <section className={style.Body}>
         <div className={style.AccountInfoContainer}>
