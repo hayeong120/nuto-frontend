@@ -138,7 +138,7 @@ function EditNuto() {
   };
 
   const hashing = async (password: string) => {
-    const salt = process.env.SALT_VALUE;
+    const salt = process.env.REACT_APP_SALT_VALUE;
     return await bcrypt.hash(password, salt);
   };
 
