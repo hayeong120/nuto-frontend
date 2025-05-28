@@ -33,12 +33,15 @@ function Post({ post }: { post: PostProps }) {
     console.log(postId, hashedPassword);
 
     try {
-      const response = await axios.delete("http://localhost:443/post", {
-        data: {
-          id: postId,
-          pw: hashedPassword,
-        },
-      });
+      const response = await axios.delete(
+        "https://nuto.mirim-it-show.site/post",
+        {
+          data: {
+            id: postId,
+            pw: hashedPassword,
+          },
+        }
+      );
 
       console.log(response);
     } catch (error) {
