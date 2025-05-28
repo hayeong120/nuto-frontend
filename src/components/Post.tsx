@@ -21,8 +21,7 @@ interface PostProps {
 
 function Post({ post }: { post: PostProps }) {
   const hashing = async (password: string) => {
-    const saltRound = 10;
-    const salt = await bcrypt.genSalt(saltRound);
+    const salt = process.env.SALT_VALUE;
     return await bcrypt.hash(password, salt);
   };
 
