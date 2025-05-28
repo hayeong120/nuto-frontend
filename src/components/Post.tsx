@@ -20,6 +20,7 @@ interface PostProps {
 }
 
 function Post({ post }: { post: PostProps }) {
+  console.log(process.env.REACT_APP_SALT_VALUE);
   const hashing = async (password: string) => {
     const salt = process.env.REACT_APP_SALT_VALUE;
     return await bcrypt.hash(password, salt);
