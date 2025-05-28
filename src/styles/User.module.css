@@ -1,0 +1,50 @@
+.loginBody {
+    width: 100%;
+    height: 100vh;
+    background-color: #FFFBF5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginContainer {
+    width: 200px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 30%;
+}
+
+.tomato {
+    width: 65px;
+    height: 56px;
+    margin-bottom: 16px;
+}
+
+.nuto {
+    width: 185px;
+    height: 57px;
+    margin-bottom: 50px;
+}
+
+.input {
+    width: 185px;
+    height: 35px;
+    border: 1px solid #DADADA;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.input:focus {
+    outline: none;
+}
+
+.loginBtn {
+    width: 100px;
+    height: 30px;
+    background: linear-gradient(#C9C300, #D66F29, #C5362E);
+    border: 0;
+    margin-top: 10px;
+    border-radius: 8px;
+}
