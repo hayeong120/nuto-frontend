@@ -38,7 +38,7 @@ function Comment({postId, setSelectPost}:{postId:string, setSelectPost: (string)
     return (
         <div className={styles.modalBackground} onClick={close}>
             <div className={styles.commentContainer}>
-                {otherComment.length>0 && (
+                {otherComment && (
                     otherComment.map((comment, i) => {
                         const zonedDate = toZonedTime(comment.createdAt, timeZone);
                         const formatted = format(zonedDate, "yyyy-MM-dd HH:mm", { timeZone });
