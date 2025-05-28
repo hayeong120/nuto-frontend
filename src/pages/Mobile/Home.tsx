@@ -4,6 +4,9 @@ import style from "../../styles/Home.module.css";
 import Post from "../../components/Post";
 import axios from "axios";
 import { Helmet } from "react-helmet";
+import ModalPortal from "./ModalPortal";
+import Comment from "../../components/Comment";
+
 interface Comment {
   _id: string;
   name: string;
@@ -22,6 +25,7 @@ interface PostProps {
 
 function Home() {
   const [posts, setPosts] = useState<PostProps[]>([]);
+  const [selectPost, setSelectPost] = useState<string | null>(null);
 
   useEffect(() => {
     const getPosts = async () => {
@@ -29,7 +33,7 @@ function Home() {
         const response = await axios.get(
           `https://nuto.mirim-it-show.site/post`
         );
-        console.log(response);
+        // console.log(response);
         setPosts(response.data);
       } catch (err) {
         console.error(err);
@@ -41,6 +45,10 @@ function Home() {
 
   return (
     <div className={style.body}>
+      { selectPost && <ModalPortal>
+        <Comment postId={selectPost} setSelectPost={setSelectPost} />
+      </ModalPortal>}
+
       <Helmet>
         <title>nuto home</title>
       </Helmet>
@@ -49,7 +57,7 @@ function Home() {
       {posts.length === 0 ? (
         <p>게시물이 없습니다.</p>
       ) : (
-        posts && posts.map((post) => <Post post={post} />)
+        posts && posts.map((post) => <Post post={post} setSelectPost={setSelectPost} />)
       )}
       <Footer />
     </div>

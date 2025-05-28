@@ -48,6 +48,7 @@ function Post({ post }: { post: PostProps }) {
       console.log(error);
     }
   };
+    
   return (
     <div className={style.post} key={post._id}>
       {/* </Link> */}
@@ -79,6 +80,7 @@ function Post({ post }: { post: PostProps }) {
         <img alt="nutoImg" src={post.nutoImage} className={style.postImg} />
       </div>
       <div className={style.postInfo}>
+        <span onClick={() => setSelectPost(post._id)}>댓글</span>
         <div className={style.infoContainer}>
           <span className={style.writerText}>작성자 |</span>
           <span className={style.writer}>{post.name}</span>
