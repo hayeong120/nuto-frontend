@@ -1,4 +1,8 @@
 import style from "../styles/Post.module.css";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import bcrypt, { hash } from "bcryptjs";
+import axios from "axios";
+
 interface Comment {
   _id: string;
   name: string;
@@ -15,8 +19,36 @@ interface PostProps {
   comments: Comment[];
 }
 
-function Post({ post, setSelectPost }) {
-  // console.log(post._id);
+function Post({ post }: { post: PostProps }) {
+  // console.log(process.env.REACT_APP_SALT_VALUE);
+  const hashing = async (password: string) => {
+    const salt = process.env.REACT_APP_SALT_VALUE;
+    return await bcrypt.hash(password, salt);
+  };
+
+  const handleClick = async (postId: string) => {
+    const password = prompt("포스트 비밀번호를 입력해주세요");
+    const hashedPassword = await hashing(password);
+
+    // console.log(postId, hashedPassword);
+
+    try {
+      const response = await axios.delete(
+        "https://nuto.mirim-it-show.site/post",
+        {
+          data: {
+            id: postId,
+            pw: hashedPassword,
+          },
+        }
+      );
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+    
   return (
     <div className={style.post} key={post._id}>
       {/* </Link> */}
@@ -32,6 +64,9 @@ function Post({ post, setSelectPost }) {
           {/* <img src='/images/nutoProfileImg.png' className={style.profileImg}/> */}
         </div>
         <p className={style.profileName}>{post.location}</p>
+        <div onClick={() => handleClick(post._id)}>
+          <BsThreeDotsVertical />
+        </div>
       </div>
       <div
         className={style.postContainer}
