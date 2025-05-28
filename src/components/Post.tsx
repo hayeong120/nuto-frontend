@@ -20,7 +20,7 @@ interface PostProps {
 }
 
 function Post({ post }: { post: PostProps }) {
-  console.log(process.env.REACT_APP_SALT_VALUE);
+  // console.log(process.env.REACT_APP_SALT_VALUE);
   const hashing = async (password: string) => {
     const salt = process.env.REACT_APP_SALT_VALUE;
     return await bcrypt.hash(password, salt);
@@ -30,7 +30,7 @@ function Post({ post }: { post: PostProps }) {
     const password = prompt("포스트 비밀번호를 입력해주세요");
     const hashedPassword = await hashing(password);
 
-    console.log(postId, hashedPassword);
+    // console.log(postId, hashedPassword);
 
     try {
       const response = await axios.delete(
