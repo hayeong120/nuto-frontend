@@ -1,6 +1,6 @@
 import style from "../styles/Post.module.css";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import bcrypt, { hash } from "bcryptjs";
+import bcrypt from "bcryptjs";
 import axios from "axios";
 
 interface Comment {
@@ -9,7 +9,8 @@ interface Comment {
   message: string;
   createdAt: string;
 }
-interface PostProps {
+
+type PostType = {
   _id: string;
   name: string;
   polariodImage: string;
@@ -17,9 +18,15 @@ interface PostProps {
   location: string;
   password: string;
   comments: Comment[];
+};
+
+interface PostProps {
+  post: PostType;
+  refetchPost: () => void;
+  setSelectPost: (postId: string) => void;
 }
 
-function Post({ post }: { post: PostProps }) {
+function Post({ post, refetchPost, setSelectPost }: PostProps) {
   // console.log(process.env.REACT_APP_SALT_VALUE);
   const hashing = async (password: string) => {
     const salt = process.env.REACT_APP_SALT_VALUE;
@@ -33,22 +40,19 @@ function Post({ post }: { post: PostProps }) {
     // console.log(postId, hashedPassword);
 
     try {
-      const response = await axios.delete(
-        "https://nuto.mirim-it-show.site/post",
-        {
-          data: {
-            id: postId,
-            pw: hashedPassword,
-          },
-        }
-      );
+      await axios.delete("https://nuto.mirim-it-show.site/post", {
+        data: {
+          id: postId,
+          pw: hashedPassword,
+        },
+      });
 
-      console.log(response);
+      refetchPost();
     } catch (error) {
       console.log(error);
     }
   };
-    
+
   return (
     <div className={style.post} key={post._id}>
       {/* </Link> */}

@@ -198,14 +198,9 @@ function EditNuto() {
       formData.append("password", hashedPassword);
 
       try {
-        const response = await axios.post(
-          "https://nuto.mirim-it-show.site/post",
-          formData,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
-        );
-        console.log("업로드 성공:", response);
+        await axios.post("https://nuto.mirim-it-show.site/post", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
         setLocation("");
         setName("");
         setNutoFile(null);
@@ -217,6 +212,13 @@ function EditNuto() {
         sessionStorage.setItem("nutoFile", "");
         sessionStorage.setItem("polariodFile", "");
         sessionStorage.setItem("location", "");
+
+        console.log(
+          location,
+          name,
+          sessionStorage.getItem("location"),
+          sessionStorage.getItem("name")
+        );
 
         navigate("/");
       } catch (err) {
