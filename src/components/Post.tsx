@@ -60,7 +60,6 @@ function Post({ post, refetchPost, setSelectPost }: PostProps) {
 
   return (
     <div className={style.post} key={post._id}>
-      {/* </Link> */}
       <div className={style.profile}>
         <div
           className={style.profileImgContainer}

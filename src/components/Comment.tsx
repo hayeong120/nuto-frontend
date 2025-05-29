@@ -34,9 +34,12 @@ function Comment({postId, setSelectPost}:{postId:string, setSelectPost: (string)
     useEffect(() => {
         fetch();
     }, [])
+    useEffect(() => {
+        console.log(postId);
+    }, [postId])
 
     return (
-        <div className={styles.modalBackground} onClick={close}>
+        <div className={styles.container} >
             <div className={styles.commentContainer}>
                 {otherComment && (
                     otherComment.map((comment, i) => {
@@ -45,27 +48,27 @@ function Comment({postId, setSelectPost}:{postId:string, setSelectPost: (string)
                         return(
                             <div>
                                 <p className={styles.date}>{formatted}</p>
-                                <ChatBox type="check" comment={comment.comment} />
+                                <ChatBox type="check" comment={comment.comment} key={i}/>
                             </div>
                         )
                     })
                 )}
-                <div className={styles.messageContainer}>
-                    <div className={styles.inputContainer}>
-                        <input
-                            placeholder="텍스트 입력"
-                            value={comment}
-                            onChange={(e) => setComment(e.target.value)}
-                            className={styles.input}
-                        />
-                    </div>
-                    <img
-                        src="/images/sendButton.png"
-                        alt="sendButton"
-                        onClick={sendMessage}
-                        className={styles.sendBtn}
+            </div>
+            <div className={styles.messageContainer}>
+                <div className={styles.inputContainer}>
+                    <input
+                        placeholder="텍스트 입력"
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                        className={styles.input}
                     />
                 </div>
+                <img
+                    src="/images/sendButton.png"
+                    alt="sendButton"
+                    onClick={sendMessage}
+                    className={styles.sendBtn}
+                />
             </div>
         </div>
     )

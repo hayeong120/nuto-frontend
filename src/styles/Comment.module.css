@@ -1,33 +1,19 @@
-.modalBackground {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  z-index: 9999;
-  background: rgba(0, 0, 0, 0.7);
-  animation-name: backgroundColor;
-  animation-duration: 0.5s;
-}
-
-@keyframes backgroundColor {
-  from {
-    background-color: rgb(255, 255, 255);
-  }
-  to {
-    background-color: rgb(133, 133, 133);
-  }
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: #fdfaf4;
+  border-radius: 25px 25px 0 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .commentContainer {
   width: 100%;
-  height: 50%;
-  background-color: #fdfaf4;
-  border-radius: 25px 25px 0 0;
-  position: absolute;
-  bottom: 0;
+  height: calc(100% - 70px);
   display: flex;
   flex-direction: column;
   row-gap: 10px;
-  padding: 30px 40px 85px;
+  padding: 30px 40px;
   overflow: scroll;
 }
 
@@ -37,19 +23,19 @@
 }
 
 .messageContainer {
-  width: calc(100% - 80px);
+  width: calc(100% - 32px);
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  position: fixed;
+  position: absolute;
   bottom: 0;
+  z-index: 10;
   height: 60px;
   column-gap: 10px;
   background-color: #fdfaf4;
   width: calc(100% - 32px);
   justify-content: center;
-  position: absolute;
-  bottom: 10px;
+  padding-bottom: 70px;
   left: 16px;
   margin-top: 10px;
 }
