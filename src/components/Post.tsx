@@ -61,16 +61,18 @@ function Post({ post, refetchPost, setSelectPost }: PostProps) {
   return (
     <div className={style.post} key={post._id}>
       <div className={style.profile}>
-        <div
-          className={style.profileImgContainer}
-          style={{
-            backgroundImage: `url(/images/profiles/${post.location}.png)`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
+        <div className={style.profileContainer}>
+          <div
+            className={style.profileImgContainer}
+            style={{
+              backgroundImage: `url(/images/profiles/${post.location}.png)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+          </div>
+          <p className={style.profileName}>{post.location}</p>
         </div>
-        <p className={style.profileName}>{post.location}</p>
         <div onClick={() => handleClick(post._id)}>
           <BsThreeDotsVertical />
         </div>
