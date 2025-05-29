@@ -97,7 +97,7 @@ function Post({ post, refetchPost, setSelectPost }: PostProps) {
         </Swiper>
       </div>
       <div className={style.postInfo}>
-        <span onClick={() => setSelectPost(post._id)}>댓글</span>
+        <img src='/images/commentImg.png' className={style.commentImg} onClick={() => setSelectPost(post._id)} />
         <div className={style.infoContainer}>
           <span className={style.writerText}>작성자 |</span>
           <span className={style.writer}>{post.name}</span>
