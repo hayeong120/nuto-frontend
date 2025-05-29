@@ -3,6 +3,11 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import bcrypt from "bcryptjs";
 import axios from "axios";
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
+
 interface Comment {
   _id: string;
   name: string;
@@ -65,7 +70,6 @@ function Post({ post, refetchPost, setSelectPost }: PostProps) {
             backgroundPosition: "center",
           }}
         >
-          {/* <img src='/images/nutoProfileImg.png' className={style.profileImg}/> */}
         </div>
         <p className={style.profileName}>{post.location}</p>
         <div onClick={() => handleClick(post._id)}>
@@ -76,12 +80,21 @@ function Post({ post, refetchPost, setSelectPost }: PostProps) {
         className={style.postContainer}
         style={{ width: "100%", boxSizing: "content-box" }}
       >
-        <img
-          alt="polariodImage"
-          src={post.polariodImage}
-          className={style.postImg}
-        />
-        <img alt="nutoImg" src={post.nutoImage} className={style.postImg} />
+        <Swiper
+          pagination={{clickable: true}}
+          modules={[Pagination]}
+        >
+          <SwiperSlide>
+            <img
+              alt="polariodImage"
+              src={post.polariodImage}
+              className={style.postImg}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img alt="nutoImg" src={post.nutoImage} className={style.postImg} />
+          </SwiperSlide>
+        </Swiper>
       </div>
       <div className={style.postInfo}>
         <span onClick={() => setSelectPost(post._id)}>댓글</span>
