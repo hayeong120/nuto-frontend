@@ -1,14 +1,24 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { usePostInfo } from "../../context/PostInfoContext";
 import styles from "../../styles/User.module.css";
+import { useIsLogin } from "../../context/LoginContext";
 
 function User() {
   const navigate = useNavigate();
   const { name, setName } = usePostInfo();
+  const { isLogin, setIsLogin } = useIsLogin();
+
+  useEffect(() => {
+    if (isLogin) {
+      navigate("/home");
+    }
+  }, [isLogin, navigate]);
 
   const login = () => {
-    if (name != "") {
+    if (name !== "") {
       navigate("/home");
+      setIsLogin(true);
       console.log("클릭");
     }
   };

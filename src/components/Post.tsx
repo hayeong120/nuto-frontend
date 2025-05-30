@@ -1,12 +1,12 @@
 import style from "../styles/Post.module.css";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { MdDelete } from "react-icons/md";
 import bcrypt from "bcryptjs";
 import axios from "axios";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
 
 interface Comment {
   _id: string;
@@ -69,22 +69,18 @@ function Post({ post, refetchPost, setSelectPost }: PostProps) {
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
-          >
-          </div>
+          ></div>
           <p className={style.profileName}>{post.location}</p>
         </div>
         <div onClick={() => handleClick(post._id)}>
-          <BsThreeDotsVertical />
+          <MdDelete />
         </div>
       </div>
       <div
         className={style.postContainer}
         style={{ width: "100%", boxSizing: "content-box" }}
       >
-        <Swiper
-          pagination={{clickable: true}}
-          modules={[Pagination]}
-        >
+        <Swiper pagination={{ clickable: true }} modules={[Pagination]}>
           <SwiperSlide>
             <img
               alt="polariodImage"
@@ -98,7 +94,11 @@ function Post({ post, refetchPost, setSelectPost }: PostProps) {
         </Swiper>
       </div>
       <div className={style.postInfo}>
-        <img src='/images/commentImg.png' className={style.commentImg} onClick={() => setSelectPost(post._id)} />
+        <img
+          src="/images/commentImg.png"
+          className={style.commentImg}
+          onClick={() => setSelectPost(post._id)}
+        />
         <div className={style.infoContainer}>
           <span className={style.writerText}>작성자 |</span>
           <span className={style.writer}>{post.name}</span>
