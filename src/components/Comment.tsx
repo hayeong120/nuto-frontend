@@ -46,7 +46,7 @@ function Comment({
   }, []);
 
   return (
-    <div className={styles.modalBackground} onClick={close}>
+    <div className={styles.container} onClick={close}>
       <div className={styles.commentContainer}>
         {otherComment &&
           otherComment.map((comment, i) => {
