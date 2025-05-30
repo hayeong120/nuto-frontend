@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import style from "../styles/BoothCategory.module.css";
+import ModalPortal from "../pages/Mobile/ModalPortal";
 
 type dataType = {
   createdAt: string;
@@ -16,6 +17,9 @@ type dataType = {
 
 function BoothCategory(props: { type: string; boothId: string }) {
   const [datas, setDatas] = useState<dataType[] | null>(null);
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedPost, setSelectPost] = useState<dataType | null>(null);
+  const [modalData, setModalData] = useState<string | null>(null);
   useEffect(() => {
     const getPolariod = async () => {
       try {
@@ -32,19 +36,50 @@ function BoothCategory(props: { type: string; boothId: string }) {
     getPolariod();
   }, [props.boothId]);
 
+  const handleClick = (post: dataType) => {
+    setOpenModal(true);
+    setModalData(
+      props.type === "polariod" ? post.polariodImage : post.nutoImage
+    );
+    setSelectPost(post);
+  };
+
   return (
     <div className={style.dataContainer}>
       {datas &&
         datas.map((data) => {
+          const imageSrc =
+            props.type === "polariod" ? data.polariodImage : data.nutoImage;
           return (
             <img
-              src={
-                props.type === "polariod" ? data.polariodImage : data.nutoImage
-              }
+              src={imageSrc}
+              onClick={() => handleClick(data)}
               alt={data.createdAt}
             />
           );
         })}
+
+      {openModal && (
+        <ModalPortal>
+          <div
+            className={style.modalBackground}
+            onClick={() => setOpenModal(false)}
+          >
+            <div className={style.modalContainer}>
+              <p>
+                From.{" "}
+                {datas.filter((data) => data._id === selectedPost._id)[0].name}
+              </p>
+              <img
+                src={modalData}
+                onClick={() => setOpenModal(false)}
+                alt={modalData}
+                className={style.modalImage}
+              />
+            </div>
+          </div>
+        </ModalPortal>
+      )}
     </div>
   );
 }
