@@ -8,6 +8,7 @@ import Chatting from "../../components/Chatting";
 import axios from "axios";
 import NutoPage from "../../components/NutoExplain";
 import { Helmet } from "react-helmet";
+import { usePostInfo } from "../../context/PostInfoContext";
 
 type defaultChat = {
   type: "default-chat";
@@ -26,6 +27,7 @@ type userChat = {
 };
 
 function Chat() {
+  const { name } = usePostInfo();
   const [profile, setProfile] = useState(profiles[0]);
   const [message, setMessage] = useState("");
   const [chattings, setChattings] = useState<(defaultChat | userChat)[]>([
@@ -109,6 +111,7 @@ function Chat() {
       await axios.post(`https://nuto.mirim-it-show.site/message`, {
         name: profile.name,
         message: message,
+        sender: name,
       });
 
       await axios.post(`https://nuto.mirim-it-show.site/message/email`, {
