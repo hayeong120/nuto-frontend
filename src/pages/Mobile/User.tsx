@@ -7,7 +7,7 @@ function User() {
   const { name, setName } = usePostInfo();
 
   const login = () => {
-    if (name.trim() !== "") {
+    if (name != "") {
       navigate("/home");
       console.log("클릭");
     }

@@ -21,7 +21,6 @@ export interface FullPost {
 function NutoGarden() {
   const [nutos, setNutos] = useState<FullPost[][]>([]);
   const [index, setIndex] = useState(0);
-  const [selectPost, setSelectPost] = useState(null);
   const [searchParams] = useSearchParams();
   const booth = searchParams.get('booth');
 
@@ -82,8 +81,6 @@ function NutoGarden() {
             <Nuto
               nuto={nuto}
               idx={idx}
-              selectPost={selectPost}
-              setSelectPost={setSelectPost}
               key={nuto._id}
             />
           ))
@@ -112,7 +109,7 @@ function NutoGarden() {
         <></>
       )}
       <DotIndicator len={nutos.length} index={index} setIndex={setIndex} />
-      {selectPost ? (
+      {/* {selectPost ? (
         <NutoPost
           postId={selectPost}
           selectPost={selectPost}
@@ -120,7 +117,7 @@ function NutoGarden() {
         />
       ) : (
         <></>
-      )}
+      )} */}
     </div>
   );
 }

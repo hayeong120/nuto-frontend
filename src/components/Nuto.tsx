@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import style from "../styles/Nuto.module.css"
 
 const position = [
@@ -22,16 +23,19 @@ interface Post {
     nutoImage: string;
 }
 
-function Nuto({nuto, idx, selectPost, setSelectPost}) {
+function Nuto({nuto, idx}) {
+    const navigate = useNavigate();
     const imgUrl = nutoImg[Math.floor(Math.random() * 3)]
+
+    const nutoClick = () => {
+        navigate('/nuto-post', {state: {postId: nuto._id}})
+    }
 
     return (
         <div 
             className={style.nuto} 
-            style={position[idx%6]} 
-            onClick={() => {
-                setSelectPost(nuto._id)
-            }}
+            style={position[idx%6]}
+            onClick={nutoClick}
         >
             <img src={imgUrl} alt="토마토" className={style.image}/>
             <p className={style.name}>from.{nuto.name}</p>

@@ -23,3 +23,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.swiper-pagination-bullet {
+  background: #6c6c6c !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #375a4e !important;
+}
