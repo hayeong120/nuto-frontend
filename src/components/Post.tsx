@@ -72,7 +72,7 @@ function Post({ post, refetchPost, setSelectPost }: PostProps) {
           ></div>
           <p className={style.profileName}>{post.location}</p>
         </div>
-        <div onClick={() => handleClick(post._id)}>
+        <div onClick={() => handleClick(post._id)} className={style.deleteIcon}>
           <MdDelete />
         </div>
       </div>
@@ -98,6 +98,7 @@ function Post({ post, refetchPost, setSelectPost }: PostProps) {
           src="/images/commentImg.png"
           className={style.commentImg}
           onClick={() => setSelectPost(post._id)}
+          alt="Comment Icon"
         />
         <div className={style.infoContainer}>
           <span className={style.writerText}>작성자 |</span>
