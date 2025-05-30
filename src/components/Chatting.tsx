@@ -23,6 +23,7 @@ type adminChat = {
   data: {
     message: string;
     createdAt: string;
+    sender?: string;
   };
 };
 
@@ -61,11 +62,14 @@ function Chatting(props: {
           );
         } else {
           return (
-            <ChatBox
-              type="admin"
-              comment={chatting.data.message}
-              time={chatting.data.createdAt}
-            />
+            <div>
+              <p>{chatting.data.sender}</p>
+              <ChatBox
+                type="admin"
+                comment={chatting.data.message}
+                time={chatting.data.createdAt}
+              />
+            </div>
           );
         }
       })}

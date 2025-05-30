@@ -57,6 +57,7 @@ function CheckChat() {
         };
       });
       setChattings(userChats);
+      console.log(userChats);
     } catch (error) {
       console.error("Failed to fetch chattings:", error);
     }
