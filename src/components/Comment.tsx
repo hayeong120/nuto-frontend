@@ -56,8 +56,10 @@ function Comment({
             });
             return (
               <div>
-                <p>{comment.name}</p>
-                <p className={styles.date}>{formatted}</p>
+                <div>
+                  <p>{comment.name}</p>
+                  <p className={styles.date}>{formatted}</p>
+                </div>
                 <ChatBox type="check" comment={comment.comment} />
               </div>
             );
