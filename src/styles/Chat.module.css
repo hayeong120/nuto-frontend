@@ -33,6 +33,7 @@
   scrollbar-width: none;
   column-gap: 15px;
   margin: 13px 0 0 0;
+  
 }
 
 .message-container {
@@ -40,7 +41,7 @@
   flex-direction: row;
   align-items: center;
   position: fixed;
-  bottom: 86px;
+  bottom: 100px;
   left: 16px;
   width: calc(100% - 32px);
   height: 36px;
