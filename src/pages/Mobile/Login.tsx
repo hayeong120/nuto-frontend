@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsLogin } = useIsLogin();
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -22,7 +21,6 @@ const Login = () => {
       if (response.data.success) {
         localStorage.setItem("token", response.data.token); // JWT 저장
         alert("로그인 성공");
-        setIsLogin(true);
         navigate("/check-message");
       }
     } catch (err) {
