@@ -3,6 +3,11 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import bcrypt from "bcryptjs";
 import axios from "axios";
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
+
 interface Comment {
   _id: string;
   name: string;
@@ -55,19 +60,19 @@ function Post({ post, refetchPost, setSelectPost }: PostProps) {
 
   return (
     <div className={style.post} key={post._id}>
-      {/* </Link> */}
       <div className={style.profile}>
-        <div
-          className={style.profileImgContainer}
-          style={{
-            backgroundImage: `url(/images/profiles/${post.location}.png)`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          {/* <img src='/images/nutoProfileImg.png' className={style.profileImg}/> */}
+        <div className={style.profileContainer}>
+          <div
+            className={style.profileImgContainer}
+            style={{
+              backgroundImage: `url(/images/profiles/${post.location}.png)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+          </div>
+          <p className={style.profileName}>{post.location}</p>
         </div>
-        <p className={style.profileName}>{post.location}</p>
         <div onClick={() => handleClick(post._id)}>
           <BsThreeDotsVertical />
         </div>
@@ -76,15 +81,24 @@ function Post({ post, refetchPost, setSelectPost }: PostProps) {
         className={style.postContainer}
         style={{ width: "100%", boxSizing: "content-box" }}
       >
-        <img
-          alt="polariodImage"
-          src={post.polariodImage}
-          className={style.postImg}
-        />
-        <img alt="nutoImg" src={post.nutoImage} className={style.postImg} />
+        <Swiper
+          pagination={{clickable: true}}
+          modules={[Pagination]}
+        >
+          <SwiperSlide>
+            <img
+              alt="polariodImage"
+              src={post.polariodImage}
+              className={style.postImg}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img alt="nutoImg" src={post.nutoImage} className={style.postImg} />
+          </SwiperSlide>
+        </Swiper>
       </div>
       <div className={style.postInfo}>
-        <span onClick={() => setSelectPost(post._id)}>댓글</span>
+        <img src='/images/commentImg.png' className={style.commentImg} onClick={() => setSelectPost(post._id)} />
         <div className={style.infoContainer}>
           <span className={style.writerText}>작성자 |</span>
           <span className={style.writer}>{post.name}</span>

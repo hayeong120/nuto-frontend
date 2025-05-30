@@ -4,10 +4,10 @@ import styles from "../../styles/User.module.css";
 
 function User() {
   const navigate = useNavigate();
-  const { name, setName, password, setPassword } = usePostInfo();
+  const { name, setName } = usePostInfo();
 
   const login = () => {
-    if (name != "" && password != "") {
+    if (name != "") {
       navigate("/home");
       console.log("클릭");
     }

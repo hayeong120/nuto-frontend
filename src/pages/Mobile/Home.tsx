@@ -6,6 +6,7 @@ import axios from "axios";
 import { Helmet } from "react-helmet";
 import ModalPortal from "./ModalPortal";
 import Comment from "../../components/Comment";
+import { AnimatePresence, motion } from 'framer-motion';
 
 interface Comment {
   _id: string;
@@ -43,11 +44,35 @@ function Home() {
 
   return (
     <div className={style.body}>
-      {selectPost && (
-        <ModalPortal>
-          <Comment postId={selectPost} setSelectPost={setSelectPost} />
-        </ModalPortal>
-      )}
+      <AnimatePresence
+        onExitComplete={() => {
+          setSelectPost(null);
+        }}
+      >
+        {selectPost && (
+          <ModalPortal>
+            <motion.div
+              className={style.backgroundModal}
+              initial={{ backgroundColor: 'rgba(255, 255, 255, 0)' }}
+              animate={{ backgroundColor: 'rgba(54, 54, 54, 0.7)' }}
+              exit={{ backgroundColor: 'rgba(255, 255, 255, 0)' }}
+              transition={{ duration: 0.5 }}
+              onClick={() => setSelectPost(null)}
+            >
+            </motion.div>
+            <motion.div
+              className={style.commentModal}
+              initial={{bottom: '-50%'}}
+              animate={{bottom: '0%'}}
+              exit={{bottom: '-50%'}}
+              transition={{duration: 0.5}}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Comment postId={selectPost} setSelectPost={setSelectPost} />
+            </motion.div>
+          </ModalPortal>
+        )}
+      </AnimatePresence>
 
       <Helmet>
         <title>nuto home</title>
