@@ -17,7 +17,6 @@ import Booths from "./pages/Mobile/Booths";
 import Chat from "./pages/Mobile/Chat";
 import NutoPage from "./components/NutoExplain";
 import BoothInfo from "./pages/Mobile/BoothInfo";
-import Admin from "./pages/Mobile/Admin";
 import Login from "./pages/Mobile/Login";
 import QRPage from "./pages/Tablet/QRPage";
 import BoothPage from "./pages/Web/BoothPage";
@@ -57,7 +56,6 @@ root.render(
                 <Route path="/nutoPage" element={<NutoPage />}></Route>
                 <Route path="/boothInfo" element={<BoothInfo />}></Route>
                 <Route path="/admin" element={<Login />}></Route>
-                <Route path="/check-message" element={<Admin />} />
                 <Route path="/qr-page" element={<QRPage />} />
                 <Route path="/show-booth" element={<BoothPage />} />
                 <Route path="/nuto-garden" element={<NutoGarden />} />

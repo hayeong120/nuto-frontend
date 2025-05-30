@@ -1,4 +1,7 @@
+import React from "react";
 import style from "../styles/ChatBox.module.css";
+import { format, toZonedTime } from "date-fns-tz";
+const timeZone = "Asia/Seoul";
 
 function ChatBox(props: {
   type: "default" | "send" | "admin" | "check";
@@ -28,12 +31,19 @@ function ChatBox(props: {
       </div>
     );
   } else if (props.type === "check") {
+    const zonedDate = toZonedTime(props.time, timeZone);
+    const formatted = format(props.time, "MM-dd HH:mm", {
+      timeZone,
+    });
     return (
       <div className={style.checkChatContainer}>
-        <div className={style["check-chat"]}>
-          <p>{props.comment}</p>
+        <p>{props.name}</p>
+        <div className={style.checkChat}>
+          <div className={style["check-chat"]}>
+            <p>{props.comment}</p>
+          </div>
+          <p>{formatted}</p>
         </div>
-        <p>{props.time}</p>
       </div>
     );
   } else {

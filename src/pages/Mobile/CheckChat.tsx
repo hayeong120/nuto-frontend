@@ -11,6 +11,8 @@ type checkChat = {
   data: {
     name: string;
     comment: string;
+    sender: string;
+    createdAt: string;
   };
 };
 
@@ -18,15 +20,14 @@ type chat = {
   _id: string;
   name: string;
   message: string;
-  cratedAt: string;
+  sender: string;
+  createdAt: string;
   updatedAt: string;
 };
 
 function CheckChat() {
   const [profile, setProfile] = useState(profiles[0]);
   const [chattings, setChattings] = useState<checkChat[]>([]);
-  console.log("member : ", profile);
-  console.log(profile.name, profiles);
 
   const changeMember = (idx: number) => {
     setProfile(profiles[idx]);
@@ -34,13 +35,6 @@ function CheckChat() {
 
   const getChattings = async () => {
     try {
-      console.log(
-        "요청 URL: ",
-        `https://nuto.mirim-it-show.site/message/${encodeURIComponent(
-          profile.name
-        )}`
-      );
-
       const response = await axios.get(
         `https://nuto.mirim-it-show.site/message/${encodeURIComponent(
           profile.name
@@ -53,11 +47,12 @@ function CheckChat() {
           data: {
             name: chat.name,
             comment: chat.message,
+            sender: chat.sender,
+            createdAt: chat.createdAt,
           },
         };
       });
       setChattings(userChats);
-      console.log(userChats);
     } catch (error) {
       console.error("Failed to fetch chattings:", error);
     }
@@ -73,8 +68,10 @@ function CheckChat() {
   return (
     <div className={style.Body}>
       <img src="/images/logo.svg" className={style.logo} alt="Logo" />
-      <Members type="check" profiles={profiles} changeMember={changeMember} />
-      <Chatting chattings={chattings} />
+      <div className={style.ChatContainer}>
+        <Members type="check" profiles={profiles} changeMember={changeMember} />
+        <Chatting chattings={chattings} />
+      </div>
       <Footer />
     </div>
   );

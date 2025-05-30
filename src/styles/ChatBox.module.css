@@ -89,11 +89,17 @@
 
 .checkChatContainer {
   display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+}
+
+.checkChat {
+  display: flex;
   align-items: flex-end;
   column-gap: 10px;
 }
 
-.checkChatContainer > p {
+.checkChat > p {
   font-size: 13px;
   color: #d0d0d0;
 }

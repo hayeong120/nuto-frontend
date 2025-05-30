@@ -13,6 +13,12 @@
   margin-top: 30px;
 }
 
+.ChatContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 17px;
+}
+
 .sendMessageContainer {
   display: flex;
   flex-direction: column;
