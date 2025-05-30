@@ -6,18 +6,16 @@ import { useIsLogin } from "../../context/LoginContext";
 
 function User() {
   const navigate = useNavigate();
-  const { name, setName } = usePostInfo();
-  const { isLogin, setIsLogin } = useIsLogin();
+  const { username, setUsername, isLogin, setIsLogin } = useIsLogin();
 
   useEffect(() => {
-    console.log(isLogin);
     if (isLogin) {
       navigate("/home");
     }
   }, [isLogin, navigate]);
 
   const login = () => {
-    if (name !== "") {
+    if (username !== "") {
       navigate("/home");
       setIsLogin(true);
       console.log("클릭");
@@ -41,8 +39,8 @@ function User() {
 
         <input
           placeholder="아이디"
-          value={name}
-          onChange={(e) => setName(e.target.value.trim())}
+          value={username}
+          onChange={(e) => setUsername(e.target.value.trim())}
           className={styles.input}
         />
 
