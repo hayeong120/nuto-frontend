@@ -16,8 +16,8 @@ interface LoginContextType {
 
 const LoginContext = createContext<LoginContextType | undefined>(undefined);
 
-const SESSION_DURATION = 5 * 60 * 1000; // 5분
-const WARNING_BEFORE = 30 * 1000; // 30초
+const SESSION_DURATION = 10000; // 5분
+const WARNING_BEFORE = 5000; // 30초
 
 export function LoginProvider({ children }: { children: ReactNode }) {
   const [isLogin, setIsLogin] = useState(false);
@@ -29,9 +29,10 @@ export function LoginProvider({ children }: { children: ReactNode }) {
   const warningRef = useRef(null);
 
   const startSession = () => {
+    console.log("session start");
     setIsLogin(true);
     localStorage.setItem("isLogin", "true");
-    localStorage.setItem("sessionStart", "" + Date.now());
+    localStorage.setItem("sessionStart", Date.now().toString());
 
     // 이름 저장
     sessionStorage.setItem("username", username);
@@ -60,24 +61,45 @@ export function LoginProvider({ children }: { children: ReactNode }) {
   // 종료
   const endSession = () => {
     setIsLogin(false);
-    sessionStorage.removeItem("name");
+    sessionStorage.removeItem("username");
     localStorage.removeItem("sessionStart");
     setShowWarning(false);
   };
 
-  // 초기 세션 체크
+  //  초기 username 복원
   useEffect(() => {
-    if (username !== "") {
-      sessionStorage.setItem("username", username);
+    const storedUsername = sessionStorage.getItem("username");
+    if (storedUsername) {
+      setUsername(storedUsername);
     }
-    const storedTime = localStorage.getItem("sessionStart");
-    if (storedTime) {
-      const elapsed = Date.now() - Number(storedTime);
-      if (elapsed < SESSION_DURATION) {
-        startSession();
-      } else {
-        endSession();
-      }
+  }, []);
+
+  //  username이 복원된 이후 세션 체크
+  useEffect(() => {
+    if (!username) return;
+
+    const storedTimeRaw = localStorage.getItem("sessionStart");
+    if (!storedTimeRaw) {
+      // 세션 시작 정보 없으면 종료 처리
+      endSession();
+      return;
+    }
+
+    const storedTime = new Date(Number(storedTimeRaw));
+    if (isNaN(storedTime.getTime())) {
+      // 유효하지 않은 날짜면 종료
+      endSession();
+      return;
+    }
+
+    const elapsed = Date.now() - storedTime.getTime();
+
+    if (elapsed < SESSION_DURATION) {
+      console.log("session is still valid");
+      startSession();
+    } else {
+      console.log("session is not valid");
+      endSession();
     }
   }, [username]);
 

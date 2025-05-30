@@ -9,7 +9,6 @@ function User() {
   const { username, setUsername, isLogin, setIsLogin } = useIsLogin();
 
   useEffect(() => {
-    console.log(isLogin);
     if (isLogin) {
       navigate("/home");
     }
