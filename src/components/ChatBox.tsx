@@ -29,8 +29,11 @@ function ChatBox(props: {
     );
   } else if (props.type === "check") {
     return (
-      <div className={style["check-chat"]}>
-        <p>{props.comment}</p>
+      <div className={style.checkChatContainer}>
+        <div className={style["check-chat"]}>
+          <p>{props.comment}</p>
+        </div>
+        <p>{props.time}</p>
       </div>
     );
   } else {

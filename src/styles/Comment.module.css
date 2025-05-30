@@ -64,3 +64,10 @@
   width: 36px;
   height: 36px;
 }
+
+.commentBox {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  margin-bottom: 10px;
+}
