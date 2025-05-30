@@ -29,7 +29,7 @@ function PostUpload() {
   const { image, setImage } = useImage();
 
   const { setName, location } = usePostInfo();
-  const { username } = useIsLogin();
+  const { username, setUsername } = useIsLogin();
   const [selectedLocation, setSelectedLocation] = useState<BoothType>(null);
 
   useEffect(() => {
@@ -60,6 +60,7 @@ function PostUpload() {
   };
 
   const onChange = (event: any) => {
+    setUsername(event.target.value.trim());
     setName(event.target.value);
   };
 
