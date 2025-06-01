@@ -24,11 +24,11 @@ export const profiles: Profile[] = [
   {
     name: "장하영",
     type: "풀스택 개발자",
-    img: "/images/flowerProfile.svg",
-    introduce: "프론트엔드와 백엔드를 넘나드는 장하영입니다.",
-    skills: ["Vue.js", "Nest.js", "TypeScript"],
+    img: "/images/hayeong.jpeg",
+    introduce: "안녕하세요. 기술 너머의 가치를 추구하는 개발자 장하영입니다.",
+    skills: ["flutter", "react", "node.js", "spring boot"],
     comment:
-      "안녕하세요, 묵묵히 믿음을 주는 개발자 장하영입니다. 차분하지만 책임감 있게 프로젝트를 이끌고 있어요. 도움이 필요하다면 언제든 도와드릴게요 :)",
+      "프론트엔드를 주력으로 하며, 백엔드 영역에서도 끊임없이 배움을 이어가고 있습니다. 함께 성장하며 더 큰 가치를 만들어갈 수 있는 팀을 찾고 있습니다. 저에 대해 더 궁금하신 점이 있다면 언제든 편하게 연락 주세요!",
     email: "jhy012000@naver.com",
   },
   {
