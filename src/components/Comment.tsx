@@ -46,25 +46,35 @@ function Comment({
   }, []);
 
   return (
-    <div className={styles.container} onClick={close}>
-      <div className={styles.commentContainer}>
-        {otherComment &&
-          otherComment.map((comment, i) => {
-            const zonedDate = toZonedTime(comment.createdAt, timeZone);
-            const formatted = format(zonedDate, "MM-dd HH:mm", {
-              timeZone,
-            });
-            return (
-              <div className={styles.commentBox}>
-                <p>{comment.name}</p>
-                <ChatBox
-                  type="check"
-                  time={formatted}
-                  comment={comment.comment}
-                />
-              </div>
-            );
-          })}
+    <div className={styles.container}>
+      <div className={styles.handle}>
+        <div className={styles.bar}></div>
+      </div>
+      <div 
+        className={styles.commentContainer}
+        onClick={(e) => {
+          if(e.target === e.currentTarget) setSelectPost(null)
+        }}
+      >
+        <div onClick={() => setSelectPost(null)}>
+          {otherComment &&
+            otherComment.map((comment, i) => {
+              const zonedDate = toZonedTime(comment.createdAt, timeZone);
+              const formatted = format(zonedDate, "MM-dd HH:mm", {
+                timeZone,
+              });
+              return (
+                <div className={styles.commentBox}>
+                  <p>{comment.name}</p>
+                  <ChatBox
+                    type="check"
+                    time={formatted}
+                    comment={comment.comment}
+                  />
+                </div>
+              );
+            })}
+        </div>
         <div className={styles.messageContainer}>
           <div className={styles.inputContainer}>
             <input
