@@ -5,6 +5,153 @@ import { format, toZonedTime } from "date-fns-tz";
 import { usePostInfo } from "../context/PostInfoContext";
 import ChatBox from "./ChatBox";
 
+const chatjson = [
+  {
+    _id: "123",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "124",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "123",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "124",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "123",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "124",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "123",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "124",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "123",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "124",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "123",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "124",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "123",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "124",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "123",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "124",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "123",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "124",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "123",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "124",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "123",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "124",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "123",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+  {
+    _id: "124",
+    message: "잘 되네료~",
+    name: "지은!",
+    createdAt: "2025-05-30T05:52:39.720Z"
+  },
+];
+
 const timeZone = "Asia/Seoul";
 
 function Comment({
@@ -35,10 +182,11 @@ function Comment({
   };
 
   const fetch = async () => {
-    const response = await axios.get(
-      `https://nuto.mirim-it-show.site/post/comment/${postId}`
-    );
-    setOtherComment(response.data.comments);
+    // const response = await axios.get(
+    //   `https://nuto.mirim-it-show.site/post/comment/${postId}`
+    // );
+    // setOtherComment(response.data.comments);
+    setOtherComment(chatjson)
   };
 
   useEffect(() => {
@@ -46,8 +194,13 @@ function Comment({
   }, []);
 
   return (
-    <div className={styles.container} onClick={close}>
+    <div className={styles.container}>
+      <div className={styles.handle}>
+        <div className={styles.bar}></div>
+      </div>
       <div className={styles.commentContainer}>
+        <div onClick={() => setSelectPost(null)}>
+
         {otherComment &&
           otherComment.map((comment, i) => {
             const zonedDate = toZonedTime(comment.createdAt, timeZone);
@@ -65,6 +218,7 @@ function Comment({
               </div>
             );
           })}
+        </div>
         <div className={styles.messageContainer}>
           <div className={styles.inputContainer}>
             <input
