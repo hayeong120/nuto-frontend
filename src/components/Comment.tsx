@@ -5,153 +5,6 @@ import { format, toZonedTime } from "date-fns-tz";
 import { usePostInfo } from "../context/PostInfoContext";
 import ChatBox from "./ChatBox";
 
-const chatjson = [
-  {
-    _id: "123",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "124",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "123",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "124",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "123",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "124",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "123",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "124",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "123",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "124",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "123",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "124",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "123",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "124",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "123",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "124",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "123",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "124",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "123",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "124",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "123",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "124",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "123",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-  {
-    _id: "124",
-    message: "잘 되네료~",
-    name: "지은!",
-    createdAt: "2025-05-30T05:52:39.720Z"
-  },
-];
-
 const timeZone = "Asia/Seoul";
 
 function Comment({
@@ -182,11 +35,10 @@ function Comment({
   };
 
   const fetch = async () => {
-    // const response = await axios.get(
-    //   `https://nuto.mirim-it-show.site/post/comment/${postId}`
-    // );
-    // setOtherComment(response.data.comments);
-    setOtherComment(chatjson)
+    const response = await axios.get(
+      `https://nuto.mirim-it-show.site/post/comment/${postId}`
+    );
+    setOtherComment(response.data.comments);
   };
 
   useEffect(() => {
