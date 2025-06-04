@@ -31,7 +31,7 @@ function Home() {
   const fetchPost = async () => {
     try {
       const response = await axios.get(`https://nuto.mirim-it-show.site/post`);
-      console.log(response);
+      // console.log(response);
       setPosts(response.data);
     } catch (err) {
       console.error(err);
@@ -62,9 +62,14 @@ function Home() {
             </motion.div>
             <motion.div
               className={style.commentModal}
-              initial={{bottom: '-50%'}}
+              drag="y"
+              dragConstraints={{ top: 0 }}
+              onDragEnd={(event, info) => {
+                setSelectPost(null);
+              }}
+              initial={{bottom: '-100%'}}
               animate={{bottom: '0%'}}
-              exit={{bottom: '-50%'}}
+              exit={{bottom: '-100%'}}
               transition={{duration: 0.5}}
               onClick={(e) => e.stopPropagation()}
             >
