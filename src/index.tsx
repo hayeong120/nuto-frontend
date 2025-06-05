@@ -34,10 +34,6 @@ root.render(
         <AdminProvider>
           <ImageProvider>
             <Routes>
-              <Route
-                path="/"
-                element={<Navigate to="/login" replace />}
-              ></Route>
               <Route path="/home" element={<Home />}></Route>
               <Route path="/search" element={<Search />}></Route>
               <Route path="/post" element={<PostUpload />}></Route>
