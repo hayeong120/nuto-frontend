@@ -93,7 +93,7 @@ function EditPost() {
     }.${new Date().getDate()}`;
     const dateText = new fabric.FabricText(date, {
       fontSize: 18,
-      fontFamily: "Ownglyph PDH",
+      fontFamily: "Ownglyph",
       fill: "#656565",
       top: 345,
       left: 22,
@@ -103,7 +103,7 @@ function EditPost() {
     const canvasWidth = newCanvas.width;
     const nameText = new fabric.Text(name, {
       fontSize: 18,
-      fontFamily: "Ownglyph PDH",
+      fontFamily: "Ownglyph",
       fill: "#656565",
       top: 345,
       textAlign: "right", // 텍스트 정렬을 오른쪽으로 설정
