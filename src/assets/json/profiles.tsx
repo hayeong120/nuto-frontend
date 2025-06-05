@@ -5,7 +5,7 @@ export const profiles: Profile[] = [
     name: "오지은",
     type: "풀스택 개발자",
     img: "/images/jieunProfile.jpeg",
-    introduce: "성장하는 백엔드 개발자 오지은입니다.",
+    introduce: "도전을 통해 성장하는 개발자 오지은입니다.",
     skills: [
       "Nest.js",
       "Express.js",
@@ -14,7 +14,7 @@ export const profiles: Profile[] = [
       "Flutter",
     ],
     comment:
-      "안녕하세요, 도전을 두려워하지 않는 개발자 오지은입니다! 백엔드부터 프론트까지 다양한 분야에 도전하며 성장 중이에요. Nuto와 IT Show, 마음껏 즐겨주시고 궁금한 점은 언제든 편하게 물어봐 주세요!",
+      "안녕하세요, 도전을 통해 성장하는 개발자 오지은입니다! 백엔드부터 프론트까지 다양한 분야에 도전하며 성장 중입니다. Nuto와 IT Show, 마음껏 즐겨주시고 궁금한 점은 언제든 편하게 물어봐 주세요!",
     email: "oje92453488@gmail.com",
   },
   {
@@ -41,11 +41,11 @@ export const profiles: Profile[] = [
   {
     name: "조혜원",
     type: "디자이너",
-    img: "/images/waterProfile.svg",
-    introduce: "감각적인 디자인을 추구하는 조혜원입니다.",
-    skills: ["Figma", "Photoshop", "Illustrator"],
+    img: "/images/profiles/hyewon.jpg",
+    introduce: "공감하는 디자이너 조혜원입니다. ",
+    skills: ["Figma", "Adobe Illustrator", "Adobe Photoshop", "Adobe Indesign"],
     comment:
-      "안녕하세요! 피드백을 통해 더 나은 디자인을 만들어가는 조혜원입니다. 함께 소통하며 발전하는 과정을 소중히 생각하고 있어요. 궁금한 점 있으시면 언제든지 말씀해주세요!",
+      "UI/UX 디자인은 단순히 기능을 예쁘게 꾸미는 일이 아니라, 사람의 삶을 이해하고 깊이 공감하는 데서 시작된다고 믿습니다. 저는 그 여정 속에서, 디자인이 사용자와 만나는 지점을 찾고자 합니다. 언제나 사용자의 입장에서 생각하고, 더 나은 경험을 위해 고민하며 나아가겠습니다.\n\nIT쇼에 방문해 주셔서 감사합니다. 저희 팀이 함께 고민하고 개발한 nuto, 마음껏 체험해보시고 궁금한 점이 있다면 언제든 편하게 말씀해주세요!",
     email: "hyewonjo1217@gmail.com",
   },
   {
