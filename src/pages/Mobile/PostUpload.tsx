@@ -8,8 +8,6 @@ import { usePostInfo } from "../../context/PostInfoContext";
 import Booth from "../../components/Booth";
 import { boothsData } from "../../assets/json/booths";
 import { Helmet } from "react-helmet";
-import { useIsLogin } from "../../context/LoginContext";
-
 type BoothType = {
   name: string;
   type: ("웹사이트" | "게임" | "앱")[];
@@ -28,8 +26,7 @@ function PostUpload() {
   const [previewImage, setPreviewImage] = useState<string>("");
   const { image, setImage } = useImage();
 
-  const { setName, location } = usePostInfo();
-  const { username, setUsername } = useIsLogin();
+  const { name, setName, location } = usePostInfo();
   const [selectedLocation, setSelectedLocation] = useState<BoothType>(null);
 
   useEffect(() => {
@@ -60,7 +57,6 @@ function PostUpload() {
   };
 
   const onChange = (event: any) => {
-    setUsername(event.target.value.trim());
     setName(event.target.value);
   };
 
@@ -86,7 +82,7 @@ function PostUpload() {
       </div>
       <div className={style.NameContainer}>
         <p>당신의 이름은 무엇인가요?</p>
-        <input onChange={onChange} value={username} />
+        <input onChange={onChange} value={name} />
       </div>
       <div className={style.ImageContainer}>
         <p>폴라로이드에 첨부할 사진을 선택해주세요.</p>

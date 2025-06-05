@@ -16,7 +16,6 @@ function Comment({
 }) {
   const [otherComment, setOtherComment] = useState([]);
   const [comment, setComment] = useState("");
-  const { name } = usePostInfo();
 
   const close = (e) => {
     if (e.target === e.currentTarget) {
@@ -25,6 +24,7 @@ function Comment({
   };
 
   const sendComment = async () => {
+    const name = prompt("이름을 입력해주세요");
     await axios.post("https://nuto.mirim-it-show.site/post/comment", {
       name,
       comment,
@@ -50,10 +50,10 @@ function Comment({
       <div className={styles.handle}>
         <div className={styles.bar}></div>
       </div>
-      <div 
+      <div
         className={styles.commentContainer}
         onClick={(e) => {
-          if(e.target === e.currentTarget) setSelectPost(null)
+          if (e.target === e.currentTarget) setSelectPost(null);
         }}
       >
         <div onClick={() => setSelectPost(null)}>
