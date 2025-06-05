@@ -66,8 +66,8 @@ function EditNuto() {
       const canvasHeight = fabricCanvasRef.current.height;
       const canvasWidth = fabricCanvasRef.current.width;
       const textBox = new fabric.IText("응원글을\n입력해 주세요.", {
-        fontSize: 16,
-        fontFamily: "Ownglyph PDH",
+        fontSize: 22,
+        fontFamily: "Ownglyph",
         fill: "white",
         textAlign: "center",
       });
