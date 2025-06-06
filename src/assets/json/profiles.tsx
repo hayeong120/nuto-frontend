@@ -51,7 +51,7 @@ export const profiles: Profile[] = [
   {
     name: "박새봄",
     type: "디자이너",
-    img: "/images/treeProfile.svg",
+    img: "/images/profiles/sebom.jpg",
     introduce: "사용자 중심의 디자인을 연구하는 박새봄입니다.",
     skills: [
       "Adobe Illustrator",
