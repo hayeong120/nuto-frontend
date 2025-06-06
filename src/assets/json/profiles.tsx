@@ -26,7 +26,7 @@ export const profiles: Profile[] = [
     skills: ["React (Ts)", "NestJs"],
     comment:
       "안녕하세요! 열정 뿜뿜🔥 항상 최선을 다하는 개발자 이소리입니다. 에너지가 넘치는 팀 분위기를 만들기 위해 항상 노력하고 있어요! 궁금한 점이나 궁금한 기능이 있다면 언제든지 말씀해 주세요!",
-    email: "lsreeoi@gmail.com",
+    email: "lsreeoi0806@gmail.com",
   },
   {
     name: "장하영",
@@ -51,7 +51,7 @@ export const profiles: Profile[] = [
   {
     name: "박새봄",
     type: "디자이너",
-    img: "/images/treeProfile.svg",
+    img: "/images/profiles/sebom.jpg",
     introduce: "사용자 중심의 디자인을 연구하는 박새봄입니다.",
     skills: [
       "Adobe Illustrator",
