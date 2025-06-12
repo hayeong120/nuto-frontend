@@ -11,6 +11,8 @@ type checkChat = {
   data: {
     name: string;
     comment: string;
+    sender: string;
+    createdAt: string;
   };
 };
 
@@ -18,7 +20,8 @@ type chat = {
   _id: string;
   name: string;
   message: string;
-  cratedAt: string;
+  sender: string;
+  createdAt: string;
   updatedAt: string;
 };
 
@@ -33,7 +36,9 @@ function CheckChat() {
   const getChattings = async () => {
     try {
       const response = await axios.get(
-        `https://nuto.mirim-it-show.site/message/${profile.name}`
+        `https://nuto.mirim-it-show.site/message/${encodeURIComponent(
+          profile.name
+        )}`
       );
 
       const userChats: checkChat[] = response.data.data.map((chat: chat) => {
@@ -42,6 +47,8 @@ function CheckChat() {
           data: {
             name: chat.name,
             comment: chat.message,
+            sender: chat.sender,
+            createdAt: chat.createdAt,
           },
         };
       });
@@ -61,8 +68,10 @@ function CheckChat() {
   return (
     <div className={style.Body}>
       <img src="/images/logo.svg" className={style.logo} alt="Logo" />
-      <Members type="check" profiles={profiles} changeMember={changeMember} />
-      <Chatting chattings={chattings} />
+      <div className={style.ChatContainer}>
+        <Members type="check" profiles={profiles} changeMember={changeMember} />
+        <Chatting chattings={chattings} />
+      </div>
       <Footer />
     </div>
   );

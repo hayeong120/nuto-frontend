@@ -3,7 +3,6 @@ import style from "../styles/Chatting.module.css";
 
 type defaultChat = {
   type: "default-chat";
-
   data: {
     name: string;
     comment: string;
@@ -23,6 +22,7 @@ type adminChat = {
   data: {
     message: string;
     createdAt: string;
+    sender?: string;
   };
 };
 
@@ -31,6 +31,8 @@ type checkChat = {
   data: {
     name: string;
     comment: string;
+    sender: string;
+    createdAt: string;
   };
 };
 
@@ -52,20 +54,25 @@ function Chatting(props: {
         } else if (chatting.type === "user-chat") {
           return <ChatBox type="send" comment={chatting.data.comment} />;
         } else if (chatting.type === "check-chat") {
+          console.log(chatting);
           return (
             <ChatBox
               type="check"
-              name={chatting.data.name}
+              name={chatting.data.sender}
+              time={chatting.data.createdAt}
               comment={chatting.data.comment}
             />
           );
         } else {
           return (
-            <ChatBox
-              type="admin"
-              comment={chatting.data.message}
-              time={chatting.data.createdAt}
-            />
+            <div>
+              <p>{chatting.data.sender}</p>
+              <ChatBox
+                type="admin"
+                comment={chatting.data.message}
+                time={chatting.data.createdAt}
+              />
+            </div>
           );
         }
       })}

@@ -1,0 +1,85 @@
+.Body {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.AccountInfoContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 22px;
+  margin-top: 29px;
+}
+
+.AccountInfoContainer > img {
+  width: 71px;
+  height: 71px;
+  border-radius: 50%;
+}
+
+.AccountInfoContainer > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 8px;
+}
+
+.AccountInfoContainer > div > p:first-child {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.TitleContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.boothName {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.boothExplain {
+  font-size: 12px;
+}
+
+.ExplainButton {
+  width: 135px;
+  height: 41px;
+  background-color: #424242;
+  border: 0;
+  border-radius: 10px;
+  outline: none;
+  color: #ffffff;
+}
+
+.PostsContainer {
+  display: flex;
+  border-bottom: 1px solid #d5d5d5;
+}
+
+.PostsContainer > button {
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  font-size: 16px;
+  padding-bottom: 12px;
+}
+
+.PostsContainer > button:active {
+  font-weight: bold;
+}
+
+.NutoButton {
+  position: fixed;
+  width: 124px;
+  height: 43px;
+  border: 1px solid #424242;
+  outline: none;
+  border-radius: 27px;
+  right: 20px;
+  bottom: 100px;
+  background-color: #fcf9f3;
+}

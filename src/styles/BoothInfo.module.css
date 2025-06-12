@@ -1,67 +1,69 @@
 .body {
-    font-family: 'NanumGothic';
-    width: 100%;
-    height: calc(100vh - 80px);
-    background-color: #FDFAF4;
-    overflow: scroll;
+  font-family: "NanumGothic";
+  width: 100%;
+  height: calc(100vh - 80px);
+  background-color: #fdfaf4;
+  overflow: scroll;
 }
 .body::-webkit-scrollbar {
-    width: 0;
-    height: 0;
+  width: 0;
+  height: 0;
 }
 
 .header {
-    display: flex;
-    align-items: center;
-    margin: 50px 30px 20px;
+  display: flex;
+  align-items: center;
+  margin: 50px 30px 20px;
 }
 .back {
-    width: 30px;
+  width: 30px;
 }
 .logo {
-    margin: 0 22vw;
+  margin: 0 22vw;
 }
 
 p {
-    color: #656565;
+  color: #656565;
 }
 .boothImg {
-    width: 100vw;
+  width: 100vw;
 }
 
 .boothInfo {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 20px 30px;
 }
 .name {
-    display: inline;
-    color: #A1302A;
-    margin-right: 15px;
+  display: inline;
+  color: #a1302a;
+  margin-right: 15px;
 }
 .type {
-    display: inline;
-    color: #656565;
+  display: inline;
+  color: #656565;
 }
 .dept {
-    font-weight: bold;
-    
+  font-weight: bold;
 }
 .member {
-    margin: 10px 0;
+  margin: 10px 0;
+  line-height: 140%;
 }
 .comment {
-    margin: 10px 0;
-    text-align: justify;
+  margin: 10px 0;
+  text-align: justify;
+  line-height: 140%;
 }
 
 .nuto {
-    border: solid 1px #656565;
-    border-radius: 27px;
-    color: #656565;
-    background-color: transparent;
-    margin-left: auto;
+  border: solid 1px #656565;
+  border-radius: 27px;
+  color: #656565;
+  background-color: transparent;
+  margin-left: auto;
 
-    width: 125px;   height: 45px;
+  width: 125px;
+  height: 45px;
 }

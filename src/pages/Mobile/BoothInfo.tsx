@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import style from "../../styles/BoothInfo.module.css";
 import Footer from "../../components/Footer";
 import { boothsData } from "../../assets/json/booths";
+import { Helmet } from "react-helmet";
 
 function BoothInfo() {
-  const [booth] = useState(boothsData[0]);
+  const boothId = useParams().boothId;
+  console.log(boothId);
+  const [booth] = boothsData.filter((booth) => booth.booth_id === boothId);
   const navigate = useNavigate();
 
   if (!booth)
@@ -13,11 +16,14 @@ function BoothInfo() {
 
   return (
     <div className={style.body}>
+      <Helmet>
+        <title>booth explain</title>
+      </Helmet>
       <div className={style.header}>
         <img
           src="/images/backButton.png"
           className={style.back}
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/booths")}
           alt="뒤로 가기"
         />
         <img src="/images/logo.svg" alt="로고이미지" className={style.logo} />
@@ -37,8 +43,11 @@ function BoothInfo() {
           </p>
         </div>
         <p className={style.comment}>{booth.comment}</p>
-        <button className={style.nuto} onClick={() => navigate("/nuto")}>
-          토마토 남기기
+        <button
+          className={style.nuto}
+          onClick={() => navigate(`/booth-account/${boothId}`)}
+        >
+          부스 구경하기
         </button>
       </div>
       <Footer />

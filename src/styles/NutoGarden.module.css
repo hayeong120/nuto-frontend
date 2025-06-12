@@ -54,7 +54,7 @@
     position: fixed;
     top: calc(calc(100vh / 2) - 30px);
     right: 60px;
-    z-index: 100;
+    z-index: 10;
 }
 
 .preBtn{
@@ -63,7 +63,7 @@
     position: fixed;
     top: calc(calc(100vh / 2) - 30px);
     left: 60px;
-    z-index: 100;
+    z-index: 10;
 }
 
 .deactivateBtn {

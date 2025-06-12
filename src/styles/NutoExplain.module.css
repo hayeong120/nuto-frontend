@@ -1,0 +1,58 @@
+.body {
+  width: 100%;
+  height: calc(100vh - 70px);
+  overflow: scroll;
+  padding: 20px 0;
+  background-color: #fffbf5;
+}
+
+.body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.logo {
+  margin: 10px 30px;
+}
+
+.profileSection {
+  margin: 20px 30px;
+}
+
+p {
+  color: #656565;
+}
+
+.boothImg {
+  width: 100%;
+}
+
+.boothInfo {
+  margin: 20px 0;
+}
+
+.name {
+  display: inline;
+  color: #a1302a;
+  margin-right: 15px;
+}
+
+.type {
+  display: inline;
+  color: #656565;
+}
+
+.dept {
+  font-weight: bold;
+}
+
+.member {
+  margin: 10px 0;
+  line-height: 140%;
+}
+
+.comment {
+  margin: 10px 0;
+  text-align: justify;
+  line-height: 110%;
+}

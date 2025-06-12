@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { useIsLogin } from "../../context/LoginContext";
+import { useIsAdmin } from "../../context/AdminContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsLogin } = useIsLogin();
+  const { setIsAdmin } = useIsAdmin();
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
@@ -19,8 +22,8 @@ const Login = () => {
       if (response.data.success) {
         localStorage.setItem("token", response.data.token); // JWT 저장
         alert("로그인 성공");
-        setIsLogin(true);
-        window.location.href = "/check-message";
+        setIsAdmin(true);
+        navigate("/check-message");
       }
     } catch (err) {
       alert("아이디 또는 비밀번호가 틀렸습니다.");

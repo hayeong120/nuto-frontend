@@ -9,21 +9,53 @@ interface BoothProps {
     members: string[];
     s3_path: string;
   };
+  width?: number;
+  fontSize?: number;
+  logoWidth?: number;
+  bottom?: number;
+  path?: string;
 }
 
-const Board: React.FC<BoothProps> = ({ booth }) => {
+const Board: React.FC<BoothProps> = ({
+  booth,
+  width,
+  fontSize,
+  logoWidth,
+  bottom,
+  path,
+}) => {
   const navigate = useNavigate();
   // todo 함수이름 바꾸기
-  const goB = (booth: string) => {
+  const goB = (booth_id: string) => {
     // 부소소개 페이지 이동, 부스 이름 넘기기
-    console.log(booth);
-    navigate("/home", { state: booth });
+    navigate(path, {
+      state: {
+        booth_id: booth_id,
+      },
+    });
   };
   return (
-    <div className={style.body} onClick={() => goB(booth.booth_id)}>
-      <img src="/images/board.svg" alt="보드" className={style.boardImg} />
+    <div
+      className={style.body}
+      style={{ width: width }}
+      onClick={() => goB(booth.booth_id)}
+    >
+      <img
+        src="/images/board.svg"
+        alt="보드"
+        className={style.boardImg}
+        style={{ width: width }}
+      />
       <div className={style.BoothBox}>
-        <Booth booth={booth} navi={{ go: false }} />
+        <Booth
+          booth={booth}
+          navi={{ go: true, path: booth.booth_id }}
+          boardStyle={{
+            logoWidth: logoWidth,
+            bottom: bottom,
+            fontSize: fontSize,
+          }}
+        />
       </div>
     </div>
   );

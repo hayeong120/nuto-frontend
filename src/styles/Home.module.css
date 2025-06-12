@@ -1,21 +1,41 @@
 @font-face {
-    font-family: 'NanumGothic';
-    src: url('../fonts/NanumGothic.ttf') format('truetype');
+  font-family: "NanumGothic";
+  src: url("../fonts/NanumGothic.ttf") format("truetype");
 }
 
 .body {
-    width: 100%;
-    height: calc(100vh - 80px);
-    background-color: #FDFAF4;
-    overflow: scroll;
+  width: 100%;
+  height: calc(100% - 53px);
+  background-color: #fdfaf4;
+  overflow: scroll;
+  padding-bottom: 60px;
+  position: relative;
 }
 .body::-webkit-scrollbar {
-    width: 0;
-    height: 0;
+  width: 0;
+  height: 0;
 }
 
 .logo {
-    margin-top: 32px;
-    margin-bottom: 56px;
-    margin-left: 16px;
+  margin-top: 32px;
+  margin-bottom: 56px;
+  margin-left: 16px;
+}
+
+.backgroundModal {
+  position: fixed;
+  width: 100vw;
+  height: 100%;
+  z-index: 9999;
+}
+
+.commentModal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  /* height: calc(100% - 5px); */
+  height: calc(60%);
+  z-index: 99999;
 }

@@ -66,8 +66,8 @@ function EditNuto() {
       const canvasHeight = fabricCanvasRef.current.height;
       const canvasWidth = fabricCanvasRef.current.width;
       const textBox = new fabric.IText("응원글을\n입력해 주세요.", {
-        fontSize: 16,
-        fontFamily: "Ownglyph PDH",
+        fontSize: 22,
+        fontFamily: "Ownglyph",
         fill: "white",
         textAlign: "center",
       });
@@ -138,8 +138,7 @@ function EditNuto() {
   };
 
   const hashing = async (password: string) => {
-    const saltRound = 10;
-    const salt = await bcrypt.genSalt(saltRound);
+    const salt = process.env.REACT_APP_SALT_VALUE;
     return await bcrypt.hash(password, salt);
   };
 
@@ -199,19 +198,27 @@ function EditNuto() {
       formData.append("password", hashedPassword);
 
       try {
-        const response = await axios.post(
-          "https://nuto.mirim-it-show.site/post",
-          formData,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
-        );
-        console.log("업로드 성공:", response);
+        await axios.post("https://nuto.mirim-it-show.site/post", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
         setLocation("");
         setName("");
         setNutoFile(null);
         setPolariodFile(null);
         setImage("");
+
+        sessionStorage.setItem("name", "");
+        sessionStorage.setItem("image", "");
+        sessionStorage.setItem("nutoFile", "");
+        sessionStorage.setItem("polariodFile", "");
+        sessionStorage.setItem("location", "");
+
+        console.log(
+          location,
+          name,
+          sessionStorage.getItem("location"),
+          sessionStorage.getItem("name")
+        );
 
         navigate("/");
       } catch (err) {

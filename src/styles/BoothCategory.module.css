@@ -1,0 +1,49 @@
+.dataContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: min-content;
+  overflow-y: scroll;
+  place-items: center;
+  height: 500px;
+  margin-bottom: 100px;
+}
+
+.dataContainer > img {
+  width: 160px;
+}
+
+.modalBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modalContainer {
+  position: fixed;
+  width: 90%;
+  background-color: #ffffff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.modalContainer > p {
+  align-self: flex-start;
+}
+
+.modalImage {
+  width: 100%;
+}
