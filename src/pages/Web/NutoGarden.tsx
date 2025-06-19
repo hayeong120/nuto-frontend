@@ -41,7 +41,7 @@ function NutoGarden() {
     const fetchPosts = async () => {
       try {
         const url = booth
-          ? `https://nuto.mirim-it-show.site/post/nuto-garden/${booth}`
+          ? `https://nuto.mirim-it-show.site/post/nuto-garden/${booth.toLowerCase()}`
           : `https://nuto.mirim-it-show.site/post`;
 
         const response = await axios.get(url);
